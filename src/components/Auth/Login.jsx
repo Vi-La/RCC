@@ -1,11 +1,44 @@
-import { Form, Input, Button} from 'antd';
-import { Link } from 'react-router-dom';
-import Navigation from '../Navigation/Navigation';
+import { Form, Input, Button, Checkbox } from 'antd';
+import { useState, useContext} from 'react';
+import { useHistory } from "react-router-dom"
+import Toorbar from "../Navigation/Toolbar/Toolbar";
+import { useHttpClient } from "../../shared/hooks/http-hook"
+import { AuthContext } from "../../shared/context/auth-context"
+import {Link} from "react-router-dom"
 
 const Login = () => {
-
-  const onFinish = (values) => {
+  const auth = useContext(AuthContext)
+  const history = useHistory()
+  const [firstName, setFirstName] =useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const { isLoading, sendRequest } = useHttpClient()
+  const [lastName, setLastName] =useState("")
+  const [email, setEmail] =useState("")
+  const [phone, setPhone] =useState("")
+  const [password, setPassword] =useState("")
+  const onFinish = async(values) => {
     console.log('Success:', values);
+    try {
+      const responseData = await sendRequest(
+        "http://localhost:4042/api/v1/login",
+        "POST",
+        JSON.stringify(values),
+        { "Content-Type": "application/json" }
+      )
+      if (responseData.error) {
+        alert(responseData.error)
+      } else {
+        console.log(responseData)
+        auth.login(
+          responseData.id,
+          responseData.fullName,
+          responseData.email,
+          responseData.token
+        )
+        sessionStorage.setItem('rccRwUser',JSON.stringify(responseData))
+        history.push("/")
+      }
+    } catch (error) {}
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -14,9 +47,9 @@ const Login = () => {
 
   return (
     <div>
-    <Navigation/>
+    <Toorbar/>
     <Form
-     style={{margin:'40px 350px 0px 350px',backgroundColor:'#ccc',padding:'25px 0px 20px 0px',borderRadius:'5px'}}
+      style={{margin:'40px 350px 0px 350px',backgroundColor:'#ccc',padding:'25px 0px 20px 0px',borderRadius:'5px'}}
       name="basic"
       labelCol={{
         span: 8,
