@@ -1,4 +1,5 @@
 import React from "react";
+import './Community.css'
 import Building1 from "../../assets/building1.jpg";
 import EmptyArtal from "../../assets/Empty-artal.jpg";
 import Artal1 from "../../assets/Artal1.jpg";
@@ -191,7 +192,13 @@ const Communities = () => {
             </Link>
           </div>
         </div>
-        <div className="col span-1-of-5 box">
+        
+      </div>
+
+
+
+      <div className="row community-row">
+      <div className="col span-1-of-5 box">
           <img src={Lisbon} alt="Head quators5" className="Community-img" />
           <h3>Kabgayi</h3>
           <div className="community-features">
@@ -233,7 +240,139 @@ const Communities = () => {
             </Link>
           </div>
         </div>
+        <div className="col span-1-of-5 box  ">
+          <img src={EmptyArtal} alt="Head quators2" className="Community-img" />
+          <h3>Rwamagana</h3>
+          <div className="community-features">
+            <LocalActivityIcon
+              style={{
+                color: "#e67e22",
+                fontSize: "20px",
+                marginBottom: "-5px",
+                marginRight: "5px",
+              }}
+            />
+            <Link to="/community2-activity" className="community-links">
+              Activities
+            </Link>
+          </div>
+          <div className="community-features">
+            <PeopleIcon
+              style={{
+                color: "#e67e22",
+                fontSize: "20px",
+                marginBottom: "-5px",
+                marginRight: "5px",
+              }}
+            />
+            15000+ Members
+          </div>
+          <div className="community-features">
+            <TwitterIcon
+              style={{
+                color: "#e67e22",
+                fontSize: "20px",
+                marginBottom: "-5px",
+                marginRight: "5px",
+              }}
+            />
+            <Link to="/https://www.twitter.com" className="community-links">
+              {" "}
+              Twitter
+            </Link>
+          </div>
+        </div>
+        <div className="col span-1-of-5 box">
+          <img src={Artal1} alt="Head quators3" className="Community-img" />
+          <h3>Kibuye</h3>
+          <div className="community-features">
+            <LocalActivityIcon
+              style={{
+                color: "#e67e22",
+                fontSize: "20px",
+                marginBottom: "-5px",
+                marginRight: "5px",
+              }}
+            />
+            <Link to="/community3-activity" className="community-links">
+              Activities
+            </Link>
+          </div>
+          <div className="community-features">
+            <PeopleIcon
+              style={{
+                color: "#e67e22",
+                fontSize: "20px",
+                marginBottom: "-5px",
+                marginRight: "5px",
+              }}
+            />
+            2000+ Members
+          </div>
+          <div className="community-features">
+            <TwitterIcon
+              style={{
+                color: "#e67e22",
+                fontSize: "20px",
+                marginBottom: "-5px",
+                marginRight: "5px",
+              }}
+            />
+            <Link to="/https://www.twitter.com" className="community-links">
+              {" "}
+              Twitter
+            </Link>
+          </div>
+        </div>
+        <div className="col span-1-of-5 box">
+          <img src={People} alt="Head quators" className="Community-img" />
+          <h3>Kigali</h3>
+          <div className="community-features">
+            <LocalActivityIcon
+              style={{
+                color: "#e67e22",
+                fontSize: "20px",
+                marginBottom: "-5px",
+                marginRight: "5px",
+              }}
+            />
+            <Link to="/community10-activity" className="community-links">
+              Activities
+            </Link>
+          </div>
+          <div className="community-features">
+            <PeopleIcon
+              style={{
+                color: "#e67e22",
+                fontSize: "20px",
+                marginBottom: "-5px",
+                marginRight: "5px",
+              }}
+            />
+            5500+ Members
+          </div>
+          <div className="community-features">
+            <TwitterIcon
+              style={{
+                color: "#e67e22",
+                fontSize: "20px",
+                marginBottom: "-5px",
+                marginRight: "5px",
+              }}
+            />
+            <Link to="/https://www.twitter.com" className="community-links">
+              {" "}
+              Twitter
+            </Link>
+          </div>
+        </div>
+        
       </div>
+
+
+
+
+
       <div className="row">
         <div className="col span-1-of-5 box">
           <img src={London} alt="Head quators6" className="Community-img" />
@@ -407,48 +546,7 @@ const Communities = () => {
             </Link>
           </div>
         </div>
-        <div className="col span-1-of-5 box">
-          <img src={People} alt="Head quators" className="Community-img" />
-          <h3>Kigali</h3>
-          <div className="community-features">
-            <LocalActivityIcon
-              style={{
-                color: "#e67e22",
-                fontSize: "20px",
-                marginBottom: "-5px",
-                marginRight: "5px",
-              }}
-            />
-            <Link to="/community10-activity" className="community-links">
-              Activities
-            </Link>
-          </div>
-          <div className="community-features">
-            <PeopleIcon
-              style={{
-                color: "#e67e22",
-                fontSize: "20px",
-                marginBottom: "-5px",
-                marginRight: "5px",
-              }}
-            />
-            5500+ Members
-          </div>
-          <div className="community-features">
-            <TwitterIcon
-              style={{
-                color: "#e67e22",
-                fontSize: "20px",
-                marginBottom: "-5px",
-                marginRight: "5px",
-              }}
-            />
-            <Link to="/https://www.twitter.com" className="community-links">
-              {" "}
-              Twitter
-            </Link>
-          </div>
-        </div>
+        
       </div>
     </section>
     </div>

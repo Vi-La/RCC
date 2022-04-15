@@ -410,6 +410,7 @@ input[type="submit"] {
 }
 /*...FORM...*/
 .section-form {
+  margin-top: 200;
   height: 95vh;
 }
 .contact-form {
@@ -454,6 +455,7 @@ input[type="checkbox"] {
 }
 .card {
   display: block;
+  margin-left: 100px;
   width: 170px;
   height: 300px;
   background-color: white;
@@ -466,7 +468,6 @@ input[type="checkbox"] {
 }
 .card img {
   margin-top: 15px;
-
   height: 140px;
   width: 130px;
   /*    border-radius: 200px;*/
@@ -479,7 +480,7 @@ input[type="checkbox"] {
   font-size: 90%;
   text-decoration: none;
   text-transform: capitalize;
-  transition: border-bottom 0.5s, color0.5s, padding-bottom 0.5s;
+  transition: border-bottom 0.5s, 0.5s, padding-bottom 0.5s;
 }
 .social-media:hover,
 .social-media:active {
@@ -503,11 +504,12 @@ input[type="checkbox"] {
 .footer-links:visited {
   text-decoration: none;
   display: inline-block;
+  /* background-color: red; */
   color: #e67e22;
   font-size: 90%;
   text-decoration: none;
   text-transform: capitalize;
-  transition: color0.5s;
+  transition: 0.5s;
 }
 .footer-links:hover,
 .footer-links:active {
@@ -515,6 +517,7 @@ input[type="checkbox"] {
 }
 .footer-links:first-of-type {
   margin-right: 800px;
+  /* color: red; */
 }
 .footer-logo {
   width: 200px;
@@ -569,4 +572,189 @@ input[type="checkbox"] {
 }
 .community-features{
   color:#e67e22;
+}
+
+@media (max-width: 768px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .row {
+    width: 100%;
+  }
+.card img {
+  /* margin-top: 15px; */
+  align-items: left;
+  justify-content: space-between;
+  align-items: center;
+  height: 130px;
+  width: 130px;
+  /*    border-radius: 200px;*/
+}
+.card {
+  margin-left: 8px;
+  width: 170px;
+  height: 300px;
+  text-align: left;
+
+  /*    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.49);*/
+}
+.section-team {
+  margin-left: 0;
+  width: 100%;
+  background-color: #efefef;
+  height: 80vh;
+}
+.Signup-para {
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.welcome-para, .paragraph, .step-headings{
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+}
+/* .step-headings */
+.footer-links:first-of-type {
+  margin-right: 600px;
+  font-size: 18px;
+  /* color: red; */
+}
+.footer-list {
+  font-size: 16;
+  margin-left: -110px;
+  margin-top: 50px;
+  list-style: none;
+}
+.footer-list li a:link,
+.footer-list li a:visited {
+  text-decoration: none;
+  margin-right: 30px;
+  color: #fff;
+}
+}
+
+
+@media (max-width: 499px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    
+    color: #555;/*this make font render in a perfect awy*/
+    /* background-color: red; */
+  }
+  .row {
+
+    width: 100%;
+    margin: 0 auto;
+  }
+  .saint-of-the-day-picture img{
+    width: 135px;
+    height: 100px;
+  }
+  
+  .section-welcome {
+    height: 180vh;
+  }
+  .section-testimonials {
+    height: 195vh;
+  }
+  .welcome-para, .paragraph {
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+  .section-team {
+    background-color: #efefef;
+    height: 300vh;
+  }
+
+  .card {
+    margin-left: 8px;
+    margin-bottom: 20px;
+    width: 400px;
+    height: 300px;
+    text-align: center;
+  
+    /*    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.49);*/
+  }
+  .card img {
+    /* margin-top: 15px; */
+    align-items: left;
+    justify-content: space-between;
+    align-items: center;
+    height: 160px;
+    width: 160px;
+    /*    border-radius: 200px;*/
+  }
+
+  /* .section-form {
+    height: 95vh;
+    margin-top: 90px;
+    background-color: red;
+  } */
+  .footer {
+    background-color: #555;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    margin-top: 900px;
+    display: none;
+  }
+  .footer-row {
+    text-align: center;
+  }
+  .footer-link-container {
+    display: inline-block;
+    /* margin-right: 15px; */
+  }
+  .footer-links:first-of-type {
+    margin-right: 600px;
+    font-size: 18px;
+    /* color: red; */
+  }
+  .footer-list {
+    font-size: 16;
+    margin-left: -110px;
+    margin-top: 50px;
+    list-style: none;
+  }
+  .footer-list li a:link,
+  .footer-list li a:visited {
+    text-decoration: none;
+    margin-right: 30px;
+    color: #fff;
+  }
+  
+}
+@media (max-width: 375px) {
+  .section-welcome {
+    height: 205vh;
+  }
+  .section-testimonials {
+    height: 215vh;
+  }
+  .card {
+    margin-left: 8px;
+    margin-bottom: 20px;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+  
+    /*    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.49);*/
+  }
+  .card img {
+    /* margin-top: 15px; */
+    align-items: left;
+    justify-content: space-between;
+    align-items: center;
+    height: 160px;
+    width: 160px;
+    /*    border-radius: 200px;*/
+  }
 }

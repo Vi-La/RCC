@@ -1,0 +1,26 @@
+@media (max-width: 900px) {
+    .section-community{
+        display: block;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+    .community-features{
+        color: #e67e22;
+        font-size: 16px;
+    }
+}
+@media (max-width: 499px) {
+    .community-features{
+        margin-left: 66px;
+    }
+    .Community-img{
+    margin-left: 65px; 
+    margin-top: 20px;
+    
+    }
+    h3{
+    margin-left: 66px;
+    }
+}

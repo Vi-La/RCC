@@ -1,4 +1,5 @@
 import React from "react";
+import './Team.css'
 import { Link } from "react-router-dom";
 import Customer from "../../assets/customer-1.jpg";
 import Customer2 from "../../assets/customer-2.jpg";
@@ -12,7 +13,7 @@ const Team = () => {
       <div className="row">
         <h2 className="team-heading">Get in touch with our team</h2>
       </div>
-      <div >
+      <div className="Our__teams">
         <div className="col span-1-of-7">
           <div className="card">
             <img src={Customer} alt="team-member-name" />
@@ -187,40 +188,6 @@ const Team = () => {
         <div className="col span-1-of-7">
           <div className="card">
             <img src={Customer3} alt="team-member-n" />
-            <div>Name</div>
-            <div>Title</div>
-            <div>Diocese</div>
-            <div>
-              <FacebookIcon
-                style={{
-                  color: "#e67e22",
-                  fontSize: "20px",
-                  marginBottom: "-5px",
-                  marginRight: "5px",
-                }}
-              />
-              <Link to="/https://www.facebook.com" className="social-media">
-                facebook
-              </Link>
-            </div>
-            <div>
-              <TwitterIcon
-                style={{
-                  color: "#e67e22",
-                  fontSize: "20px",
-                  marginBottom: "-5px",
-                  marginRight: "5px",
-                }}
-              />
-              <Link to="/https://www.twitter.com" className="social-media">
-                Twitter
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="col span-1-of-7">
-          <div className="card">
-            <img src={Customer} alt="teamn" />
             <div>Name</div>
             <div>Title</div>
             <div>Diocese</div>

@@ -19,7 +19,7 @@ const Mission = () => {
         <div className="col span-1-of-5 box">
           <div className="steps"> 1</div>
           <h3 className="step-headings">Lord our God</h3>
-          <p>
+          <p className = "paragraph">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus
             libero culpa quos sunt in, ea deleniti.
           </p>
@@ -27,7 +27,7 @@ const Mission = () => {
         <div className="col span-1-of-5 box  ">
           <div className="steps"> 2</div>
           <h3 className="step-headings">Jesus Christ</h3>
-          <p>
+          <p className = "paragraph">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus
             libero culpa quos sunt in, ea deleniti.
           </p>
@@ -35,7 +35,7 @@ const Mission = () => {
         <div className="col span-1-of-5 box">
           <div className="steps"> 3</div>
           <h3 className="step-headings">Holy Spirit</h3>
-          <p>
+          <p className = "paragraph">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus
             libero culpa quos sunt in, ea deleniti.
           </p>
@@ -43,7 +43,7 @@ const Mission = () => {
         <div className="col span-1-of-5 box">
           <div className="steps"> 4</div>
           <h3 className="step-headings">Holy three unit</h3>
-          <p>
+          <p className = "paragraph">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus
             libero culpa quos sunt in, ea deleniti.
           </p>
@@ -51,7 +51,7 @@ const Mission = () => {
         <div className="col span-1-of-5 box">
           <div className="steps"> 5</div>
           <h3 className="step-headings">Holy Mary</h3>
-          <p>
+          <p className = "paragraph">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus
             libero culpa quos sunt in, ea deleniti.
           </p>
