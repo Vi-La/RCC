@@ -71,7 +71,8 @@
 
 }
 
-@media(max-width:1000px){.Contacts {
+@media(max-width:1000px){
+    .Contacts {
     position:relative;
     display: flex;
     height:50px;
@@ -132,9 +133,12 @@
 
 }
 
-@media (max-width: 425px) {
+@media (max-width: 900px) {
+    .Contacts {
+        display: none;
+       
+    }
     .Login{
         display: none;
     }
-   
   }

@@ -573,7 +573,12 @@ input[type="checkbox"] {
   color:#e67e22;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
   .row {
     width: 100%;
   }
@@ -620,13 +625,33 @@ input[type="checkbox"] {
 }
 
 
-@media (max-width: 425px) {
-  html {
-    color: #555;
-    background-color: red; /*this make font render in a perfect awy*/
+@media (max-width: 499px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
+  html {
+    
+    color: #555;/*this make font render in a perfect awy*/
+    /* background-color: red; */
+  }
+  .row {
 
-
+    width: 100%;
+    margin: 0 auto;
+  }
+  .saint-of-the-day-picture img{
+    width: 135px;
+    height: 100px;
+  }
+  .community-heading {
+    margin-left: -200px;
+  }
+  .section-welcome {
+    height: 170vh;
+    margin-bottom: 20px;
+  }
   .footer {
     /* background-color: #555; */
     background-color: green;
@@ -634,6 +659,7 @@ input[type="checkbox"] {
     height: 100%;
     color: #fff;
     margin-top: 900px;
+    display: none;
   }
   .footer-row {
     text-align: center;
@@ -658,5 +684,11 @@ input[type="checkbox"] {
     text-decoration: none;
     margin-right: 30px;
     color: #fff;
+  }
+  
+}
+@media (max-width: 375px) {
+  .section-welcome {
+    height: 185vh;
   }
 }

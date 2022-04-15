@@ -28,6 +28,7 @@ const SlideShow = () => {
                             color: "white",
                             cursor: "pointer",
                             marginLeft: "50px",
+                            
                           }}
                         >
                           Get Started
