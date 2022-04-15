@@ -12,6 +12,13 @@
     transition: transform 0.3s ease-out;
 }
 
+.Open {
+    transform: translateX(0);
+}
+
+.Close {
+    transform: translateX(-100%);
+}
 
 @media (min-width: 500px) {
     .SideDrawer {
@@ -20,20 +27,16 @@
   
 }
 
-.Open {
-    transform: translateX(0);
-}
-
-.Close {
-    transform: translateX(-100%);
-}
 @media (max-width: 425px){
+    .Close {
+        transform: translateX(-120%);
+    }
     .Logo{
         width: 100%;
         }
         .SideDrawer {
-            width: 20%;
-            height: 45%;
+            width: 31%;
+            height: 93%;
             z-index: 200;
             background-color: white;
             transition: transform 0.3s ease-out;
@@ -45,8 +48,8 @@
         width: 100%;
         }
         .SideDrawer {
-            width: 20%;
-            height: 35%;
+            width: 37%;
+            height: 93%;
             z-index: 200;
             background-color: white;
             transition: transform 0.3s ease-out;
