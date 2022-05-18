@@ -7,15 +7,15 @@ import {SendOutlined,PaperClipOutlined} from '@ant-design/icons';
 const Messages = () => {
     return (
         
-           <Row gutter={{ xs: 8, sm: 16, md: 24, lg:16}} style={{backgroundColor:'#fff',padding:'10px'}}>
+           <Row gutter={{ xs: 8, sm: 16, md: 28, lg:16}} className="message-body-container">
                 <Col className="gutter-row " span={24}>
                  <div className="message-container">
-                 <Col className="gutter-row " span={12}>
+                 <Col className="gutter-row " span={10}>
                    <div className="user-one">
                    Phasellus tellus dolor, aliquet vel mattis id, elementum at odio.
                    </div>
                    </Col>
-                   <Col className="gutter-row " span={12}>
+                   <Col className="gutter-row " span={10}>
                    <div className="user-two">
                    Phasellus tellus dolor, aliquet vel mattis id, elementum at odio.
                    </div>

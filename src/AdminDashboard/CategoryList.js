@@ -82,7 +82,7 @@ const CategoryList = () => {
           <TableHead>
             <TableRow>
               <StyledTableCell>ID </StyledTableCell>
-              <StyledTableCell align="right">Category Name</StyledTableCell>
+              <StyledTableCell align="right">Category NameS</StyledTableCell>
               <StyledTableCell align="right">Description</StyledTableCell>
               <StyledTableCell align="right">Edit</StyledTableCell>
               <StyledTableCell align="right">Delete</StyledTableCell>

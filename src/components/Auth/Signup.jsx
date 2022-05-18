@@ -52,13 +52,13 @@ console.log("Firstname",firstName)
     <div>
     <Layout/>
     <Form
-     style={{margin:'40px 350px 0px 350px',backgroundColor:'#ccc',padding:'25px 0px 20px 0px',borderRadius:'5px'}}
+      className='signup-body'
       name="basic"
       labelCol={{
-        span: 8,
+        span:0,
       }}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
       wrapperCol={{
-        span:8,
+        span:24,
       }}                                                                                
       initialValues={{
         remember: true,
@@ -67,8 +67,11 @@ console.log("Firstname",firstName)
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
+      <div className='signup-title'>
+      <h1>Sign up now</h1>
+      <p>Please fill in this form to create an account</p>
+      </div>
       <Form.Item
-        label="FirstName"
         name="firstName" 
         rules={[
           {
@@ -78,12 +81,12 @@ console.log("Firstname",firstName)
         ]}
       >
         <Input 
+        placeholder='First name'
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         />
       </Form.Item>
       <Form.Item
-        label="LastName"
         name="lastName"
         rules={[
           {
@@ -93,11 +96,11 @@ console.log("Firstname",firstName)
         ]}
       >
         <Input 
+        placeholder='Last name'
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}/>
       </Form.Item>
       <Form.Item
-        label="Email"
         name="email"
         rules={[
           {
@@ -107,11 +110,11 @@ console.log("Firstname",firstName)
         ]}
       >
         <Input
+        placeholder='Email'
          value={email}
          onChange={(e) => setEmail(e.target.value)}/>
       </Form.Item>
       <Form.Item
-        label="Phone"
         name="phone"
         rules={[
           {
@@ -121,13 +124,13 @@ console.log("Firstname",firstName)
         ]}
       >
         <Input
+        placeholder='Telephone'
          value={phone}
          onChange={(e) => setPhone(e.target.value)}/>
       </Form.Item>
 
 
       <Form.Item
-        label="Password"
         name="password"
         rules={[
           {
@@ -136,10 +139,10 @@ console.log("Firstname",firstName)
           },
         ]}
       >
-        <Input.Password />
+        <Input.Password className='passInput'
+        placeholder='Password'/>
       </Form.Item>
       <Form.Item
-        label="Comfirm Password"
         name="confirmPassword"
         rules={[
           {
@@ -148,7 +151,8 @@ console.log("Firstname",firstName)
           },
         ]}
       >
-        <Input.Password 
+        <Input.Password className='passInput'
+        placeholder='Confirm Password'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
@@ -171,13 +175,13 @@ console.log("Firstname",firstName)
           span: 16,
         }}
       >
-        <Button style={{backgroundColor:"#B60000",color:'#fff'}} htmlType="submit"
+        <Button className='login-btn' htmlType="submit"
         // loading={true}
         >
           Sign Up
         </Button>
         &nbsp;
-        <Link to="/login">Already have account? Login</Link>
+        <Link className='btn-link' to="/login">Already have account? Login</Link>
       </Form.Item>
     </Form>
     </div>

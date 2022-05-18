@@ -4,22 +4,27 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   color: #555;
-  font-family: Century Gothic,Arial,Helvetica,sans-serif;
+  font-family: Century Gothic, Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 20px;
-  text-rendering: optimizeLegibility; /*this make font render in a perfect awy*/
+  text-rendering: optimizeLegibility;
+  /*this make font render in a perfect awy*/
 }
+
 .row {
   max-width: 1140px;
   margin: 0 auto;
 }
+
 /*...HEADER....*/
 header {
   height: 15vh;
   margin-top: 0;
 }
+
 .logo {
   cursor: pointer;
   float: left;
@@ -28,18 +33,6 @@ header {
   vertical-align: middle;
   margin-top: -25px;
 }
-
-/*
-.my-nav{
-background-color: aqua;
-
-    position: fixed;
-    z-index: 9999;
-    width:500%;
-    
-
-}
-*/
 .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -52,6 +45,7 @@ background-color: aqua;
   height: 15vh;
   margin-top: 0;
 }
+
 .item {
   /*background-color: green;*/
   width: 500%;
@@ -61,22 +55,27 @@ background-color: aqua;
   position: fixed;
   z-index: 9999;
 }
+
 .item--1 {
   grid-column: 1/4;
   background-color: #B60000;
   height: 13%;
 }
+
 .slideshow-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 10px;
 }
+
 .islide-tem {
   /*    background-color: green;*/
 }
+
 .slide-item--1 {
   grid-column: 1/2;
 }
+
 .slide-item--2 {
   grid-column: 2/3;
   /* background-image: url(../img/Holy-spirit-4.jpg); */
@@ -84,12 +83,14 @@ background-color: aqua;
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .heading-1 {
   font-size: 100%;
   text-transform: capitalize;
   color: #fff;
   font-weight: 200;
 }
+
 .main-nav {
   float: right;
   list-style: none;
@@ -100,10 +101,12 @@ background-color: aqua;
   /*    margin-top: 20px;*/
   margin-left: 150px;
 }
+
 .main-nav li {
   display: inline-block;
   margin-right: 20px;
 }
+
 .main-nav li a:link,
 .main-nav li a:visited {
   padding: 8px 0;
@@ -114,21 +117,25 @@ background-color: aqua;
   border-bottom: 2px solid transparent;
   transition: border-bottom 0.2s;
 }
+
 .main-nav li a:hover,
 .main-nav li a:active {
   border-bottom: 2px solid #fff;
 }
+
 .Translate option {
   background-color: #000;
   border: none;
   color: white;
   height: 5%;
 }
+
 /*...SECTIIONS....*/
 .section-slideshow {
   margin-bottom: 30px;
   /*height: 70vh;*/
 }
+
 .slideshow-row {
   /*margin-top: 50px;*/
 }
@@ -140,29 +147,35 @@ background-color: aqua;
 .Projects #ttr_slideshow_inner ul {
   list-style: outside none none;
 }
+
 .Projects #ttr_slideshow_inner {
   position: relative;
   overflow: hidden;
   width: 100%;
 }
-.Projects #ttr_slideshow_inner ul li > a {
+
+.Projects #ttr_slideshow_inner ul li>a {
   position: absolute;
   overflow: hidden;
   width: 100%;
 }
-.Projects #ttr_slideshow_inner > ul li {
+
+.Projects #ttr_slideshow_inner>ul li {
   position: absolute;
 }
+
 .Projects .ttr_slideshow_last {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
   pointer-events: none;
 }
+
 .Projects .ttr_slideshow_last div a,
 .Projects .ttr_slideshow_last a {
   pointer-events: auto;
 }
+
 .Projects .ttr_slideshow {
   box-sizing: content-box !important;
   position: relative;
@@ -177,6 +190,7 @@ background-color: aqua;
 
   /*    background-color: blueviolet;*/
 }
+
 .col-text2 {
   color: white;
   padding: 0 15px;
@@ -195,40 +209,90 @@ background-color: aqua;
   text-align: center;
   text-transform: uppercase;
 }
+
 .slideshow {
   max-width: 100%;
   max-height: 100%;
 }
+
+/* =====START:: LOGIN===== */
+.login-body {
+  margin: 40px 350px 0px 350px;
+  background-color: #ccc;
+  padding: 25px 0px 20px 0px;
+  border-radius: 5px;
+}
+
+.login-btn {
+  background-color: #B60000;
+  color: #fff;
+}
+
+/* =====END:: LOGIN===== */
+
+/* =====START:: SIGN UP===== */
+.signup-body{
+margin: 40px 350px 0px 350px;
+background-color: #ccc;
+padding: 25px 0px 20px 0px;
+border-radius: 5px;
+padding: 80px;
+}
+.signup-title{
+  margin-top: -60px;
+  margin-bottom: 2px;
+  text-align: center;
+  justify-content: center;
+}
+.signup-title h1{
+  color: #fff;
+  font-family: Century Gothic, Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+}
+/* =====END:: SIGN UP===== */
+
+/* =====START:: HISTORY===== */
+.history-body{
+  margin-left: 200px;
+}
+.history-team{
+  display: flex;
+  flex-direction: row;
+}
+/* =====END:: HISTORY===== */
 .spiritual-img {
   /*
   height: 10px;
     width:10px;
 */
 }
+
 .spiritual-img img {
   height: 200px;
   width: 100px;
   float: left;
   border-radius: 50%;
 }
+
 .spiritual-para {
   margin-left: 150px;
 }
+
 .section-welcome {
-  margin-top:100px;
+  margin-top: 100px;
   margin: 0 auto;
-  background-image:linear-gradient( to right, rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('https://cdn.pixabay.com/photo/2017/08/07/02/21/people-2598802_960_720.jpg');
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://cdn.pixabay.com/photo/2017/08/07/02/21/people-2598802_960_720.jpg');
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   color: #fff;
-  /*    margin-bottom: 50px;*/
   height: 85vh;
 }
 
 .Mission-heading {
-  color:#fff;
+  color: #fff;
   text-align: center;
   text-transform: uppercase;
   font-size: 140%;
@@ -237,31 +301,36 @@ background-color: aqua;
   letter-spacing: 1px;
   margin-bottom: 40px;
 }
+
 .community-heading {
   text-align: center;
   text-transform: uppercase;
   font-size: 140%;
-  /*    word-spacing: 2px; */
   margin: 20px 0;
   letter-spacing: 1px;
   margin-bottom: 50px;
 }
+
 .welcome-para {
   font-size: 90%;
   line-height: 145%;
   margin-bottom: 40px;
 }
+
 .lord-our-God {
   height: 50px;
   width: 50px;
 }
+
 .step-headings {
   margin-bottom: 20px;
-  color:#fff;
+  color: #fff;
 }
+
 .step-row {
   /*   margin-bottom: 20px;  */
 }
+
 .steps {
   display: inline-block;
   color: #e67e22;
@@ -276,17 +345,27 @@ background-color: aqua;
   margin-left: 25px;
   margin-bottom: 30px;
 }
+
 .section-community {
+  display: block;
+  flex-wrap: wrap;
   margin-bottom: 50px;
+  
 }
+
 .community-row {
-  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* margin-bottom: 50px; */
 }
+
 .Community-img {
   width: 200px;
   height: 200px;
   margin-bottom: 15px;
 }
+
 .icon-big {
   display: inline-block;
   width: 30px;
@@ -299,6 +378,7 @@ background-color: aqua;
   vertical-align: middle;
   margin-top: -5px;
 }
+
 .community-links:link,
 .community-links:visited {
   text-decoration: none;
@@ -307,14 +387,16 @@ background-color: aqua;
   color: #e67e22;
   transition: border-bottom 0.2s, color 0.2s;
 }
+
 .community-links:hover,
 .community-links:active {
   border-bottom: 1px solid transparent;
   color: #555;
 }
+
 .section-testimonials {
   /*   background-color:#efefef;*/
-   background-image:linear-gradient( to right, rgba(114, 43, 43, 0.7),rgba(0, 0, 0, 0.7)), url('https://cdn.pixabay.com/photo/2017/01/03/01/08/jesus-christ-1948251_960_720.jpg'); 
+  background-image: linear-gradient(to right, rgba(114, 43, 43, 0.7), rgba(0, 0, 0, 0.7)), url('https://cdn.pixabay.com/photo/2017/01/03/01/08/jesus-christ-1948251_960_720.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -322,8 +404,9 @@ background-color: aqua;
   color: #fff;
   height: 90vh;
 }
+
 .testimonials-heading {
-  color:#fff;
+  color: #fff;
   text-align: center;
   text-transform: uppercase;
   font-size: 140%;
@@ -332,12 +415,14 @@ background-color: aqua;
   letter-spacing: 1px;
   margin-bottom: 70px;
 }
+
 blockquote {
   padding: 2%;
   font-style: italic;
   line-height: 145%;
   position: relative;
 }
+
 blockquote:before {
   content: "\201C";
   font-size: 400%;
@@ -347,21 +432,25 @@ blockquote:before {
   top: -5px;
   left: -3px;
 }
+
 cite {
   font-size: 90%;
   margin-top: 25px;
   display: block;
 }
+
 cite img {
   height: 45px;
   border-radius: 50%;
   margin-right: 10px;
   vertical-align: middle;
 }
+
 .section-signup {
   /*    background-color:#efefef;*/
   height: 70vh;
 }
+
 .Signup-heading {
   text-align: center;
   text-transform: uppercase;
@@ -372,22 +461,15 @@ cite img {
   margin-bottom: 70px;
   margin-top: 70px;
 }
-/*
-.Signup-heading::after{
-    content: ".";
-    display: inline-block;
-    font-weight: 600;
-    font-size: 60px;
-    width: 500%;
-    color: aqua;
-}
-*/
+
 .Signup-para {
   margin-bottom: 30px;
 }
+
 .signup-row {
   text-align: center;
 }
+
 .sign-btn:link,
 .sign-btn:visited,
 input[type="submit"] {
@@ -400,19 +482,23 @@ input[type="submit"] {
   padding: 10px 30px;
   transition: background-color 0.5s;
 }
+
 input[type="submit"] {
   border: 0;
   cursor: pointer;
 }
+
 .sign-btn:hover,
 .sign-btn:active {
   background-color: #555;
 }
+
 /*...FORM...*/
 .section-form {
   margin-top: 200;
   height: 95vh;
 }
+
 .contact-form {
   width: 60%;
   margin: 0 auto;
@@ -439,10 +525,12 @@ input[type="checkbox"] {
 *:focus {
   outline: none;
 }
+
 .section-team {
   background-color: #efefef;
   height: 80vh;
 }
+
 .team-heading {
   text-align: center;
   text-transform: uppercase;
@@ -453,6 +541,7 @@ input[type="checkbox"] {
   margin-bottom: 70px;
   margin-top: 70px;
 }
+
 .card {
   display: block;
   margin-left: 100px;
@@ -466,12 +555,14 @@ input[type="checkbox"] {
 
   /*    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.49);*/
 }
+
 .card img {
   margin-top: 15px;
   height: 140px;
   width: 130px;
   /*    border-radius: 200px;*/
 }
+
 .social-media:link,
 .social-media:visited {
   text-decoration: none;
@@ -482,6 +573,7 @@ input[type="checkbox"] {
   text-transform: capitalize;
   transition: border-bottom 0.5s, 0.5s, padding-bottom 0.5s;
 }
+
 .social-media:hover,
 .social-media:active {
   color: #555;
@@ -493,13 +585,16 @@ input[type="checkbox"] {
   background-color: #555;
   color: #fff;
 }
+
 .footer-row {
   text-align: center;
 }
+
 .footer-link-container {
   display: inline-block;
   margin-right: 15px;
 }
+
 .footer-links:link,
 .footer-links:visited {
   text-decoration: none;
@@ -511,19 +606,23 @@ input[type="checkbox"] {
   text-transform: capitalize;
   transition: 0.5s;
 }
+
 .footer-links:hover,
 .footer-links:active {
   color: #fff;
 }
+
 .footer-links:first-of-type {
   margin-right: 800px;
   /* color: red; */
 }
+
 .footer-logo {
   width: 200px;
   height: auto;
   /*    text-align: center;*/
 }
+
 .footer-list {
   margin-top: 25px;
   float: right;
@@ -531,48 +630,58 @@ input[type="checkbox"] {
   margin-top: 50px;
   list-style: none;
 }
+
 .footer-list li a:link,
 .footer-list li a:visited {
   text-decoration: none;
   color: #fff;
 }
 
-/*****SAINT*****/
+/*****SAINT: CHARTROOM*****/
 
-.chart-header{
-  background-color:#fff;
+.chart-header {
+  background-color: #fff;
 }
-/***Messages****/
-.message-container{
-  height:55vh;
-  /* 
-  display: flex;
-  flex-direction:column; */
+
+/***Messages: CHARTROOM****/
+.message-body-container {
+  background-color: #fff;
+  padding: 10px;
 }
-.user-one{
-  padding:5px;
+
+.message-container {
+  height: 55vh;
+}
+
+.user-one {
+  padding: 5px;
   width: 100%;
-  background-color:rgb(201, 197, 197);
-  border-bottom-left-radius:5px;
-  border-top-right-radius:5px;
-  border-top-left-radius:5px;
+  background-color: rgb(201, 197, 197);
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
-.user-two{
-  border-bottom-left-radius:5px;
-  border-top-right-radius:5px;
-  border-bottom-right-radius:5px;
+
+.user-two {
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding: 5px;
   margin-top: 5px;
-  margin-left:300px;
+  margin-left: 300px;
   width: 100%;
-  background-color:#69c0ff;
+  background-color: #69c0ff;
 }
-.chart-body-container{
-  margin-top:-30px;
+
+.chart-body-container {
+  margin-top: -30px;
 }
-.community-features{
-  color:#e67e22;
+
+.community-features {
+  color: #e67e22;
 }
+
+/***Messages: CHARTROOM****/
 
 @media (max-width: 768px) {
   * {
@@ -580,60 +689,117 @@ input[type="checkbox"] {
     padding: 0;
     box-sizing: border-box;
   }
+
   .row {
     width: 100%;
   }
-.card img {
-  /* margin-top: 15px; */
-  align-items: left;
-  justify-content: space-between;
-  align-items: center;
-  height: 130px;
-  width: 130px;
-  /*    border-radius: 200px;*/
-}
-.card {
-  margin-left: 8px;
-  width: 170px;
-  height: 300px;
-  text-align: left;
 
-  /*    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.49);*/
+  .card img {
+    /* margin-top: 15px; */
+    align-items: left;
+    justify-content: space-between;
+    align-items: center;
+    height: 130px;
+    width: 130px;
+    /*    border-radius: 200px;*/
+  }
+
+  .card {
+    margin-left: 8px;
+    width: 170px;
+    height: 300px;
+    text-align: left;
+
+    /*    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.49);*/
+  }
+
+  .section-team {
+    margin-left: 0;
+    width: 100%;
+    background-color: #efefef;
+    height: 80vh;
+  }
+
+  .Signup-para {
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .welcome-para,
+  .paragraph,
+  .step-headings {
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* .step-headings */
+  .footer-links:first-of-type {
+    margin-right: 600px;
+    font-size: 18px;
+    /* color: red; */
+  }
+
+  .footer-list {
+    font-size: 16;
+    margin-left: -110px;
+    margin-top: 50px;
+    list-style: none;
+  }
+
+  .footer-list li a:link,
+  .footer-list li a:visited {
+    text-decoration: none;
+    margin-right: 30px;
+    color: #fff;
+  }
+
+  .user-one {
+    margin-left: -70px;
+    width: 100%;
+  }
+
+  .user-two {
+    margin-left: 200px;
+    width: 100%;
+  }
+
+  .chart-body-container {
+    background-color: #fff;
+    margin-top: -30px;
+    margin-left: 100px;
+  }
+
+  .chart-left-container {
+    margin-left: -130px;
+    width: 125px;
+  }
+
+  .login-body {
+    width: 85%;
+    margin-left: 50px;
+    align-items: left;
+  }
+  .signup-body{
+    width: 85%;
+    margin-left: 50px;
+    align-items: left;
+  }
+  /* =====START:: HISTORY===== */
+.history-body{
+  margin-left: 100px;
 }
-.section-team {
-  margin-left: 0;
-  width: 100%;
-  background-color: #efefef;
-  height: 80vh;
+.community-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
-.Signup-para {
-  margin: 20px;
-  align-items: center;
-  justify-content: center;
+.history-team{
+  /* display: flex;
+  flex-direction: row; */
 }
-.welcome-para, .paragraph, .step-headings{
-  margin: 20px;
-  align-items: center;
-  justify-content: center;
-}
-/* .step-headings */
-.footer-links:first-of-type {
-  margin-right: 600px;
-  font-size: 18px;
-  /* color: red; */
-}
-.footer-list {
-  font-size: 16;
-  margin-left: -110px;
-  margin-top: 50px;
-  list-style: none;
-}
-.footer-list li a:link,
-.footer-list li a:visited {
-  text-decoration: none;
-  margin-right: 30px;
-  color: #fff;
-}
+/* =====END:: HISTORY===== */
 }
 
 
@@ -642,33 +808,42 @@ input[type="checkbox"] {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* overflow-y: hidden; */
   }
+
   html {
-    
-    color: #555;/*this make font render in a perfect awy*/
+
+    color: #555;
+    /*this make font render in a perfect awy*/
     /* background-color: red; */
   }
+
   .row {
 
     width: 100%;
     margin: 0 auto;
   }
-  .saint-of-the-day-picture img{
+
+  .saint-of-the-day-picture img {
     width: 135px;
     height: 100px;
   }
-  
+
   .section-welcome {
     height: 180vh;
   }
+
   .section-testimonials {
     height: 195vh;
   }
-  .welcome-para, .paragraph {
+
+  .welcome-para,
+  .paragraph {
     margin: 20px;
     align-items: center;
     justify-content: center;
   }
+
   .section-team {
     background-color: #efefef;
     height: 300vh;
@@ -680,9 +855,10 @@ input[type="checkbox"] {
     width: 400px;
     height: 300px;
     text-align: center;
-  
+
     /*    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.49);*/
   }
+
   .card img {
     /* margin-top: 15px; */
     align-items: left;
@@ -691,6 +867,11 @@ input[type="checkbox"] {
     height: 160px;
     width: 160px;
     /*    border-radius: 200px;*/
+  }
+  .community-row {
+    display: grid;
+    grid-template-columns: auto;
+    padding: 50px;
   }
 
   /* .section-form {
@@ -706,48 +887,83 @@ input[type="checkbox"] {
     margin-top: 900px;
     display: none;
   }
+
   .footer-row {
     text-align: center;
   }
+
   .footer-link-container {
     display: inline-block;
     /* margin-right: 15px; */
   }
+
   .footer-links:first-of-type {
     margin-right: 600px;
     font-size: 18px;
     /* color: red; */
   }
+
   .footer-list {
     font-size: 16;
     margin-left: -110px;
     margin-top: 50px;
     list-style: none;
   }
+
   .footer-list li a:link,
   .footer-list li a:visited {
     text-decoration: none;
     margin-right: 30px;
     color: #fff;
   }
+
+  .user-one {
+    margin-left: -70px;
+    width: 100%;
+  }
+
+  .user-two {
+    margin-left: 50px;
+    width: 50%;
+  }
+  .login-body{
+    width: 90%;
+    margin-left: 15px;
+    align-items: left;
+  }
+  .login-btn {
+    margin-left: -65px;
+  }
   
+  .btn-link{
+    display: none;
+  }
+  .signup-body{
+    width: 90%;
+    margin-left: 15px;
+    align-items: left;
+  }
 }
+
 @media (max-width: 375px) {
   .section-welcome {
     height: 205vh;
   }
+
   .section-testimonials {
     height: 215vh;
   }
+
   .card {
     margin-left: 8px;
     margin-bottom: 20px;
     width: 300px;
     height: 300px;
     text-align: center;
-  
+
     /*    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.49);*/
   }
+
   .card img {
     /* margin-top: 15px; */
     align-items: left;
@@ -756,5 +972,30 @@ input[type="checkbox"] {
     height: 160px;
     width: 160px;
     /*    border-radius: 200px;*/
+  }
+  .signup-body{
+    width: 410px;
+    margin-left: -40px;
+    align-items: left;
+  }
+  .signup-body Input{
+    width: 280px;
+  }
+  .passInput{
+    width: 280px;
+  }
+  
+}
+@media (max-width: 320px) {
+  .signup-body{
+    width: 388px;
+    margin-left: -70px;
+    align-items: left;
+  }
+  .signup-body Input{
+    width: 280px;
+  }
+  .passInput{
+    width: 280px;
   }
 }

@@ -3,7 +3,8 @@ import { makeStyles } from "@mui/styles"
 export const useStyles = makeStyles({
   background: {},
   sideBar: {
-    backgroundColor: "#121212",
+    backgroundColor: "#FF0000",
+    // backgroundColor: "#000",
   },
   Icons: {
     color: "#b45309",

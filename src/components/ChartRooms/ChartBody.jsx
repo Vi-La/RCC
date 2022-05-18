@@ -9,6 +9,7 @@ const ChartBody = () => {
         <div className="chart-body-container">
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 16 }}>
           <Col className="gutter-row " span={4}>
+          <div className="chart-left-container">
           <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1" icon={<Badge status="success"/>}>
             Jeanndo
@@ -35,6 +36,7 @@ const ChartBody = () => {
             Claire
             </Menu.Item>
            </Menu>
+           </div>
           </Col>
           <Col className="gutter-row " span={18}>
               <Messages/>

@@ -690,3 +690,13 @@
 		width: 100%; 
 	}
 }
+
+@media (max-width: 480px) {
+	.row:before,
+.row:after {
+    display:block;
+}
+.row:after {
+    clear:both;
+}
+}
