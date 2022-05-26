@@ -1,0 +1,40 @@
+import React, {useState} from 'react'; 
+import SideBar from './Sidebar';
+import Header from './Header';
+import main from '../../assets/js/main'
+
+const DashboardLayout = ({ children , revealModel, update, user }) => {
+    const [showNav , setShowNav] = useState(false);
+
+    const showNavSecion = () => {
+        let show = !showNav;
+        setShowNav(show);
+    }
+    return (
+        <div className="flex flex-wrap w-screen h-screen overflow-hidden "   style={main.style} >
+            {/* =============  Start::left ================= */}
+                <div className= {`transition-all z-40 ${showNav === true ? `absolute sm:relative w-4/12 sm:w-3/12 lg:w-2/12 2xl:w-1/12` :  ` sidebar none-active`}` } >
+                    {/*  Start::left side bar */}
+                        <SideBar shownav={showNav} show={showNavSecion} id="sidebar"   />
+                    {/*  End::left side bar */}
+                </div>
+            {/* ============= End::left ============= */}
+
+            {/* ============= Start:: Right ============= */}
+                <div className={`max-w-full max-h-full overflow-hidden ${showNav === true ? ` w-full sm:w-9/12 lg:w-10/12 2xl:w-11/12` :  ` w-screen`}`}>
+
+                    {/* Start:: header  */}
+                        <Header revealModel={revealModel} shownav={showNav} show={showNavSecion} id="header" /> 
+                    {/* End:: Header */}
+
+                    {/* Start:: Content */}
+                        <div className="flex flex-wrap max-w-full h-95p overflow-x-hidden overflow-y-auto p-3 ">
+                            { children }
+                        </div>                        
+                    {/* End:: Content */}
+                </div>
+            {/* ============= End:: Right =============== */}
+        </div>
+    )
+}
+export default DashboardLayout
