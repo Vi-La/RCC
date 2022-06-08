@@ -33,7 +33,7 @@ const History = () => {
           <Step title="2019" />
         </Steps>
         </Col>
-        <Col className="gutter-row" span={18} style={{marginLeft:"200px"}}>
+        <Col className="gutter-row history-body" span={18}>
             <YearlyHistory/>
         </Col>
         </Row>

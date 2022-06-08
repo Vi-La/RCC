@@ -60,6 +60,27 @@ const MainListItems = ({
           </ListItemIcon>
           <ListItemText primary="Requests" className={classes.labels} />
         </ListItemButton>
+
+        <ListItemButton onClick={handleUsers}>
+          <ListItemIcon>
+            <DirectionsRunIcon className={classes.Icons} />
+          </ListItemIcon>
+          <ListItemText primary="Saint" className={classes.labels} />
+        </ListItemButton>
+
+        <ListItemButton onClick={handleUsers}>
+          <ListItemIcon>
+            <DirectionsRunIcon className={classes.Icons} />
+          </ListItemIcon>
+          <ListItemText primary="News" className={classes.labels} />
+        </ListItemButton>
+
+        <ListItemButton onClick={handleUsers}>
+          <ListItemIcon>
+            <DirectionsRunIcon className={classes.Icons} />
+          </ListItemIcon>
+          <ListItemText primary="Requests" className={classes.labels} />
+        </ListItemButton>
       </div>
     </React.Fragment>
   )

@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import {
   UserOutlined,
   MessageOutlined
 } from "@ant-design/icons";
+import { useLocation } from "react-router-dom";
 
 const { Sider } = Layout;
 
 const SIdeMenu = ({ state }) => {
+  const [collasped, setCollapsed] = useState(false)
+  const location = useLocation()
+  const onCollapse = (collapsed) => setCollapsed(collapsed);
   return (
-    <Sider trigger={null} collapsible collapsed={state.collapsed} >
+    <Sider collapsible collapsed={collasped} onCollapse={onCollapse} >
       <div className="logo" />
       <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
         <Menu.Item key="1" icon={<UserOutlined />}>

@@ -9,6 +9,7 @@ import Signin from '../components/Auth/Login'
 import History from "../components/History/History";
 import Documentations from "../components/Documents/Documents";
 import PlayerGroups from "../components/PlayerGroups/PlayerGroups";
+// import SideBar from "../LayoutDashbord/Sidebar/SideBar";
 
 class Routes extends React.Component {
     render() {
@@ -24,6 +25,7 @@ class Routes extends React.Component {
            <Route exact path="/dashboard" component={Dashboard}/>
            <Route exact path="/documents" component={Documentations}/>
            <Route exact path="/prayer/groups" component={PlayerGroups}/>
+           {/* <Route exact path="layout" component={SideBar}/> */}
            
           </Switch>
         </Router>

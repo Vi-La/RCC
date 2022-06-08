@@ -57,11 +57,8 @@ const YearlyHistory = () => {
     )}
   />
   <Divider/>
-  <h4 style={{textAlign:'center',fontWeight:400,fontSize:'16px'}}>Team</h4>
-  <div style={{display:'flex',flexDirection:'row'}}>
-  <YearlyTeam/>
-  <YearlyTeam/>
-  <YearlyTeam/>
+  <h4 style={{textAlign:'center',fontWeight:600,fontSize:'20px'}}>Team</h4>
+  <div className='history-team'>
   <YearlyTeam/>
   <YearlyTeam/>
   <YearlyTeam/>

@@ -48,8 +48,8 @@ const Login = () => {
   return (
     <div>
     <Layout/>
-    <Form
-      style={{margin:'40px 350px 0px 350px',backgroundColor:'#ccc',padding:'25px 0px 20px 0px',borderRadius:'5px'}}
+    <Form 
+      className='login-body'
       name="basic"
       labelCol={{
         span: 8,
@@ -97,12 +97,12 @@ const Login = () => {
           span: 16,
         }}
       >
-        <Button style={{backgroundColor:"#B60000",color:'#fff'}} htmlType="submit"
+        <Button className='login-btn' htmlType="submit"
         // loading={true}
         >
           Login
         </Button>
-        <Link to="signup">&nbsp;Don't have accout? Signup</Link>
+        <Link className='btn-link' to="signup">&nbsp;Don't have accout? Signup</Link>
       </Form.Item>
       
     </Form>

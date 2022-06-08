@@ -16,3 +16,6 @@ code {
     width: 100%;
   }
 }
+::-webkit-scrollbar{
+  display: none;
+}

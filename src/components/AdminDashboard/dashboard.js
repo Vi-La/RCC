@@ -158,8 +158,8 @@ const DashboardContent = () => {
   }
 
   React.useEffect(() => {
-    if(!JSON.parse(sessionStorage.getItem("rccRwUser")).data.user.lastName){
-      history.push('/')
+    if(true){
+      // history.push('/dashb')
     }
     if (isUsers) {
       setContent(<Clients />)
