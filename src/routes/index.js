@@ -3,12 +3,13 @@ import { BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 import Landing from "../components/Landing/Landing"
 import News from '../components/News/News'
 import Chart from '../components/ChartRooms/Chart'
-import Dashboard from '../components/AdminDashboard/dashboard'
+import Dashboard from './PrivateRoutes'
 import Signup from '../components/Auth/Signup'
 import Signin from '../components/Auth/Login'
 import History from "../components/History/History";
 import Documentations from "../components/Documents/Documents";
 import PlayerGroups from "../components/PlayerGroups/PlayerGroups";
+
 // import SideBar from "../LayoutDashbord/Sidebar/SideBar";
 
 class Routes extends React.Component {
@@ -22,7 +23,7 @@ class Routes extends React.Component {
            <Route exact path="/signup" component={Signup}/>
            <Route exact path="/login" component={Signin}/>
            <Route exact path="/history" component={History}/>
-           <Route exact path="/dashboard" component={Dashboard}/>
+           <Route  path="/dashboard" component={Dashboard}/>
            <Route exact path="/documents" component={Documentations}/>
            <Route exact path="/prayer/groups" component={PlayerGroups}/>
            {/* <Route exact path="layout" component={SideBar}/> */}
