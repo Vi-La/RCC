@@ -449,6 +449,7 @@ export default function History() {
                             >
                             <div edge="start" className={classes.grow} />
                             <MessageEditDialog
+                              iD={row.id}
                               edge="end"
                               onSave={() => {
                                 setSnackOpen("Message updated");

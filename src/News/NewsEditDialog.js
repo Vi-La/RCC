@@ -6,12 +6,15 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/newsSlice";
-import { useDispatch } from "react-redux";
-import { nextID } from "../ReduxTable/newsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { nextID, selectNews } from "../ReduxTable/newsSlice";
 
-export default function NewsEditDialog({ data, render, onSave }) {
+export default function NewsEditDialog({ iD,data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+
+  const rows = useSelector(selectNews);
+  const news = rows.find(row => row.id === iD);
 
   const defaultImg = data && data.img;
   const defaultTitle = data && data.title;
@@ -19,7 +22,6 @@ export default function NewsEditDialog({ data, render, onSave }) {
   const defaultDescription = data && data.description;
   // Existing ID or random ID
   const id = data && data.id;
-  console.log("idid", id)
 
   const [img, setImg] = React.useState(defaultImg);
   const [title, setTitle] = React.useState(defaultTitle);
@@ -28,10 +30,11 @@ export default function NewsEditDialog({ data, render, onSave }) {
 
   const handleClickOpen = () => {
     setOpen(true);
-    setTitle(defaultTitle);
-    setSubTitle(defaultSubTitle);
-    setDescription(defaultDescription);
-    setImg(defaultImg);
+    setTitle(news.title);
+    setSubTitle(news.subtitle);
+    setDescription(news.description);
+    setImg(news.img);
+    console.log(news)
   };
 
   const handleClose = () => {
@@ -40,8 +43,9 @@ export default function NewsEditDialog({ data, render, onSave }) {
 
   const handleSave = () => {
       let modified = Date.now()
-    const action = data ? update : add;
-    dispatch(action({ title, subtitle ,description ,modified, id: id || nextID(), img }));
+      console.log(news)
+    const action = news ? update : add;
+    dispatch(action({ title, subtitle ,description ,modified, id: iD || nextID(), img }));
     onSave && onSave();
     handleClose();
   };

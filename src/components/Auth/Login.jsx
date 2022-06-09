@@ -16,6 +16,7 @@ const Login = () => {
   const [email, setEmail] =useState("")
   const [phone, setPhone] =useState("")
   const [password, setPassword] =useState("")
+
   const onFinish = async(values) => {
     console.log('Success:', values);
     try {
@@ -36,7 +37,7 @@ const Login = () => {
           responseData.token
         )
         sessionStorage.setItem('rccRwUser',JSON.stringify(responseData))
-        history.push("/")
+        history.push("/dashboard")
       }
     } catch (error) {}
   };
@@ -48,15 +49,15 @@ const Login = () => {
   return (
     <div>
     <Layout/>
-    <Form 
+    <Form
       className='login-body'
       name="basic"
       labelCol={{
         span: 8,
-      }}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+      }}
       wrapperCol={{
         span:8,
-      }}                                                                                
+      }}
       initialValues={{
         remember: true,
       }}
@@ -64,7 +65,7 @@ const Login = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-     
+
       <Form.Item
         label="Email"
         name="email"
@@ -90,7 +91,7 @@ const Login = () => {
       >
         <Input.Password />
       </Form.Item>
-      
+
       <Form.Item
         wrapperCol={{
           offset: 8,
@@ -104,7 +105,7 @@ const Login = () => {
         </Button>
         <Link className='btn-link' to="signup">&nbsp;Don't have accout? Signup</Link>
       </Form.Item>
-      
+
     </Form>
     </div>
   );

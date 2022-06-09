@@ -7,12 +7,15 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
 import { add, update } from "../ReduxTable/messagesSlice";
-import { useDispatch } from "react-redux";
-import { nextID } from "../ReduxTable/messagesSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { nextID, selectMessages } from "../ReduxTable/messagesSlice";
 
-export default function MessageDialog({ data, render, onSave }) {
+export default function MessageDialog({ iD,data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+
+  const rows = useSelector(selectMessages)
+  const messages = rows.find( row => row.id === iD)
 
   const defaultName = data && data.name;
   const defaultEmail = data && data.email;
@@ -28,10 +31,10 @@ export default function MessageDialog({ data, render, onSave }) {
 
   const handleClickOpen = () => {
     setOpen(true);
-    setName(defaultName);
-    setEmail(defaultEmail)
-    setMedia(defaultMedia)
-    setMessage(defaultMessage);
+    setName(messages.name);
+    setEmail(messages.email)
+    setMedia(messages.media)
+    setMessage(messages.message);
   };
 
   const handleClose = () => {
@@ -55,25 +58,20 @@ export default function MessageDialog({ data, render, onSave }) {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">
-          {data ? "Edit" : "Article"} one{" "}
+          {data ? "Edit" : "Message"} {" "}
         </DialogTitle>
         <DialogContent>
           <Typography color={"secondary"} variant="h6" fullWidth>
-            Name
+            Name: {name}
           </Typography>
           <Typography variant="subtitle1" gutterBottom component="div">
-            subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-            blanditiis tenetur
+            Email: {email}
           </Typography>
           <Typography variant="subtitle1" gutterBottom component="div">
-            subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-            blanditiis tenetur
+            Media: {media}
           </Typography>
           <Typography variant="body1" gutterBottom>
-            body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-            blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-            neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
-            quasi quidem quibusdam.
+            Comment: {message}
           </Typography>
 
         </DialogContent>

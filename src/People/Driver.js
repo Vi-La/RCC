@@ -145,16 +145,11 @@ export default function Driver({ id }) {
         </div>
       </div>
       <div className={classes.summaryCards}>
-        <SummaryCard title={"Revenue"} value={"$" + fare} />
-        <SummaryCard title={"Trips"} value={trips} />
-        <SummaryCard title={"Miles"} value={distance} />
-        <SummaryCard title={"Rating"} value={4.32} />
+        <SummaryCard title={"Comments"} value={fare} />
+        <SummaryCard title={"Leaders"} value={trips} />
+        <SummaryCard title={"Community"} value={distance} />
+        <SummaryCard title={"Groups"} value={3} />
       </div>
-      <div className={classes.summaryCards}>
-        <SummaryCard title="Last 30 Days" component={<RevenueLine />} />
-        <SummaryCard title="By Vehicle" component={<VehiclePie />} />
-      </div>
-      <SummaryCard title={"Recent expenses"} component={<ExpensesTable />} />
     </Content>
   );
 }

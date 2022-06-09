@@ -435,6 +435,7 @@ export default function Saints() {
                             >
                             <div edge="start" className={classes.grow} />
                             <CommunityEditDialog
+                              iD={row.id}
                               edge="end"
                               onSave={() => {
                                 setSnackOpen("Leaders updated");

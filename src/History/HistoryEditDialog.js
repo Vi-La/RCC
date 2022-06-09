@@ -6,12 +6,15 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/historySlice";
-import { useDispatch } from "react-redux";
-import { nextID } from "../ReduxTable/historySlice";
+import { useDispatch, useSelector } from "react-redux";
+import { nextID, selectHistory } from "../ReduxTable/historySlice";
 
-export default function HistoryDialog({ data, render, onSave }) {
+export default function HistoryDialog({ iD, data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+
+  const rows = useSelector(selectHistory);
+  const history = rows.find(row => row.id === iD)
 
   const defaultImg = data && data.img;
   const defaultTitle = data && data.title;
@@ -33,13 +36,13 @@ export default function HistoryDialog({ data, render, onSave }) {
 
   const handleClickOpen = () => {
     setOpen(true);
-    setTitle(defaultTitle);
-    setSubTitle(defaultSubTitle)
-    setFavorites("12")
-    setLikes("12")
-    setComments(defaultComments)
-    setDescription(defaultDescription);
-    setImg(defaultImg);
+    setTitle(history.title);
+    setSubTitle(history.subtitle)
+    setFavorites(history.favorites)
+    setLikes(history.likes)
+    setComments(history.comments)
+    setDescription(history.description);
+    setImg(history.img);
   };
 
   const handleClose = () => {
@@ -48,8 +51,8 @@ export default function HistoryDialog({ data, render, onSave }) {
 
   const handleSave = () => {
       let modified = Date.now()
-    const action = data ? update : add;
-    dispatch(action({ title, subtitle, description, favorites, likes, comments ,modified, id: id || nextID(), img }));
+    const action = history ? update : add;
+    dispatch(action({ title, subtitle, description, favorites, likes, comments ,modified, id: iD || nextID(), img }));
     onSave && onSave();
     handleClose();
   };

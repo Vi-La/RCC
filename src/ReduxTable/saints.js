@@ -421,6 +421,7 @@ export default function Saints() {
                             >
                             <div edge="start" className={classes.grow} />
                             <SaintsEditDialog
+                              iD={row.id}
                               edge="end"
                               onSave={() => {
                                 setSnackOpen("Saint updated");
