@@ -5,13 +5,16 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { add, update } from "../ReduxTable/leadersSlice";
-import { useDispatch } from "react-redux";
-import { nextID } from "../ReduxTable/leadersSlice";
+import { add, update } from "../ReduxTable/groupsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { nextID, selectGroup } from "../ReduxTable/groupsSlice";
 
-export default function GroupsDialog({ data, render, onSave }) {
+export default function GroupsDialog({ iD,data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+
+  const rows = useSelector(selectGroup);
+  const group = rows.find(row => row.id === iD)
 
   const defaultImg = data && data.img;
   const defaultName = data && data.name;
@@ -25,9 +28,9 @@ export default function GroupsDialog({ data, render, onSave }) {
 
   const handleClickOpen = () => {
     setOpen(true);
-    setName(defaultName);
-    setSummary(defaultSummary);
-    setImg(defaultImg);
+    setName(group.name);
+    setSummary(group.summary);
+    setImg(group.img);
   };
 
   const handleClose = () => {
@@ -35,9 +38,10 @@ export default function GroupsDialog({ data, render, onSave }) {
   };
 
   const handleSave = () => {
+    console.log(iD)
       let modified = Date.now()
-    const action = data ? update : add;
-    dispatch(action({ name, summary ,modified, id: id || nextID(), img }));
+    const action = group ? update : add;
+    dispatch(action({ name, summary ,modified, id: iD || nextID(), img }));
     onSave && onSave();
     handleClose();
   };

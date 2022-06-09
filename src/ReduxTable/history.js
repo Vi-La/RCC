@@ -464,6 +464,7 @@ export default function History() {
                             >
                             <div edge="start" className={classes.grow} />
                             <HistoryEditDialog
+                              iD={row.id}
                               edge="end"
                               onSave={() => {
                                 setSnackOpen("History updated");

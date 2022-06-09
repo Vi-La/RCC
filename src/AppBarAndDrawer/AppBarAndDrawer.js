@@ -16,10 +16,14 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import Icon from "@material-ui/core/Icon";
-// import News from "@material-ui/core/News";
 import Avatar from "@material-ui/core/Avatar";
 import Badge from "@material-ui/core/Badge";
 import MailIcon from "@material-ui/icons/Mail";
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import PeopleIcon from '@mui/icons-material/People';
+import TimelineIcon from '@mui/icons-material/Timeline';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import GroupsIcon from '@mui/icons-material/Groups';
 // import PalettePicker from "../Theme/PalettePicker";
 export const drawerWidth = 240;
 
@@ -92,13 +96,13 @@ function ResponsiveDrawer(props) {
           // { text: "map", icon: "map" },
           // { text: "components", icon: "apps" },
           // { text: "settings", icon: "settings" },
-          { text: "news", icon: "newspaper" },
-          { text: "messages", icon: "forum"},
-          { text: "saints", icon: "people" },
-          { text: "history", icon: "timeline" },
-          { text: "leaders", icon: "people" },
-          { text: "community", icon: "groups" },
-          { text: "prayers group", icon: "groups" },
+          { text: "news", icon: <NewspaperIcon /> },
+          { text: "messages", icon: <MailIcon />},
+          { text: "saints", icon: <PeopleIcon /> },
+          { text: "history", icon: <TimelineIcon /> },
+          { text: "leaders", icon: <PsychologyIcon /> },
+          { text: "community", icon: <GroupsIcon /> },
+          { text: "prayers group", icon: <GroupsIcon /> },
         ].map(({ text, icon }, index) => (
           <ListItem
             component={RouterLink}
@@ -110,7 +114,7 @@ function ResponsiveDrawer(props) {
             <ListItemIcon>
               <Icon>{icon}</Icon>
             </ListItemIcon>
-            <ListItemText primary={text.toUpperCase()} />
+            <ListItemText primary={text.charAt(0).toUpperCase()+text.slice(1)} />
           </ListItem>
         ))}
       </List>

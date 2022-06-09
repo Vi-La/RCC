@@ -6,12 +6,15 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/leadersSlice";
-import { useDispatch } from "react-redux";
-import { nextID } from "../ReduxTable/leadersSlice";
+import { useDispatch,useSelector } from "react-redux";
+import { nextID, selectLeaders } from "../ReduxTable/leadersSlice";
 
-export default function LeadersDialog({ data, render, onSave }) {
+export default function LeadersDialog({ iD,data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+
+  const rows = useSelector(selectLeaders);
+  const leaders = rows.find(row => row.id === iD);
 
   const defaultImg = data && data.img;
   const defaultName = data && data.name;
@@ -25,9 +28,9 @@ export default function LeadersDialog({ data, render, onSave }) {
 
   const handleClickOpen = () => {
     setOpen(true);
-    setName(defaultName);
-    setSummary(defaultSummary);
-    setImg(defaultImg);
+    setName(leaders.name);
+    setSummary(leaders.summary);
+    setImg(leaders.img);
   };
 
   const handleClose = () => {
@@ -36,8 +39,8 @@ export default function LeadersDialog({ data, render, onSave }) {
 
   const handleSave = () => {
       let modified = Date.now()
-    const action = data ? update : add;
-    dispatch(action({ name, summary ,modified, id: id || nextID(), img }));
+    const action = leaders ? update : add;
+    dispatch(action({ name, summary ,modified, id: iD || nextID(), img }));
     onSave && onSave();
     handleClose();
   };

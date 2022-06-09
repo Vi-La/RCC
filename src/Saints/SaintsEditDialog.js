@@ -6,12 +6,15 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/saintsSlice";
-import { useDispatch } from "react-redux";
-import { nextID } from "../ReduxTable/saintsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { nextID, selectSaints } from "../ReduxTable/saintsSlice";
 
-export default function SaintsDialog({ data, render, onSave }) {
+export default function SaintsDialog({ iD, data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+
+  const rows = useSelector(selectSaints)
+  const saints = rows.find( row => row.id === iD)
 
   const defaultImg = data && data.img;
   const defaultName = data && data.name;
@@ -25,9 +28,9 @@ export default function SaintsDialog({ data, render, onSave }) {
 
   const handleClickOpen = () => {
     setOpen(true);
-    setName(defaultName);
-    setSummary(defaultSummary);
-    setImg(defaultImg);
+    setName(saints.name);
+    setSummary(saints.summary);
+    setImg(saints.img);
   };
 
   const handleClose = () => {
@@ -36,8 +39,8 @@ export default function SaintsDialog({ data, render, onSave }) {
 
   const handleSave = () => {
       let modified = Date.now()
-    const action = data ? update : add;
-    dispatch(action({ name, summary ,modified, id: id || nextID(), img }));
+    const action = saints ? update : add;
+    dispatch(action({ name, summary ,modified, id: iD || nextID(), img }));
     onSave && onSave();
     handleClose();
   };

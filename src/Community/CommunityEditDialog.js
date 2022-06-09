@@ -6,12 +6,15 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/communitySlice";
-import { useDispatch } from "react-redux";
-import { nextID } from "../ReduxTable/communitySlice";
+import { useDispatch, useSelector } from "react-redux";
+import { nextID, selectCommunity } from "../ReduxTable/communitySlice";
 
-export default function CommunityDialog({ data, render, onSave }) {
+export default function CommunityDialog({ iD,data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+
+  const rows = useSelector(selectCommunity);
+  const community = rows.find(row => row.id === iD)
 
   const defaultImg = data && data.img;
   const defaultName = data && data.name;
@@ -27,10 +30,10 @@ export default function CommunityDialog({ data, render, onSave }) {
 
   const handleClickOpen = () => {
     setOpen(true);
-    setName(defaultName);
-    setMembers(defaultMembers);
-    setSocial(defaultSocial);
-    setImg(defaultImg);
+    setName(community.name);
+    setMembers(community.members);
+    setSocial(community.social);
+    setImg(community.img);
   };
 
   const handleClose = () => {
@@ -39,8 +42,8 @@ export default function CommunityDialog({ data, render, onSave }) {
 
   const handleSave = () => {
       let modified = Date.now()
-    const action = data ? update : add;
-    dispatch(action({ name, members , social ,modified, id: id || nextID(), img }));
+    const action = community ? update : add;
+    dispatch(action({ name, members , social ,modified, id: iD || nextID(), img }));
     onSave && onSave();
     handleClose();
   };

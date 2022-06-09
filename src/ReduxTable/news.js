@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove, selectNews, selectLoading } from "./newsSlice";
+import React, { useState } from "react";
 import MuiAlert from "@material-ui/lab/Alert";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
@@ -420,6 +420,7 @@ export default function News() {
                             >
                               <div edge="start" className={classes.grow} />
                               <NewsEditDialog
+                                iD={row.id}
                                 edge="end"
                                 onSave={() => {
                                   setSnackOpen("Article updated");

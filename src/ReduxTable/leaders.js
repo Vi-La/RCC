@@ -421,6 +421,7 @@ export default function Leaders() {
                             >
                             <div edge="start" className={classes.grow} />
                             <LeadersEditDialog
+                              iD={row.id}
                               edge="end"
                               onSave={() => {
                                 setSnackOpen("Leaders updated");

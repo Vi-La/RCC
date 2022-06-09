@@ -421,6 +421,7 @@ export default function Groups() {
                             >
                             <div edge="start" className={classes.grow} />
                             <GroupsEditDialog
+                              iD={row.id}
                               edge="end"
                               onSave={() => {
                                 setSnackOpen("Leaders updated");
