@@ -121,8 +121,8 @@ export default function Driver({ id }) {
             classes={{ root: classes.avatar, circle: classes.circle }}
           />
           <Typography variant={"h5"}>{driver.name}</Typography>
-          <Chip variant={"outlined"} icon={<DriveIcon />} label="Driver" />
-          <Rating name="read-only" value={4.3} readOnly />
+          {/* <Chip variant={"outlined"} icon={<DriveIcon />} label="Driver" /> */}
+          {/* <Rating name="read-only" value={4.3} readOnly /> */}
           <div className={classes.spacer} />
           <div className={classes.actionGroup}>
             <PeopleDialog
@@ -143,12 +143,6 @@ export default function Driver({ id }) {
             </Button>
           </div>
         </div>
-      </div>
-      <div className={classes.summaryCards}>
-        <SummaryCard title={"Comments"} value={fare} />
-        <SummaryCard title={"Leaders"} value={trips} />
-        <SummaryCard title={"Community"} value={distance} />
-        <SummaryCard title={"Groups"} value={3} />
       </div>
     </Content>
   );

@@ -103,6 +103,7 @@ function ResponsiveDrawer(props) {
           { text: "leaders", icon: <PsychologyIcon /> },
           { text: "community", icon: <GroupsIcon /> },
           { text: "prayers group", icon: <GroupsIcon /> },
+          { text: "report", icon: <GroupsIcon /> },
         ].map(({ text, icon }, index) => (
           <ListItem
             component={RouterLink}

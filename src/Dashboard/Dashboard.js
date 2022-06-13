@@ -4,18 +4,16 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import Link from "@material-ui/core/Link";
-import Chart from "./Chart";
-import TotalCard from "./TotalCard";
-import ExpensesTable from "./ExpensesTable";
 import { drawerWidth } from "../AppBarAndDrawer/AppBarAndDrawer";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Content from "./Content";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import CovidWarning from "./CovidWarning";
-import Tools from "./Tools";
+import { SummaryCard } from "../People/Driver";
+import ExpensesTable from "./ExpensesTable";
 
 function Copyright() {
   return (
@@ -105,41 +103,48 @@ export default function SimpleTabs() {
 }
 
 export function Dashboard() {
+  const [comments, setComments] = React.useState(0);
+  const [groups, setGroups] = React.useState(0);
+  const [leaders, setLeaders] = React.useState(0);
+  const [community, setCommunity] = React.useState(0);
+  
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const balancePaper = clsx(classes.paper, classes.balanceCard);
+
   return (
     <>
-      <SimpleTabs />
       <Content>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={7} lg={8}>
-            <Paper className={balancePaper}>
-              <TotalCard />
-            </Paper>
+          <Grid item xs={12} md={6} lg={6}>
+            <div className={classes.summaryCards}>
+              {/* <Link color="inherit" underline="none" href="/messages"> */}
+                <SummaryCard title={"Comments"} value={comments} />
+              {/* </Link> */}
+            </div>
           </Grid>
-          {/* Recent TotalCard */}
-          <Grid item xs={12} md={5} lg={4}>
-            <Paper className={balancePaper}>
-              <CovidWarning />
-            </Paper>
+          <Grid item xs={12} md={6} lg={6}>
+            <div className={classes.summaryCards}>
+              {/* <Link color="inherit" underline="none" href="/leaders"> */}
+                <SummaryCard title={"Leaders"} value={leaders} />
+              {/* </Link> */}
+            </div>
           </Grid>
-          {/* Chart */}
-          <Grid item xs={12} md={8} lg={8}>
-            <Paper className={fixedHeightPaper}>
-              <Chart />
-            </Paper>
+        </Grid>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} lg={6}>
+          <div className={classes.summaryCards}>
+              {/* <Link color="inherit" underline="none" href="/community"> */}
+                <SummaryCard title={"Community"} value={community} />
+              {/* </Link> */}
+            </div>
           </Grid>
-          <Grid item xs={12} md={5} lg={4}>
-            <Paper className={fixedHeightPaper}>
-              <Tools />
-            </Paper>
-          </Grid>
-          {/* ExpensesTable */}
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              <ExpensesTable />
-            </Paper>
+          <Grid item xs={12} md={6} lg={6}>
+          <div className={classes.summaryCards}>
+              {/* <Link color="inherit" underline="none" href="/groups"> */}
+                <SummaryCard title={"Groups"} value={groups} />
+              {/* </Link> */}
+            </div>
           </Grid>
         </Grid>
         <Box pt={4}>
