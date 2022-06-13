@@ -15,7 +15,7 @@ import Community from "./../ReduxTable/community"
 import Groups from "./../ReduxTable/groups"
 import History from "./../ReduxTable/history"
 import Message from "./../ReduxTable/messages"
-import Trips from "./../Trips/Trips";
+import Report from "./../ReduxTable/report";
 
 import Driver from "./../People/Driver";
 import Components from "./../components/Components";
@@ -98,8 +98,8 @@ export default function App() {
                     <Route exact path="/prayers group">
                       <Groups />
                     </Route>
-                    <Route path="/map">
-                      <Trips />
+                    <Route exact path="/report">
+                      <Report />
                     </Route>
                     <Route path="/components">
                       <Components />

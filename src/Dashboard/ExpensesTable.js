@@ -26,7 +26,7 @@ export default function ExpensesTable() {
   const rows = Object.values(data);
   return (
     <React.Fragment>
-      <Title>Recent Orders</Title>
+      <Title>Recent records</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
