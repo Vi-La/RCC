@@ -1,0 +1,83 @@
+
+.container1 {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    background-color: #ccc;
+}
+
+.titleContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 900;
+    color:#000;
+
+}
+
+.bodyContainer {
+    align-items: center;
+    justify-content: center;
+    width:300px;
+    height: 500px; 
+    margin: 40px 20px;
+    background-color: whitesmoke;
+
+}
+
+.imageContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.imageContainer img {
+    height: 25vh;
+    margin-top: -30px;
+}
+
+.contentContainer {
+    margin-top: 20px;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contentContainer h2 {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentContainer h4 {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentContainer p {
+    font-size: 14px;
+}
+
+button{
+    width: 40%;
+    margin: 20px 20px;
+    height: 30px;
+    background-color: rgb(181, 11, 11);
+    /* cursor: pointer; */
+}
+
+.bodyContainer button{
+    margin-top: 5px;
+    margin-bottom: 60px;
+}
+.btn{
+    cursor: pointer;
+}
