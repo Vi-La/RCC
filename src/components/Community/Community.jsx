@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './Community.css'
 import Building1 from "../../assets/building1.jpg";
 import EmptyArtal from "../../assets/Empty-artal.jpg";
@@ -15,75 +15,17 @@ import LocalActivityIcon from "@material-ui/icons/LocalActivity";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import PeopleIcon from "@material-ui/icons/People";
 import { Link } from "react-router-dom";
+import { publicRequest } from "../../api";
 
 const Communities = () => {
-
-  const community = [
-    {
-      id: "1",
-      title: "UECR",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4RD4hBtEK8A8NS8L5cFGYxAJ2Tt8XSuf6Q&usqp=CAU",
-      linkName: "Activities",
-      member: "2000+Members",
-      Twitter: "Twitter"
-    },
-    {
-      id: "2",
-      title: "Kibungo",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqqj4mkz0P12au-oOkyhvn8KNR8r_sQimQcQ&usqp=CAU",
-      linkName: "Activities",
-      member: "1800+Members",
-      Twitter: "Twitter"
-    },
-    {
-      id: "3",
-      title: "Nyundo",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgw83Csoz7-UlhpSr4EEb2VTiRAzeOQCI7AQ&usqp=CAU",
-      linkName: "Activities",
-      member: "1000+Members",
-      Twitter: "Twitter"
-    },
-    {
-      id: "4",
-      title: "Ruhengeri",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS5WnO6unKBm-1P4hm1hIx8Upa-bZq_uWHGg&usqp=CAU",
-      linkName: "Activities",
-      member: "500+Members",
-      Twitter: "Twitter"
-    },
-    {
-      id: "5",
-      title: "Kibungo",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR64eqxb5Rp_VIyAgIQHksH0EH8haPTOfddnA&usqp=CAU",
-      linkName: "Activities",
-      member: "15000+ Members",
-      Twitter: "Twitter"
-    },
-    {
-      id: "3",
-      title: "Kigali",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgw83Csoz7-UlhpSr4EEb2VTiRAzeOQCI7AQ&usqp=CAU",
-      linkName: "Activities",
-      member: "1000+Members",
-      Twitter: "Twitter"
-    },
-    {
-      id: "4",
-      title: "Kibungo",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS5WnO6unKBm-1P4hm1hIx8Upa-bZq_uWHGg&usqp=CAU",
-      linkName: "Activities",
-      member: "500+Members",
-      Twitter: "Twitter"
-    },
-    {
-      id: "5",
-      title: "Butare",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4o_1P1vMbixI17Id06pH2sluJVS0JFthFMw&usqp=CAU",
-      linkName: "Activities",
-      member: "15000+ Members",
-      Twitter: "Twitter"
+  const [communities,setCommunities] = useState([]);
+  useEffect(()=>{
+    const getCommunity = async ()=>{
+      const response = await publicRequest.get("community");
+      setCommunities(response.data.data)
     }
-  ];
+    getCommunity()
+  },[])
 
   return (
     <div>
@@ -92,7 +34,7 @@ const Communities = () => {
           <h2 className="community-heading">Our Community</h2>
         </div>
         <div className="row community-row">
-            {community.map((item)=>(
+            {communities.map((item)=>(
           <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
             <img src={item.image} alt="Head quators" className="Community-img" />
             <h3>{item.title}</h3>
@@ -106,7 +48,7 @@ const Communities = () => {
                 }}
               />
               <Link to="/community1-activity" className="community-links">
-                {item.linkName}
+                {item.action}
               </Link>
             </div>
             <div className="community-features">
@@ -131,7 +73,7 @@ const Communities = () => {
               />
               <Link to="/https://www.twitter.com" className="community-links">
                 {" "}
-                {item.Twitter}
+                {item.twLink}
               </Link>
             </div>
           </div>

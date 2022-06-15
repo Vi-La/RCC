@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { publicRequest } from "../../api";
 import Customer from "../../assets/customer-1.jpg";
 import Customer2 from "../../assets/customer-2.jpg";
 import Customer3 from "../../assets/customer-3.jpg";
 
 const Testmonials = () => {
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(()=>{
+    const getTestimonials = async ()=>{
+      const response = await publicRequest.get("testimonial");
+      // console.log("displayed data:", response.data.data)
+      setTestimonials(response.data.data)
+    }
+    getTestimonials()
+  },[]);
+
   return (
     <section className="section-testimonials" id="testmony">
       <div className="row">
@@ -12,98 +24,17 @@ const Testmonials = () => {
         </h2>
       </div>
       <div className="row community-row">
+        {testimonials.map((item)=>(
         <div className="col span-1-of-5 box">
           <blockquote>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            {item.message}
             <cite>
-              <img src={Customer} alt="testimonial1" />
-              Jeando
+              <img src={item.image} alt="testimonial1" />
+              {item.name}
             </cite>
           </blockquote>
         </div>
-        <div className="col span-1-of-5 box  ">
-          <blockquote>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            <cite>
-              <img src={Customer2} alt="testimonial2" />
-              Jeando
-            </cite>
-          </blockquote>
-        </div>
-        <div className="col span-1-of-5 box">
-          <blockquote>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            <cite>
-              <img src={Customer3} alt="testimonial3" />
-              Jeando
-            </cite>
-          </blockquote>
-        </div>
-        <div className="col span-1-of-5 box">
-          <blockquote>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            <cite>
-              <img src={Customer2} alt="testimonial4" />
-              Jeando
-            </cite>
-          </blockquote>
-        </div>
-        <div className="col span-1-of-5 box">
-          <blockquote>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            <cite>
-              <img src={Customer2} alt="testimonial5" />
-              Jeando
-            </cite>
-          </blockquote>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col span-1-of-5 box">
-          <blockquote>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            <cite>
-              <img src={Customer2} alt="testimonial6" />
-              Jeando
-            </cite>
-          </blockquote>
-        </div>
-        <div className="col span-1-of-5 box  ">
-          <blockquote>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            <cite>
-              <img src={Customer2} alt="testimonial7" />
-              Jeando
-            </cite>
-          </blockquote>
-        </div>
-        <div className="col span-1-of-5 box">
-          <blockquote>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            <cite>
-              <img src={Customer2} alt="testimonial8" />
-              Jeando
-            </cite>
-          </blockquote>
-        </div>
-        <div className="col span-1-of-5 box">
-          <blockquote>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            <cite>
-              <img src={Customer2} alt="testimonial9" />
-              Jeando
-            </cite>
-          </blockquote>
-        </div>
-        <div className="col span-1-of-5 box">
-          <blockquote>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            <cite>
-              <img src={Customer2} alt="testimonial10" />
-              Jeando
-            </cite>
-          </blockquote>
-        </div>
+        ))}
       </div>
     </section>
   );

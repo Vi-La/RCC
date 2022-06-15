@@ -1,6 +1,7 @@
 
 .container1 {
     display: flex;
+    padding: 0px 40px;
     flex-wrap: wrap;
     height: 100%;
     width: 100%;
@@ -22,7 +23,7 @@
     align-items: center;
     justify-content: center;
     width:300px;
-    height: 500px; 
+    height: 550px; 
     margin: 40px 20px;
     background-color: whitesmoke;
 
@@ -64,6 +65,7 @@
 
 .contentContainer p {
     font-size: 14px;
+    width: 100%;
 }
 
 button{
