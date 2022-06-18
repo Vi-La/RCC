@@ -1,35 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
+import { publicRequest } from './../../api/index'
 
 const Contactus = () => {
+  const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [msg, setMsg] = useState('');
+
+  const handleSubmit = (e)=>{
+    e.preventDefault()
+    sendMessage(fullName, phone, email, address, msg)
+  }
+  const sendMessage = async (fullName, phone, email, address, msg)=>{
+    
+    await publicRequest.post("message/send",{
+      fullName: fullName,
+      phone: phone,
+      email: email,
+      address: address,
+      message: msg
+    }).then((response)=>{
+      console.log(response)
+    });
+  };
+  
   return (
     <section className="section-form">
       <div className="row">
         <h2 className="Signup-heading">We're happy to hear from you</h2>
       </div>
       <div className="row">
-        <form method="post" action="#" className="contact-form">
+        <form method="post" action="#" className="contact-form" onSubmit={handleSubmit}>
           <div className="row">
             <div className="col span-1-of-3">
-              <label for="name">Name</label>
             </div>
             <div className="col span-2-of-3">
               <input
                 type="text"
                 name="name"
+                value={fullName}
                 id="name"
-                placeholder="Your name"
+                placeholder="Your names"
                 required
+                onChange={(e)=> setFullName(e.target.value)}
               />
             </div>
           </div>
           <div className="row">
             <div className="col span-1-of-3">
-              <label for="email">Email</label>
             </div>
             <div className="col span-2-of-3">
               <input
                 type="email"
                 name="email"
+                value={email}
+                onChange={(e)=> setEmail(e.target.value)}
                 id="email"
                 placeholder="Your email"
                 required
@@ -38,34 +64,45 @@ const Contactus = () => {
           </div>
           <div className="row">
             <div className="col span-1-of-3">
-              <label for="find-us">How did you find us?</label>
             </div>
             <div className="col span-2-of-3">
-              <select name="find-us" id="find-us">
-                <option value="friends" selected>
-                  Friends
-                </option>
-                <option value="search">Search engine</option>
-                <option value="ad">Advertisement</option>
-                <option value="other">Other</option>
-              </select>
+              <input
+                type="text"
+                name="address"
+                value={address}
+                onChange={(e)=> setAddress(e.target.value)}
+                id="address"
+                placeholder="Your address (diocese)"
+                required
+              />
             </div>
           </div>
           <div className="row">
             <div className="col span-1-of-3">
-              <label>Social media?</label>
             </div>
             <div className="col span-2-of-3">
-              <input type="checkbox" name="news" id="news" checked /> Yes,
-              please
+              <input
+                type="text"
+                name="phone"
+                value={phone}
+                onChange={(e)=> setPhone(e.target.value)}
+                id="phone"
+                placeholder="Telephone number"
+                required
+              />
             </div>
           </div>
           <div className="row">
             <div className="col span-1-of-3">
-              <label>Your message</label>
             </div>
             <div className="col span-2-of-3">
-              <textarea name="message" placeholder="Your message"></textarea>
+              <textarea 
+              name="message"
+              value={msg}
+              onChange={(e)=> setMsg(e.target.value)}
+              placeholder="Your message"
+              >
+              </textarea>
             </div>
           </div>
           <div className="row">
@@ -73,7 +110,7 @@ const Contactus = () => {
               <label>&nbsp;</label>
             </div>
             <div className="col span-2-of-3">
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Submit"/>
             </div>
           </div>
         </form>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove, selectMessages, selectLoading } from "./messagesSlice";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -30,6 +30,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import Avatar from "@material-ui/core/Avatar";
 import TablePagination from "@material-ui/core/TablePagination";
+import { publicRequest } from "../api";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -62,7 +63,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: "id", numeric: true, disablePadding: false, label: "ID" },
+  // { id: "id", numeric: true, disablePadding: false, label: "ID" },
   {
     id: "name",
     numeric: false,
@@ -75,12 +76,12 @@ const headCells = [
     disablePadding: true,
     label: "Email",
   },
-  {
-    id: "media",
-    numeric: false,
-    disablePadding: true,
-    label: "Media",
-  },
+  // {
+  //   id: "media",
+  //   numeric: false,
+  //   disablePadding: true,
+  //   label: "Media",
+  // },
   {
     id: "message",
     numeric: false,
@@ -115,6 +116,7 @@ function EnhancedTableHead(props) {
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
+
 
   return (
     <TableHead>
@@ -202,12 +204,22 @@ export default function History() {
   const rows = useSelector(selectMessages);
   const loading = useSelector(selectLoading);
   const [search, setSearch] = React.useState("")
+  const [msg, setMsg] = React.useState([])
   const error = false;
   // todo with snacks
   const [snackOpen, setSnackOpen] = React.useState(false);
   const dispatch = useDispatch();
 
   let history = useHistory();
+  useEffect(()=>{
+    const getMessages = async () => {
+      const response = await publicRequest.get("message");
+      console.log("data",response.data.data)
+      setMsg(response.data.data)
+      console.log(msg)
+    }
+    getMessages()
+   },[])
 
   if (loading) {
     return (
@@ -355,7 +367,7 @@ export default function History() {
                     rowCount={rows.length}
                   />
                   <TableBody>
-                    {stableSort(rows, getComparator(order, orderBy))
+                    {stableSort(msg, getComparator(order, orderBy))
                       .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
@@ -382,54 +394,54 @@ export default function History() {
                               }
                               history.push(`/message/${row.id}`);
                             }}
-                            key={`person-${row.id}`}
+                            key={`person-${row._id}`}
                             selected={isItemSelected}
                             style={{ cursor: "pointer" }}
                           >
                             <TableCell
                               padding="checkbox"
                               onClick={(e) => {
-                                selectTableRow(row.id);
+                                selectTableRow(row._id);
                               }}
                             >
                               <Checkbox
                                 checked={isItemSelected}
                                 inputProps={{ "aria-labelledby": labelId }}
                                 onChange={(e) => {
-                                  selectTableRow(row.id);
+                                  selectTableRow(row._id);
                                 }}
                               />
                             </TableCell>
-                            <TableCell align="right">{row.id}</TableCell>
+                            {/* <TableCell align="right">{row._id}</TableCell> */}
                             <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
-                              padding="none"
+                              padding="3"
                             >
-                              {row.name}
+                              {row.fullName}
                             </TableCell>
                             <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
-                              padding="none"
+                              padding="3"
                             >
                               {row.email}
                             </TableCell>
-                            <TableCell
+                            {/* <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
-                              padding="none"
+                              padding="3"
                             >
                               {row.media}
-                            </TableCell>
+                            </TableCell> */}
                             <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
-                              padding="none"
+                              padding="3"
                             >
                               {row.message}
                             </TableCell>
@@ -439,26 +451,26 @@ export default function History() {
                               scope="row"
                               padding="none"
                             >
-                              {row.modified}
+                              {row.updatedAt}
                             </TableCell>
                             <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
-                              padding="3"
+                              padding="none"
                             >
                             <div edge="start" className={classes.grow} />
                             <MessageEditDialog
-                              iD={row.id}
+                              iD={row._id}
                               edge="end"
                               onSave={() => {
                                 setSnackOpen("Message updated");
                               }}
                               render={(open) => (
                                 <Button
-                                  edge="end"
                                   color="secondary"
                                   variant="contained"
+                                  size="small"
                                   startIcon={<VisibilityIcon />}
                                   onClick={open}
                                 >
