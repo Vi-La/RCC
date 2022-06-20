@@ -8,6 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/newsSlice";
 import { useDispatch } from "react-redux";
 import { nextID } from "../ReduxTable/newsSlice";
+import { publicRequest } from "../api";
 
 export default function NewsDialog({ data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -24,6 +25,7 @@ export default function NewsDialog({ data, render, onSave }) {
   const [title, setTitle] = React.useState(defaultTitle);
   const [subtitle, setSubTitle] = React.useState(defaultSubTitle)
   const [description, setDescription] = React.useState(defaultDescription)
+  const [addNews, setAddNews] = React.useState([])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -37,8 +39,13 @@ export default function NewsDialog({ data, render, onSave }) {
     setOpen(false);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
+      let token = JSON.parse(localStorage.getItem('user')).accessToken;
       let modified = Date.now()
+      console.log("modified",addNews)
+      const response = await publicRequest.post(`news/create`)
+    setAddNews(response.data.data)
+    console.log("modified",addNews)
     const action = data ? update : add;
     dispatch(action({ title, subtitle ,description ,modified, id: id || nextID(), img }));
     onSave && onSave();

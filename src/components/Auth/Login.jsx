@@ -22,28 +22,6 @@ const Login = () => {
     console.log('Success:', values);
 
     try {
-<<<<<<< HEAD
-      const responseData = await sendRequest(
-        "https://rcc-rwanda.herokuapp.com/api/v1/login",
-        "POST",
-        JSON.stringify(values),
-        { "Content-Type": "application/json" }
-      )
-      if (responseData.error) {
-        alert(responseData.error)
-      } else {
-        console.log(responseData)
-        auth.login(
-          responseData.id,
-          responseData.fullName,
-          responseData.email,
-          responseData.token
-        )
-        sessionStorage.setItem('rccRwUser',JSON.stringify(responseData))
-        history.push("/dashboard")
-      }
-    } catch (error) {}
-=======
   const response=  await axios({
     // url:"http://localhost:5000/api/v1/users/login",
     url:"https://rcc-rwanda1.herokuapp.com/api/v1/users/login",
@@ -63,7 +41,6 @@ const Login = () => {
     } catch (error) {
       console.log(error)
     }
->>>>>>> 5e66b40d57da9272d17ca7a32fb206d944a27079
   };
 
   const onFinishFailed = (errorInfo) => {

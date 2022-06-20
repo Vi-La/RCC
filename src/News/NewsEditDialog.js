@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -8,6 +8,10 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/newsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { nextID, selectNews } from "../ReduxTable/newsSlice";
+import { publicRequest } from "../api";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
+import { IconButton, Input } from "@material-ui/core";
+import { PhotoCamera } from "@material-ui/icons";
 
 export default function NewsEditDialog({ iD,data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -27,26 +31,36 @@ export default function NewsEditDialog({ iD,data, render, onSave }) {
   const [title, setTitle] = React.useState(defaultTitle);
   const [subtitle, setSubTitle] = React.useState(defaultSubTitle)
   const [description, setDescription] = React.useState(defaultDescription)
+  const [getNewsById, setGetNewsById] = React.useState([])
+
+  useEffect( async ()=> {
+    const response = await publicRequest.get(`news/${iD}`)
+    setGetNewsById(response.data.data)
+    // console.log("getNewsById",getNewsById)
+  }, [])
 
   const handleClickOpen = () => {
     setOpen(true);
-    setTitle(news.title);
-    setSubTitle(news.subtitle);
-    setDescription(news.description);
-    setImg(news.img);
-    console.log(news)
+    setTitle(getNewsById.title);
+    setSubTitle(getNewsById.subTitle);
+    setDescription(getNewsById.desc);
+    setImg(getNewsById.newsImage);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
+      let token = JSON.parse(localStorage.getItem('user')).accessToken;
       let modified = Date.now()
-      console.log(news)
-    const action = news ? update : add;
-    dispatch(action({ title, subtitle ,description ,modified, id: iD || nextID(), img }));
-    onSave && onSave();
+      console.log("modified",getNewsById)
+      const response = await publicRequest.put(`news/${iD}`)
+    setGetNewsById(response.data.data)
+    console.log("getNewsById",getNewsById)
+    // const action = getNewsById ? update : add;
+    // dispatch(action({ title, subtitle ,description ,modified, id: iD || nextID(), img }));
+    // onSave && onSave();
     handleClose();
   };
 
@@ -74,7 +88,7 @@ export default function NewsEditDialog({ iD,data, render, onSave }) {
             }}
           />
 
-          <TextField
+          {/* <TextField
             autoFocus
             margin="dense"
             id="subtitle"
@@ -84,23 +98,32 @@ export default function NewsEditDialog({ iD,data, render, onSave }) {
             onChange={(e) => {
               setSubTitle(e.target.value);
             }}
-          />
+          /> */}
           <TextField
+            id="standard-multiline-static"
+            multiline
+            rows={5}
+            defaultValue={description}
+            variant="standard"
             autoFocus
             margin="dense"
-            id="description"
             label="Description"
             fullWidth
+            size="small"
             value={description}
             onChange={(e) => {
               setDescription(e.target.value);
             }}
           />
+          {/* <label htmlFor="icon-button-file">
+            <Input accept="image/*" id="icon-button-file" type="file" />
+            <IconButton color="primary" aria-label="upload picture" component="span">
+            </IconButton>
+          </label> */}
           <TextField
             autoFocus
             margin="dense"
             label="Image URL"
-            fullWidth
             value={img}
             onChange={(e) => {
               setImg(e.target.value);
