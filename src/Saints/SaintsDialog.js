@@ -8,6 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/saintsSlice";
 import { useDispatch } from "react-redux";
 import { nextID } from "../ReduxTable/saintsSlice";
+import { userRequest } from "../api";
 
 export default function SaintsDialog({ data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -22,6 +23,7 @@ export default function SaintsDialog({ data, render, onSave }) {
   const [img, setImg] = React.useState(defaultImg);
   const [name, setName] = React.useState(defaultName);
   const [summary, setSummary] = React.useState(defaultSummary)
+  const [addSaint, setAddSaint] = React.useState([])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,9 +36,18 @@ export default function SaintsDialog({ data, render, onSave }) {
     setOpen(false);
   };
 
-  const handleSave = () => {
+  const handleSave = async() => {
       let modified = Date.now()
     const action = data ? update : add;
+    try {
+      const response = await userRequest.post('saint/create',{
+        sainterName: name,
+        desc: summary
+      })
+      setAddSaint(response.data.data)
+    } catch (error) {
+      console.log(error)
+    }
     dispatch(action({ name, summary ,modified, id: id || nextID(), img }));
     onSave && onSave();
     handleClose();

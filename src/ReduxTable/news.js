@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove, selectNews, selectLoading } from "./newsSlice";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MuiAlert from "@material-ui/lab/Alert";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
@@ -28,6 +28,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import Avatar from "@material-ui/core/Avatar";
 import TablePagination from "@material-ui/core/TablePagination";
+import { publicRequest } from "../api";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -60,7 +61,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: "id", numeric: true, disablePadding: false, label: "ID" },
+  // { id: "id", numeric: true, disablePadding: false, label: "ID" },
   {
     id: "title",
     numeric: false,
@@ -68,17 +69,17 @@ const headCells = [
     label: "Title",
   },
   {
-    id: "subtitle",
+    id: "description",
     numeric: false,
     disablePadding: true,
-    label: "Subtitle",
+    label: "description",
   },
-  {
-    id: "modified",
-    numeric: false,
-    disablePadding: true,
-    label: "Date modified",
-  },
+  // {
+  //   id: "modified",
+  //   numeric: false,
+  //   disablePadding: true,
+  //   label: "Date modified",
+  // },
   {
     id: "avatar",
     numeric: false,
@@ -198,6 +199,16 @@ export default function News() {
   const [snackOpen, setSnackOpen] = React.useState(false);
   const dispatch = useDispatch();
   let history = useHistory();
+
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    const getNews = async ()=>{
+      const response = await publicRequest.get("news");
+      setNews(response.data.data)
+    }
+    getNews()
+  }, [])
   if (loading) {
     return (
       <Content>
@@ -336,16 +347,16 @@ export default function News() {
                     orderBy={orderBy}
                     onSelectAllClick={handleSelectAllClick}
                     onRequestSort={handleRequestSort}
-                    rowCount={rows.length}
+                    rowCount={news.length}
                   />
                   <TableBody>
-                    {stableSort(rows, getComparator(order, orderBy))
+                    {stableSort(news, getComparator(order, orderBy))
                       .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
                       )
                       .map((row, index) => {
-                        const isItemSelected = isSelected(row.id);
+                        const isItemSelected = isSelected(row._id);
                         const labelId = `enhanced-table-checkbox-${index}`;
 
                         return (
@@ -357,34 +368,37 @@ export default function News() {
                             onClick={(e) => {
                               e.preventDefault();
                               if (
+                                // e.target.className &&
+                                // typeof e.target.className.indexOf === 'function' &&
                                 e.target.type === "checkbox" ||
-                                e.target.className.indexOf("Checkbox") > 0
+                                e.target.className.indexOf("Checkbox") > 0 
                               ) {
+                                console.log(e.target.className)
                                 return;
                               } else {
                                 return;
                               }
-                              history.push(`/news/${row.id}`);
+                              history.push(`/news/${row._id}`);
                             }}
-                            key={`person-${row.id}`}
+                            key={`news-${row._id}`}
                             selected={isItemSelected}
                             style={{ cursor: "pointer" }}
                           >
                             <TableCell
                               padding="checkbox"
                               onClick={(e) => {
-                                selectTableRow(row.id);
+                                selectTableRow(row._id);
                               }}
                             >
                               <Checkbox
                                 checked={isItemSelected}
                                 inputProps={{ "aria-labelledby": labelId }}
                                 onChange={(e) => {
-                                  selectTableRow(row.id);
+                                  selectTableRow(row._id);
                                 }}
                               />
                             </TableCell>
-                            <TableCell align="right">{row.id}</TableCell>
+                            {/* <TableCell align="right">{row._id}</TableCell> */}
                             <TableCell
                               component="th"
                               id={labelId}
@@ -399,18 +413,18 @@ export default function News() {
                               scope="row"
                               padding="none"
                             >
-                              {row.subtitle}
+                              {row.desc}
                             </TableCell>
-                            <TableCell
+                            {/* <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
                               padding="none"
                             >
-                              {row.modified}
-                            </TableCell>
+                              {row.updatedAt}
+                            </TableCell> */}
                             <TableCell>
-                              <Avatar alt={row.name} src={row.img} />
+                              <Avatar alt={row.title} src={row.newsImage} />
                             </TableCell>
                             <TableCell
                               component="th"
@@ -420,7 +434,7 @@ export default function News() {
                             >
                               <div edge="start" className={classes.grow} />
                               <NewsEditDialog
-                                iD={row.id}
+                                iD={row._id}
                                 edge="end"
                                 onSave={() => {
                                   setSnackOpen("Article updated");
