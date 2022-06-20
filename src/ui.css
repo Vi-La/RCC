@@ -347,7 +347,8 @@ padding: 80px;
 }
 
 .section-community {
-  display: block;
+  /* display: block; */
+  display: flex;
   flex-wrap: wrap;
   margin-bottom: 50px;
   
@@ -359,10 +360,15 @@ padding: 80px;
   justify-content: space-around;
   /* margin-bottom: 50px; */
 }
+.section-community h2{
+  font-size: 35px;
+  font-weight: 900;
+}
 
 .Community-img {
   width: 200px;
   height: 200px;
+  margin-top: 50px;
   margin-bottom: 15px;
 }
 
@@ -476,7 +482,7 @@ input[type="submit"] {
   text-decoration: none;
   color: #fff;
   border-radius: 200px;
-  background-color: #e67e22;
+  background-color: rgb(181, 11, 11);
   font-weight: 300;
   display: inline-block;
   padding: 10px 30px;

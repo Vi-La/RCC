@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { publicRequest } from "../api";
 
 let nextIdVal = 0;
 

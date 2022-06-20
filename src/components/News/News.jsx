@@ -1,11 +1,13 @@
-import React from "react";
-import { List, Avatar, Space, Layout } from "antd";
+import React, { useEffect, useState } from "react";
+import { Card, List, Avatar, Space, Layout } from "antd";
 import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
 import Lay from "../../hoc/Layout/Layout";
 import Footer from "../Footer/Footer";
+import { publicRequest } from "../../api";
+import './News.css'
 
 const listData = [];
-for (let i = 0; i < 23; i++) {
+for (let i = 0; i < 3; i++) {
   listData.push({
     href: "#",
     title: `Live christian life ${i}`,
@@ -17,60 +19,42 @@ for (let i = 0; i < 23; i++) {
   });
 }
 
-const IconText = ({ icon, text }) => (
+const IconText = ({ icon }) => (
   <Space>
     {React.createElement(icon)}
-    {text}
   </Space>
 );
 
 const News = () => {
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    const getNews = async ()=>{
+      const response = await publicRequest.get("news");
+      setNews(response.data.data)
+    }
+    getNews()
+  }, [])
+
   return (
-    <div>
+
+    <div >
       <Lay />
       <Layout />
-      <div className="row" >
-        <List
-          itemLayout="vertical"
-          size="large"
-          dataSource={listData}
-          renderItem={(item) => (
-            <List.Item
-              key={item.title}
-              actions={[
-                <IconText
-                  icon={StarOutlined}
-                  text="156"
-                  key="list-vertical-star-o"
-                />,
-                <IconText
-                  icon={LikeOutlined}
-                  text="156"
-                  key="list-vertical-like-o"
-                />,
-                <IconText
-                  icon={MessageOutlined}
-                  text="2"
-                  key="list-vertical-message"
-                />,
-              ]}
-              extra={
-                <img
-                  width={272}
-                  alt="logo"
-                  src="https://cdn.vectorstock.com/i/1000x1000/65/08/pentecost-sunday-holy-spirit-vector-28346508.webp"
-                />
-              }
-            >
-              <List.Item.Meta
-                avatar={<Avatar src={item.avatar} />}
-                title={<a href={item.href}>{item.title}</a>}
-                description={item.description}
-              />
-              {item.content}
-            </List.Item>
-          )}
-        />
+      <div className="titleContainer"> Top News</div>
+      <div className='container1'>
+        {news?.map((item) => (
+          <div className="bodyContainer">
+            <div className="imageContainer">
+              <img src={item.newsImage} />
+            </div>
+            <div className="contentContainer">
+              <h2>{item.title}</h2>
+              <p>{item.desc}</p>
+              <button className="btn">Read More ...</button>
+            </div>
+          </div>
+        ))}
       </div>
       <Footer />
     </div>

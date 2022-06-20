@@ -5,6 +5,7 @@ import Layout from "../../hoc/Layout/Layout";
 import { useHttpClient } from "../../shared/hooks/http-hook"
 import { AuthContext } from "../../shared/context/auth-context"
 import {Link} from "react-router-dom"
+import axios from "axios"
 
 const Login = () => {
   const auth = useContext(AuthContext)
@@ -19,7 +20,9 @@ const Login = () => {
 
   const onFinish = async(values) => {
     console.log('Success:', values);
+
     try {
+<<<<<<< HEAD
       const responseData = await sendRequest(
         "https://rcc-rwanda.herokuapp.com/api/v1/login",
         "POST",
@@ -40,6 +43,27 @@ const Login = () => {
         history.push("/dashboard")
       }
     } catch (error) {}
+=======
+  const response=  await axios({
+    // url:"http://localhost:5000/api/v1/users/login",
+    url:"https://rcc-rwanda1.herokuapp.com/api/v1/users/login",
+    method:"POST",
+    data:values,
+    headers:{
+      "Content-Type":"application/json"
+    }
+  })
+
+  localStorage.setItem("user",JSON.stringify(response?.data))
+  // console.log(response?.data.accessToken)
+  // console.log(JSON.parse(localStorage.getItem('user')).accessToken)
+   if(JSON.parse(localStorage.getItem('user')).accessToken){
+     history.push('/dashboard')
+   }
+    } catch (error) {
+      console.log(error)
+    }
+>>>>>>> 5e66b40d57da9272d17ca7a32fb206d944a27079
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -67,7 +91,7 @@ const Login = () => {
     >
 
       <Form.Item
-        label="Email"
+        // label="Email"
         name="email"
         rules={[
           {
@@ -76,11 +100,11 @@ const Login = () => {
           },
         ]}
       >
-        <Input/>
+        <Input placeholder='Email'/>
       </Form.Item>
 
       <Form.Item
-        label="Password"
+        // label=""
         name="password"
         rules={[
           {
@@ -89,7 +113,7 @@ const Login = () => {
           },
         ]}
       >
-        <Input.Password />
+        <Input.Password placeholder='Password'/>
       </Form.Item>
 
       <Form.Item
