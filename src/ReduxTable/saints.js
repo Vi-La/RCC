@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove, selectSaints, selectLoading } from "./saintsSlice";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -28,6 +28,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import Avatar from "@material-ui/core/Avatar";
 import TablePagination from "@material-ui/core/TablePagination";
+import { publicRequest, userRequest } from '../api'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -60,7 +61,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: "id", numeric: true, disablePadding: false, label: "ID" },
+  // { id: "id", numeric: true, disablePadding: false, label: "ID" },
   {
     id: "name",
     numeric: false,
@@ -72,12 +73,6 @@ const headCells = [
     numeric: false,
     disablePadding: true,
     label: "Summary",
-  },
-  {
-    id: "modified",
-    numeric: false,
-    disablePadding: true,
-    label: "Date modified",
   },
   {
     id: "avatar",
@@ -193,12 +188,21 @@ export default function Saints() {
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const rows = useSelector(selectSaints);
   const loading = useSelector(selectLoading);
+  const [saint, setSaint] = React.useState([]);
   const error = false;
   // todo with snacks
   const [snackOpen, setSnackOpen] = React.useState(false);
   const dispatch = useDispatch();
 
   let history = useHistory();
+  useEffect(()=>{
+    const getSaint = async ()=>{
+      const response = await publicRequest.get("saint");
+      console.log("saint:",response.data.data)
+      setSaint(response.data.data)
+    }
+    getSaint()
+  },[])
 
   if (loading) {
     return (
@@ -313,7 +317,7 @@ export default function Saints() {
                     onClick={open}
                   >
                     {" "}
-                    Delete {selected.length} selected
+                    {selected.length}
                   </Button>
                 )}
               />
@@ -341,7 +345,7 @@ export default function Saints() {
                     rowCount={rows.length}
                   />
                   <TableBody>
-                    {stableSort(rows, getComparator(order, orderBy))
+                    {stableSort(saint, getComparator(order, orderBy))
                       .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
@@ -385,14 +389,14 @@ export default function Saints() {
                                 }}
                               />
                             </TableCell>
-                            <TableCell align="right">{row.id}</TableCell>
+                            {/* <TableCell align="right">{row.id}</TableCell> */}
                             <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
                               padding="none"
                             >
-                              {row.name}
+                              {row.sainterName}
                             </TableCell>
                             <TableCell
                               component="th"
@@ -400,18 +404,10 @@ export default function Saints() {
                               scope="row"
                               padding="none"
                             >
-                              {row.summary}
-                            </TableCell>
-                            <TableCell
-                              component="th"
-                              id={labelId}
-                              scope="row"
-                              padding="none"
-                            >
-                              {row.modified}
+                              {row.desc}
                             </TableCell>
                             <TableCell>
-                              <Avatar alt={row.name} src={row.img} />
+                              <Avatar alt={row.name} src={row.image} />
                             </TableCell>
                             <TableCell
                               component="th"
@@ -427,15 +423,19 @@ export default function Saints() {
                                 setSnackOpen("Saint updated");
                               }}
                               render={(open) => (
-                                <Button
-                                  edge="end"
-                                  color="secondary"
-                                  variant="contained"
-                                  startIcon={<UpdateIcon />}
-                                  onClick={open}
-                                >
-                                  Update
-                                </Button>
+                                // <Button
+                                //   edge="end"
+                                //   color="secondary"
+                                //   variant="contained"
+                                //   startIcon={<UpdateIcon />}
+                                //   onClick={open}
+                                // >
+                                //   Update
+                                // </Button>
+                                <UpdateIcon 
+                                color="primary"
+                                onClick={open}
+                                />
                               )}
                             />
                             </TableCell>

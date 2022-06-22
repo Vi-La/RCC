@@ -8,10 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/newsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { nextID, selectNews } from "../ReduxTable/newsSlice";
-import { publicRequest } from "../api";
-import FileUploadIcon from '@mui/icons-material/FileUpload';
-import { IconButton, Input } from "@material-ui/core";
-import { PhotoCamera } from "@material-ui/icons";
+import { userRequest, publicRequest } from "../api";
 
 export default function NewsEditDialog({ iD,data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -36,7 +33,6 @@ export default function NewsEditDialog({ iD,data, render, onSave }) {
   useEffect( async ()=> {
     const response = await publicRequest.get(`news/${iD}`)
     setGetNewsById(response.data.data)
-    // console.log("getNewsById",getNewsById)
   }, [])
 
   const handleClickOpen = () => {
@@ -54,10 +50,20 @@ export default function NewsEditDialog({ iD,data, render, onSave }) {
   const handleSave = async () => {
       let token = JSON.parse(localStorage.getItem('user')).accessToken;
       let modified = Date.now()
-      console.log("modified",getNewsById)
-      const response = await publicRequest.put(`news/${iD}`)
-    setGetNewsById(response.data.data)
-    console.log("getNewsById",getNewsById)
+      // console.log("modified",getNewsById)
+      try{
+        const response = await userRequest.put(`news/${iD}`, {
+          title: title,
+          desc: description,
+          subTitle: subtitle,
+          newsImage:img 
+        })
+        setGetNewsById(response.data.data)
+        console.log("getNewsById",response.data.data)
+      } catch(error){
+        console.log(error.message);
+      }
+    
     // const action = getNewsById ? update : add;
     // dispatch(action({ title, subtitle ,description ,modified, id: iD || nextID(), img }));
     // onSave && onSave();

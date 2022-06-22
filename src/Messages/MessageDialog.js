@@ -12,6 +12,7 @@ import { nextID } from "../ReduxTable/messagesSlice";
 export default function MessageDialog({ data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+  
 
   const defaultName = data && data.name;
   const defaultEmail = data && data.email;

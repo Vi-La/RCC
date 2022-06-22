@@ -8,7 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 import Checkbox from "@material-ui/core/Checkbox";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import PropTypes from "prop-types";
-import { lighten, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import Content from "../Dashboard/Content";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -18,19 +18,16 @@ import MessageDialog from "../Messages/MessageDialog";
 import MessageEditDialog from "../Messages/MessageEditDialog"
 import Button from "@material-ui/core/Button";
 import SearchBar from "material-ui-search-bar";
-import AddIcon from "@material-ui/icons/Add";
 import Tooltip from "@material-ui/core/Tooltip";
 import DeletePeopleDialog from "../People/DeletePeopleDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import UpdateIcon from "@material-ui/icons/Edit"
 import { SummaryCard } from "../People/Driver";
 import TableContainer from "@material-ui/core/TableContainer";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
-import Avatar from "@material-ui/core/Avatar";
 import TablePagination from "@material-ui/core/TablePagination";
-import { publicRequest } from "../api";
+import { userRequest } from "../api";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -76,12 +73,6 @@ const headCells = [
     disablePadding: true,
     label: "Email",
   },
-  // {
-  //   id: "media",
-  //   numeric: false,
-  //   disablePadding: true,
-  //   label: "Media",
-  // },
   {
     id: "message",
     numeric: false,
@@ -212,10 +203,9 @@ export default function History() {
   let history = useHistory();
   useEffect(()=>{
     const getMessages = async () => {
-      const response = await publicRequest.get("message");
+      const response = await userRequest.get("message");
       console.log("data",response.data.data)
       setMsg(response.data.data)
-      console.log(msg)
     }
     getMessages()
    },[])
@@ -338,7 +328,7 @@ export default function History() {
                     onClick={open}
                   >
                     {" "}
-                    Delete {selected.length} selected
+                    {selected.length}
                   </Button>
                 )}
               />
@@ -466,15 +456,20 @@ export default function History() {
                                 setSnackOpen("Message updated");
                               }}
                               render={(open) => (
-                                <Button
-                                  color="secondary"
-                                  variant="contained"
-                                  size="small"
-                                  startIcon={<VisibilityIcon />}
-                                  onClick={open}
-                                >
-                                  View
-                                </Button>
+                                <VisibilityIcon
+                                color="primary"
+                                padding="3"
+                                onClick={open}
+                                 />
+                                // <Button
+                                //   color="secondary"
+                                //   variant="contained"
+                                //   size="small"
+                                //   startIcon={<VisibilityIcon />}
+                                //   onClick={open}
+                                // >
+                                //   View
+                                // </Button>
                               )}
                             />
                             </TableCell>

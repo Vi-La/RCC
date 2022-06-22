@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove, selectGroup, selectLoading } from "./groupsSlice";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -28,6 +28,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import Avatar from "@material-ui/core/Avatar";
 import TablePagination from "@material-ui/core/TablePagination";
+import { publicRequest, userRequest } from '../api';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -313,7 +314,7 @@ export default function Groups() {
                     onClick={open}
                   >
                     {" "}
-                    Delete {selected.length} selected
+                    {selected.length}
                   </Button>
                 )}
               />
@@ -427,15 +428,10 @@ export default function Groups() {
                                 setSnackOpen("Leaders updated");
                               }}
                               render={(open) => (
-                                <Button
-                                  edge="end"
-                                  color="secondary"
-                                  variant="contained"
-                                  startIcon={<UpdateIcon />}
-                                  onClick={open}
-                                >
-                                  Update
-                                </Button>
+                                <UpdateIcon 
+                                color="primary"
+                                onClick={open}
+                                />
                               )}
                             />
                             </TableCell>

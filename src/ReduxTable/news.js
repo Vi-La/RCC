@@ -8,7 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 import Checkbox from "@material-ui/core/Checkbox";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import PropTypes from "prop-types";
-import { lighten, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import Content from "../Dashboard/Content";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -74,12 +74,6 @@ const headCells = [
     disablePadding: true,
     label: "description",
   },
-  // {
-  //   id: "modified",
-  //   numeric: false,
-  //   disablePadding: true,
-  //   label: "Date modified",
-  // },
   {
     id: "avatar",
     numeric: false,
@@ -92,7 +86,6 @@ const headCells = [
     disablePadding: true,
     label: "Action",
   },
-//   { id: "trips", numeric: true, disablePadding: false, label: "Trips" },
 ];
 
 function EnhancedTableHead(props) {
@@ -322,7 +315,7 @@ export default function News() {
                     onClick={open}
                   >
                     {" "}
-                    Delete {selected.length} selected
+                    {selected.length}
                   </Button>
                 )}
               />
@@ -440,15 +433,19 @@ export default function News() {
                                   setSnackOpen("Article updated");
                                 }}
                                 render={(open) => (
-                                  <Button
-                                    edge="end"
-                                    color="secondary"
-                                    variant="contained"
-                                    startIcon={<UpdateIcon />}
-                                    onClick={open}
-                                  >
-                                    Update
-                                  </Button>
+                                  <UpdateIcon 
+                                  color="primary" 
+                                  onClick={open}
+                                  />
+                                  // <Button
+                                  //   edge="end"
+                                  //   color="primary"
+                                  //   variant="contained"
+                                  //   startIcon={<UpdateIcon color="primary" />}
+                                  //   onClick={open}
+                                  // >
+                                  //   Update
+                                  // </Button>
                                 )}
                               />
                             </TableCell>

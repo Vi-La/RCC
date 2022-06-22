@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove, selectLeaders, selectLoading } from "./leadersSlice";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -28,6 +28,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import Avatar from "@material-ui/core/Avatar";
 import TablePagination from "@material-ui/core/TablePagination";
+import { publicRequest, userRequest } from '../api'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -60,25 +61,37 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: "id", numeric: true, disablePadding: false, label: "ID" },
+  // { id: "id", numeric: true, disablePadding: false, label: "ID" },
   {
     id: "name",
     numeric: false,
     disablePadding: true,
-    label: "Name",
+    label: "First name",
+  },
+  {
+    id: "lname",
+    numeric: false,
+    disablePadding: true,
+    label: "Last Name",
   },
   {
     id: "summary",
     numeric: false,
     disablePadding: true,
-    label: "Summary",
+    label: "Email",
   },
   {
     id: "modified",
     numeric: false,
     disablePadding: true,
-    label: "Date modified",
+    label: "Telephone",
   },
+  // {
+  //   id: "modified",
+  //   numeric: false,
+  //   disablePadding: true,
+  //   label: "isAdmin",
+  // },
   {
     id: "avatar",
     numeric: false,
@@ -193,12 +206,21 @@ export default function Leaders() {
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const rows = useSelector(selectLeaders);
   const loading = useSelector(selectLoading);
+  const [leader, setLeader] = React.useState([]);
   const error = false;
   // todo with snacks
   const [snackOpen, setSnackOpen] = React.useState(false);
   const dispatch = useDispatch();
 
   let history = useHistory();
+  useEffect(()=>{
+    const getLeader = async ()=>{
+      const response = await userRequest.get("users");
+      console.log("Leader:",response.data.data)
+      setLeader(response.data.data)
+    }
+    getLeader()
+  },[])
 
   if (loading) {
     return (
@@ -313,7 +335,7 @@ export default function Leaders() {
                     onClick={open}
                   >
                     {" "}
-                    Delete {selected.length} selected
+                    {selected.length}
                   </Button>
                 )}
               />
@@ -341,7 +363,7 @@ export default function Leaders() {
                     rowCount={rows.length}
                   />
                   <TableBody>
-                    {stableSort(rows, getComparator(order, orderBy))
+                    {stableSort(leader, getComparator(order, orderBy))
                       .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
@@ -385,14 +407,14 @@ export default function Leaders() {
                                 }}
                               />
                             </TableCell>
-                            <TableCell align="right">{row.id}</TableCell>
+                            {/* <TableCell align="right">{row.id}</TableCell> */}
                             <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
                               padding="none"
                             >
-                              {row.name}
+                              {row.firstName}
                             </TableCell>
                             <TableCell
                               component="th"
@@ -400,7 +422,7 @@ export default function Leaders() {
                               scope="row"
                               padding="none"
                             >
-                              {row.summary}
+                              {row.lastName}
                             </TableCell>
                             <TableCell
                               component="th"
@@ -408,10 +430,26 @@ export default function Leaders() {
                               scope="row"
                               padding="none"
                             >
-                              {row.modified}
+                              {row.email}
                             </TableCell>
+                            <TableCell
+                              component="th"
+                              id={labelId}
+                              scope="row"
+                              padding="none"
+                            >
+                              {row.telephone}
+                            </TableCell>
+                            {/* <TableCell
+                              component="th"
+                              id={labelId}
+                              scope="row"
+                              padding="none"
+                            >
+                              {row.isAdmin}
+                            </TableCell> */}
                             <TableCell>
-                              <Avatar alt={row.name} src={row.img} />
+                              <Avatar alt={row.name} src={row.image} />
                             </TableCell>
                             <TableCell
                               component="th"
@@ -427,15 +465,10 @@ export default function Leaders() {
                                 setSnackOpen("Leaders updated");
                               }}
                               render={(open) => (
-                                <Button
-                                  edge="end"
-                                  color="secondary"
-                                  variant="contained"
-                                  startIcon={<UpdateIcon />}
-                                  onClick={open}
-                                >
-                                  Update
-                                </Button>
+                                <UpdateIcon 
+                                color="primary"
+                                onClick={open}
+                                />
                               )}
                             />
                             </TableCell>

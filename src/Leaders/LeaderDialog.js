@@ -8,6 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/leadersSlice";
 import { useDispatch } from "react-redux";
 import { nextID } from "../ReduxTable/leadersSlice";
+import { userRequest } from "../api";
 
 export default function LeadersDialog({ data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -21,21 +22,42 @@ export default function LeadersDialog({ data, render, onSave }) {
 
   const [img, setImg] = React.useState(defaultImg);
   const [name, setName] = React.useState(defaultName);
-  const [summary, setSummary] = React.useState(defaultSummary)
+  const [lname, setLname] = React.useState('');
+  const [summary, setSummary] = React.useState(defaultSummary);
+  const [telephone, setTelephone] = React.useState('');
+  const [pass, setPass] = React.useState('');
+  const [leader, setLeader] = React.useState([])
+
+  console.log("Leader input:", name, lname, summary, telephone, pass)
 
   const handleClickOpen = () => {
     setOpen(true);
-    setName(defaultName);
-    setSummary(defaultSummary);
-    setImg(defaultImg);
+    setName('');
+    setSummary('');
+    // setLname('');
+    // setTelephone('');
+    // setPass('');
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
       let modified = Date.now()
+      // try {
+      //   const response = await userRequest.post(`users/create`,{
+      //       firstName: name,
+      //       // lastName: lname,
+      //       email: summary,
+      //       // telephone: telephone,
+      //       // password: pass
+          
+      //   })
+      //   setLeader(response.data.data)
+      // } catch (error) {
+      //   console.log(error)
+      // }
     const action = data ? update : add;
     dispatch(action({ name, summary ,modified, id: id || nextID(), img }));
     onSave && onSave();

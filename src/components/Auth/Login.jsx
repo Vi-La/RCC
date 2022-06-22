@@ -34,7 +34,7 @@ const Login = () => {
 
   localStorage.setItem("user",JSON.stringify(response?.data))
   // console.log(response?.data.accessToken)
-  // console.log(JSON.parse(localStorage.getItem('user')).accessToken)
+  console.log(JSON.parse(localStorage.getItem('user')).accessToken)
    if(JSON.parse(localStorage.getItem('user')).accessToken){
      history.push('/dashboard')
    }
