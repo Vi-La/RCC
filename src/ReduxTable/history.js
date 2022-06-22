@@ -331,7 +331,7 @@ export default function History() {
                     onClick={open}
                   >
                     {" "}
-                    Delete {selected.length} selected
+                    {selected.length}
                   </Button>
                 )}
               />
@@ -470,15 +470,10 @@ export default function History() {
                                 setSnackOpen("History updated");
                               }}
                               render={(open) => (
-                                <Button
-                                  edge="end"
-                                  color="secondary"
-                                  variant="contained"
-                                  startIcon={<UpdateIcon />}
-                                  onClick={open}
-                                >
-                                  Update
-                                </Button>
+                                <UpdateIcon 
+                                color="primary"
+                                onClick={open}
+                                />
                               )}
                             />
                             </TableCell>

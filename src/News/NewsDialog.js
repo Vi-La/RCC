@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/newsSlice";
 import { useDispatch } from "react-redux";
 import { nextID } from "../ReduxTable/newsSlice";
-import { publicRequest } from "../api";
+import { userRequest } from "../api";
 
 export default function NewsDialog({ data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -26,15 +26,16 @@ export default function NewsDialog({ data, render, onSave }) {
   const [subtitle, setSubTitle] = React.useState(defaultSubTitle)
   const [description, setDescription] = React.useState(defaultDescription)
   const [addNews, setAddNews] = React.useState([])
-
+  
   const handleClickOpen = () => {
     setOpen(true);
-    setTitle(defaultTitle);
-    setSubTitle(defaultSubTitle);
-    setDescription(defaultDescription);
-    setImg(defaultImg);
+    setTitle('');
+    setSubTitle('');
+    setDescription('');
+    setImg('');
   };
-
+  
+  console.log(title,subtitle,description, img)
   const handleClose = () => {
     setOpen(false);
   };
@@ -43,8 +44,20 @@ export default function NewsDialog({ data, render, onSave }) {
       let token = JSON.parse(localStorage.getItem('user')).accessToken;
       let modified = Date.now()
       console.log("modified",addNews)
-      const response = await publicRequest.post(`news/create`)
-    setAddNews(response.data.data)
+      try {
+        const response = await userRequest.post(`news/create`,{
+            title: title,
+            subTitle: subtitle,
+            desc: description,
+            newsImage: img
+          
+        })
+        setAddNews(response.data.data)
+      } catch (error) {
+        console.log(error)
+      }
+  console.log("handleSave:",title,subtitle,description, img)
+
     console.log("modified",addNews)
     const action = data ? update : add;
     dispatch(action({ title, subtitle ,description ,modified, id: id || nextID(), img }));

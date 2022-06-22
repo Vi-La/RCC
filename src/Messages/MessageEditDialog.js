@@ -11,9 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { nextID, selectMessages } from "../ReduxTable/messagesSlice";
 import { publicRequest } from "../api";
 
-export default function MessageDialog({ iD,data, render, onSave }) {
+export default function MessageEditDialog({ iD,data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+  console.log("getting id", iD);
 
   
   
