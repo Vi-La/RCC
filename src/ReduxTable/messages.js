@@ -14,12 +14,12 @@ import Content from "../Dashboard/Content";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Snackbar from "@material-ui/core/Snackbar";
 import Toolbar from "@material-ui/core/Toolbar";
-import MessageDialog from "../Messages/MessageDialog";
+// import MessageDialog from "../Messages/MessageDialog";
 import MessageEditDialog from "../Messages/MessageEditDialog"
 import Button from "@material-ui/core/Button";
 import SearchBar from "material-ui-search-bar";
 import Tooltip from "@material-ui/core/Tooltip";
-import DeletePeopleDialog from "../People/DeletePeopleDialog";
+import DeleteMessageDialog from "../Messages/DeleteMessageDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { SummaryCard } from "../People/Driver";
@@ -73,12 +73,6 @@ const headCells = [
     disablePadding: true,
     label: "Email",
   },
-  // {
-  //   id: "media",
-  //   numeric: false,
-  //   disablePadding: true,
-  //   label: "Media",
-  // },
   {
     id: "message",
     numeric: false,
@@ -212,7 +206,6 @@ export default function History() {
       const response = await userRequest.get("message");
       console.log("data",response.data.data)
       setMsg(response.data.data)
-      console.log(msg)
     }
     getMessages()
    },[])
@@ -290,31 +283,14 @@ export default function History() {
       <div className={classes.root}>
         <Toolbar>
           <div edge="start" className={classes.grow} />
-          <MessageDialog
-            edge="end"
-            onSave={() => {
-              setSnackOpen("Message opened");
-            }}
-            render={(open) => (
-              // <Button
-              //   edge="end"
-              //   color="primary"
-              //   variant="contained"
-              //   startIcon={<AddIcon />}
-              //   onClick={open}
-              // >
-              //   Add History
-              // </Button>
-              <SearchBar
+          {/* <SearchBar
                 value={search}
                 onChange={(newValue) => setSearch(newValue)}
                 // onRequestSearch={() => doSomethingWith(this.state.value)}
-              />
-            )}
-          />
+              /> */}
           {selected.length > 0 && (
             <Tooltip title={"Delete"}>
-              <DeletePeopleDialog
+              <DeleteMessageDialog
                 ids={selected}
                 onSave={() => {
                   dispatch(remove(selected));
@@ -369,7 +345,7 @@ export default function History() {
                         page * rowsPerPage + rowsPerPage
                       )
                       .map((row, index) => {
-                        const isItemSelected = isSelected(row.id);
+                        const isItemSelected = isSelected(row._id);
                         const labelId = `enhanced-table-checkbox-${index}`;
 
                         return (
@@ -388,9 +364,9 @@ export default function History() {
                               } else{
                                 return;
                               }
-                              history.push(`/message/${row.id}`);
+                              history.push(`/message/${row._id}`);
                             }}
-                            key={`person-${row._id}`}
+                            key={`message-${row._id}`}
                             selected={isItemSelected}
                             style={{ cursor: "pointer" }}
                           >
@@ -460,7 +436,7 @@ export default function History() {
                               iD={row._id}
                               edge="end"
                               onSave={() => {
-                                setSnackOpen("Message updated");
+                                setSnackOpen("Message opened");
                               }}
                               render={(open) => (
                                 <VisibilityIcon
@@ -468,15 +444,6 @@ export default function History() {
                                 padding="3"
                                 onClick={open}
                                  />
-                                // <Button
-                                //   color="secondary"
-                                //   variant="contained"
-                                //   size="small"
-                                //   startIcon={<VisibilityIcon />}
-                                //   onClick={open}
-                                // >
-                                //   View
-                                // </Button>
                               )}
                             />
                             </TableCell>

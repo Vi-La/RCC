@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -8,6 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/saintsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { nextID, selectSaints } from "../ReduxTable/saintsSlice";
+import { userRequest } from "../api";
 
 export default function SaintsDialog({ iD, data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -25,20 +26,39 @@ export default function SaintsDialog({ iD, data, render, onSave }) {
   const [img, setImg] = React.useState(defaultImg);
   const [name, setName] = React.useState(defaultName);
   const [summary, setSummary] = React.useState(defaultSummary)
+  const [getSaint, setGetSaint] = React.useState([])
+  let Id = iD
+
+  useEffect( async ()=> {
+    console.log("getting saint by id", iD)
+    const response = await userRequest.get(`saint/${Id}`)
+    setGetSaint(response.data.data)
+  }, [iD])
 
   const handleClickOpen = () => {
     setOpen(true);
-    setName(saints.name);
-    setSummary(saints.summary);
-    setImg(saints.img);
+    setName(getSaint.sainterName);
+    setSummary(getSaint.desc);
+    setImg(getSaint.image);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
       let modified = Date.now()
+      try{
+        const response = await userRequest.put(`saint/${iD}`, {
+          sainterName: name,
+          desc: summary,
+          image:img 
+        })
+        setGetSaint(response.data.data)
+        console.log("getSaintById",response.data.data)
+      } catch(error){
+        console.log(error.message);
+      }
     const action = saints ? update : add;
     dispatch(action({ name, summary ,modified, id: iD || nextID(), img }));
     onSave && onSave();

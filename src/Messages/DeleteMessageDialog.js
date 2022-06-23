@@ -6,10 +6,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { userRequest } from "../api";
 
-export default function DeletePeopleDialog({ ids, render, onSave }) {
+export default function DeleteMessageDialog({ ids, render, onSave }) {
   const [open, setOpen] = React.useState(false);
   const [isdeleted, setIsdeleted] = React.useState(false)
-
+  console.log("get selected ids", ids[0]);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -19,8 +19,9 @@ export default function DeletePeopleDialog({ ids, render, onSave }) {
   };
 
   const handleSave = async () => {
+    console.log("get selected ids", ids[0]);
     try{
-      const response = await userRequest.delete(`news/${ids[0]}`);
+      const response = await userRequest.delete(`message/${ids[0]}`);
       setIsdeleted(true)
       console.log("Remaining articles", response.data.data)
     } catch (error) {
@@ -29,9 +30,6 @@ export default function DeletePeopleDialog({ ids, render, onSave }) {
     onSave && onSave();
     handleClose();
   };
-  // useEffect( () => {
-  //   handleSave()
-  // }, [])
 
   return (
     <div>
@@ -41,9 +39,9 @@ export default function DeletePeopleDialog({ ids, render, onSave }) {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Delete an Article</DialogTitle>
+        <DialogTitle id="form-dialog-title">Delete a Message</DialogTitle>
         <DialogContent>
-          Are you sure you want to delete {ids.length} article
+          Are you sure you want to delete {ids.length} message
           {ids.length > 1 && "s"}?
         </DialogContent>
         <DialogActions>

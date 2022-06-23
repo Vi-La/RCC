@@ -361,8 +361,6 @@ export default function News() {
                             onClick={(e) => {
                               e.preventDefault();
                               if (
-                                // e.target.className &&
-                                // typeof e.target.className.indexOf === 'function' &&
                                 e.target.type === "checkbox" ||
                                 e.target.className.indexOf("Checkbox") > 0 
                               ) {
