@@ -9,14 +9,11 @@ import Typography from "@material-ui/core/Typography";
 import { add, update } from "../ReduxTable/messagesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { nextID, selectMessages } from "../ReduxTable/messagesSlice";
-import { publicRequest } from "../api";
+import { userRequest } from "../api";
 
 export default function MessageEditDialog({ iD,data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
-  const dispatch = useDispatch();
-  console.log("getting id", iD);
-
-  
+  const dispatch = useDispatch();  
   
   const rows = useSelector(selectMessages)
   const messages = rows.find( row => row.id === iD)
@@ -35,12 +32,13 @@ export default function MessageEditDialog({ iD,data, render, onSave }) {
   const [message, setMessage] = React.useState(defaultMessage)
   const [updatedAt, setUpdatedAt] = React.useState(defaultUpdate)
   const [getMsgById, setgetMsgById] = useState([])
+  let Id = iD
 
   useEffect( async ()=> {
-    const response = await publicRequest.get(`message/${iD}`)
+    const response = await userRequest.get(`message/${Id}`)
     setgetMsgById(response.data.data)
-  }, [])
-  
+  }, [iD])
+    
   const handleClickOpen = () => {
     setOpen(true);
     setName(getMsgById.fullName);

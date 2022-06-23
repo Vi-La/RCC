@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -8,6 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/historySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { nextID, selectHistory } from "../ReduxTable/historySlice";
+  import { userRequest } from "../api";
 
 export default function HistoryDialog({ iD, data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -33,6 +34,15 @@ export default function HistoryDialog({ iD, data, render, onSave }) {
   const [likes, setLikes] = React.useState("12");
   const [comments, setComments] = React.useState(defaultComments);
   const [description, setDescription] = React.useState(defaultDescription)
+  const [getSaint, setGetSaint] = React.useState([])
+
+  let Id = iD
+
+  useEffect( async ()=> {
+    console.log("getting history by id", iD)
+    const response = await userRequest.get(`history/${Id}`)
+    setGetSaint(response.data.data)
+  }, [iD])
 
   const handleClickOpen = () => {
     setOpen(true);

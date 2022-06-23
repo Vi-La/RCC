@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -8,6 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/communitySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { nextID, selectCommunity } from "../ReduxTable/communitySlice";
+import { userRequest } from "../api";
 
 export default function CommunityDialog({ iD,data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -27,13 +28,22 @@ export default function CommunityDialog({ iD,data, render, onSave }) {
   const [name, setName] = React.useState(defaultName);
   const [members, setMembers] = React.useState(defaultMembers);
   const [social, setSocial] = React.useState(defaultSocial);
+  const [getCommunity, setGetCommunity] = React.useState([])
+
+  let Id = iD
+
+  useEffect( async ()=> {
+    const response = await userRequest.get(`community/${Id}`)
+    setGetCommunity(response.data.data)
+  }, [iD])
+
 
   const handleClickOpen = () => {
     setOpen(true);
-    setName(community.name);
-    setMembers(community.members);
-    setSocial(community.social);
-    setImg(community.img);
+    setName(getCommunity.title);
+    setMembers(getCommunity.member);
+    setSocial(getCommunity.twLink);
+    setImg(getCommunity.image);
   };
 
   const handleClose = () => {

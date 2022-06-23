@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove, selectCommunity, selectLoading } from "./communitySlice";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -28,6 +28,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import Avatar from "@material-ui/core/Avatar";
 import TablePagination from "@material-ui/core/TablePagination";
+import { publicRequest, userRequest } from '../api'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -60,7 +61,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: "id", numeric: true, disablePadding: false, label: "ID" },
+  // { id: "id", numeric: true, disablePadding: false, label: "ID" },
   {
     id: "name",
     numeric: false,
@@ -74,16 +75,16 @@ const headCells = [
     label: "Members",
   },
   {
-    id: "twitter",
+    id: "activity",
+    numeric: false,
+    disablePadding: true,
+    label: "Activity",
+  },
+  {
+    id: "link",
     numeric: false,
     disablePadding: true,
     label: "Twitter",
-  },
-  {
-    id: "modified",
-    numeric: false,
-    disablePadding: true,
-    label: "Date modified",
   },
   {
     id: "avatar",
@@ -199,12 +200,22 @@ export default function Saints() {
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const rows = useSelector(selectCommunity);
   const loading = useSelector(selectLoading);
+  const [hstry, setHstry] = React.useState([]);
   const error = false;
   // todo with snacks
   const [snackOpen, setSnackOpen] = React.useState(false);
   const dispatch = useDispatch();
 
   let history = useHistory();
+
+  useEffect(()=>{
+    const getHistory = async ()=>{
+      const response = await publicRequest.get("community");
+      console.log("history:",response.data.data)
+      setHstry(response.data.data)
+    }
+    getHistory()
+  },[])
 
   if (loading) {
     return (
@@ -347,13 +358,13 @@ export default function Saints() {
                     rowCount={rows.length}
                   />
                   <TableBody>
-                    {stableSort(rows, getComparator(order, orderBy))
+                    {stableSort(hstry, getComparator(order, orderBy))
                       .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
                       )
                       .map((row, index) => {
-                        const isItemSelected = isSelected(row.id);
+                        const isItemSelected = isSelected(row._id);
                         const labelId = `enhanced-table-checkbox-${index}`;
 
                         return (
@@ -371,34 +382,34 @@ export default function Saints() {
                               } else{
                                 return;
                               }
-                              history.push(`/saint/${row.id}`);
+                              history.push(`/community/${row._id}`);
                             }}
-                            key={`person-${row.id}`}
+                            key={`community-${row._id}`}
                             selected={isItemSelected}
                             style={{ cursor: "pointer" }}
                           >
                             <TableCell
                               padding="checkbox"
                               onClick={(e) => {
-                                selectTableRow(row.id);
+                                selectTableRow(row._id);
                               }}
                             >
                               <Checkbox
                                 checked={isItemSelected}
                                 inputProps={{ "aria-labelledby": labelId }}
                                 onChange={(e) => {
-                                  selectTableRow(row.id);
+                                  selectTableRow(row._id);
                                 }}
                               />
                             </TableCell>
-                            <TableCell align="right">{row.id}</TableCell>
+                            {/* <TableCell align="right">{row.id}</TableCell> */}
                             <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
                               padding="none"
                             >
-                              {row.name}
+                              {row.title}
                             </TableCell>
                             <TableCell
                               component="th"
@@ -406,7 +417,7 @@ export default function Saints() {
                               scope="row"
                               padding="none"
                             >
-                              {row.members}
+                              {row.member}
                             </TableCell>
                             <TableCell
                               component="th"
@@ -414,7 +425,7 @@ export default function Saints() {
                               scope="row"
                               padding="none"
                             >
-                              {row.social}
+                              {row.action}
                             </TableCell>
                             <TableCell
                               component="th"
@@ -422,10 +433,10 @@ export default function Saints() {
                               scope="row"
                               padding="none"
                             >
-                              {row.modified}
+                              {row.twLink}
                             </TableCell>
                             <TableCell>
-                              <Avatar alt={row.name} src={row.img} />
+                              <Avatar alt={row.name} src={row.image} />
                             </TableCell>
                             <TableCell
                               component="th"
@@ -435,7 +446,7 @@ export default function Saints() {
                             >
                             <div edge="start" className={classes.grow} />
                             <CommunityEditDialog
-                              iD={row.id}
+                              iD={row._id}
                               edge="end"
                               onSave={() => {
                                 setSnackOpen("Leaders updated");

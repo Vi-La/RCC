@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove, selectHistory, selectLoading } from "./historySlice";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -28,6 +28,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import Avatar from "@material-ui/core/Avatar";
 import TablePagination from "@material-ui/core/TablePagination";
+import { publicRequest, userRequest } from '../api';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -60,7 +61,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: "id", numeric: true, disablePadding: false, label: "ID" },
+  // { id: "id", numeric: true, disablePadding: false, label: "ID" },
   {
     id: "title",
     numeric: false,
@@ -71,32 +72,32 @@ const headCells = [
     id: "subtitle",
     numeric: false,
     disablePadding: true,
-    label: "Subtitle",
+    label: "Member",
   },
   {
     id: "description",
     numeric: false,
     disablePadding: true,
-    label: "Description",
+    label: "Activity",
   },
   {
     id: "favorites",
     numeric: false,
     disablePadding: true,
-    label: "Favorites",
+    label: "Twitter",
   },
-  {
-    id: "likes",
-    numeric: false,
-    disablePadding: true,
-    label: "Likes",
-  },
-  {
-    id: "modified",
-    numeric: false,
-    disablePadding: true,
-    label: "Date modified",
-  },
+  // {
+  //   id: "likes",
+  //   numeric: false,
+  //   disablePadding: true,
+  //   label: "Likes",
+  // },
+  // {
+  //   id: "modified",
+  //   numeric: false,
+  //   disablePadding: true,
+  //   label: "Date modified",
+  // },
   {
     id: "avatar",
     numeric: false,
@@ -211,12 +212,21 @@ export default function History() {
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const rows = useSelector(selectHistory);
   const loading = useSelector(selectLoading);
+  const [hstry, setHstry] = React.useState([]);
   const error = false;
   // todo with snacks
   const [snackOpen, setSnackOpen] = React.useState(false);
   const dispatch = useDispatch();
 
   let history = useHistory();
+  useEffect(()=>{
+    const getHistory = async ()=>{
+      const response = await publicRequest.get("community");
+      console.log("history:",response.data.data)
+      setHstry(response.data.data)
+    }
+    getHistory()
+  },[])
 
   if (loading) {
     return (
@@ -294,7 +304,7 @@ export default function History() {
           <HistoryDialog
             edge="end"
             onSave={() => {
-              setSnackOpen("History added");
+              setSnackOpen("History Created");
             }}
             render={(open) => (
               <Button
@@ -359,13 +369,13 @@ export default function History() {
                     rowCount={rows.length}
                   />
                   <TableBody>
-                    {stableSort(rows, getComparator(order, orderBy))
+                    {stableSort(hstry, getComparator(order, orderBy))
                       .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
                       )
                       .map((row, index) => {
-                        const isItemSelected = isSelected(row.id);
+                        const isItemSelected = isSelected(row._id);
                         const labelId = `enhanced-table-checkbox-${index}`;
 
                         return (
@@ -384,27 +394,27 @@ export default function History() {
                               else{
                                 return;
                               }
-                              history.push(`/history/${row.id}`);
+                              history.push(`/history/${row._id}`);
                             }}
-                            key={`person-${row.id}`}
+                            key={`history-${row._id}`}
                             selected={isItemSelected}
                             style={{ cursor: "pointer" }}
                           >
                             <TableCell
                               padding="checkbox"
                               onClick={(e) => {
-                                selectTableRow(row.id);
+                                selectTableRow(row._id);
                               }}
                             >
                               <Checkbox
                                 checked={isItemSelected}
                                 inputProps={{ "aria-labelledby": labelId }}
                                 onChange={(e) => {
-                                  selectTableRow(row.id);
+                                  selectTableRow(row._id);
                                 }}
                               />
                             </TableCell>
-                            <TableCell align="right">{row.id}</TableCell>
+                            {/* <TableCell align="right">{row.id}</TableCell> */}
                             <TableCell
                               component="th"
                               id={labelId}
@@ -419,7 +429,7 @@ export default function History() {
                               scope="row"
                               padding="none"
                             >
-                              {row.subtitle}
+                              {row.member}
                             </TableCell>
                             <TableCell
                               component="th"
@@ -427,7 +437,7 @@ export default function History() {
                               scope="row"
                               padding="none"
                             >
-                              {row.description}
+                              {row.action}
                             </TableCell>
                             <TableCell
                               component="th"
@@ -435,26 +445,26 @@ export default function History() {
                               scope="row"
                               padding="none"
                             >
-                              {row.favorites}
+                              {row.twLink}
                             </TableCell>
-                            <TableCell
+                            {/* <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
                               padding="none"
                             >
                               {row.likes}
-                            </TableCell>
-                            <TableCell
+                            </TableCell> */}
+                            {/* <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
                               padding="none"
                             >
                               {row.modified}
-                            </TableCell>
+                            </TableCell> */}
                             <TableCell>
-                              <Avatar alt={row.title} src={row.img} />
+                              <Avatar alt={row.title} src={row.image} />
                             </TableCell>
                             <TableCell
                               component="th"
@@ -464,7 +474,7 @@ export default function History() {
                             >
                             <div edge="start" className={classes.grow} />
                             <HistoryEditDialog
-                              iD={row.id}
+                              iD={row._id}
                               edge="end"
                               onSave={() => {
                                 setSnackOpen("History updated");

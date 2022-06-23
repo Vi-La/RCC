@@ -56,7 +56,6 @@ export default function NewsDialog({ data, render, onSave }) {
       } catch (error) {
         console.log(error)
       }
-  console.log("handleSave:",title,subtitle,description, img)
 
     console.log("modified",addNews)
     const action = data ? update : add;

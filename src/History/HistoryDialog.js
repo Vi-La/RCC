@@ -8,6 +8,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/historySlice";
 import { useDispatch } from "react-redux";
 import { nextID } from "../ReduxTable/historySlice";
+import { userRequest } from "../api";
+import { Twitter } from "@material-ui/icons";
 
 export default function HistoryDialog({ data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -29,25 +31,40 @@ export default function HistoryDialog({ data, render, onSave }) {
   const [favorites, setFavorites] = React.useState("12");
   const [likes, setLikes] = React.useState("12");
   const [comments, setComments] = React.useState(defaultComments);
-  const [description, setDescription] = React.useState(defaultDescription)
-
+  const [description, setDescription] = React.useState(defaultDescription);
+  const [addCmnty, setAddCmnty] = React.useState([])
   const handleClickOpen = () => {
     setOpen(true);
-    setTitle(defaultTitle);
-    setSubTitle(defaultSubTitle)
-    setFavorites("12")
-    setLikes("12")
-    setComments(defaultComments)
-    setDescription(defaultDescription);
-    setImg(defaultImg);
+    setTitle('');
+    setSubTitle('')
+    setFavorites('')
+    setLikes('')
+    setComments('')
+    setDescription('');
+    setImg('');
   };
-
+  
+  console.log(title,subtitle,description,favorites,img)
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
       let modified = Date.now()
+      try {
+        const response = await userRequest.post(`community/create`,{
+            title: title,
+            member: subtitle,
+            action: description,
+            twLink: favorites,
+            image: img
+          
+        })
+        setAddCmnty(response.data.data)
+      } catch (error) {
+        console.log(error)
+      }
+      console.log("input:", addCmnty)
     const action = data ? update : add;
     dispatch(action({ title, subtitle, description, favorites, likes, comments ,modified, id: id || nextID(), img }));
     onSave && onSave();
