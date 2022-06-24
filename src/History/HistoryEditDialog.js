@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/historySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { nextID, selectHistory } from "../ReduxTable/historySlice";
-  import { userRequest } from "../api";
+  import { refreshPage, userRequest } from "../api";
 
 export default function HistoryDialog({ iD, data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -19,50 +19,56 @@ export default function HistoryDialog({ iD, data, render, onSave }) {
 
   const defaultImg = data && data.img;
   const defaultTitle = data && data.title;
-  const defaultSubTitle = data && data.subtitle;
-  const defaultFavorites = data && data.favorites;
-  const defaultLikes = data && data.likes;
-  const defaultComments = data && data.comments;
-  const defaultDescription = data && data.description;
+  const defaultEventName = data && data.eventName;
+  const defaultContent = data && data.comments;
+  const defaultYear = data && data.year;
   // Existing ID or random ID
   const id = data && data.id;
 
   const [img, setImg] = React.useState(defaultImg);
   const [title, setTitle] = React.useState(defaultTitle);
-  const [subtitle, setSubTitle] = React.useState(defaultSubTitle);
-  const [favorites, setFavorites] = React.useState("12");
-  const [likes, setLikes] = React.useState("12");
-  const [comments, setComments] = React.useState(defaultComments);
-  const [description, setDescription] = React.useState(defaultDescription)
-  const [getSaint, setGetSaint] = React.useState([])
+  const [eventName, setEventName] = React.useState(defaultEventName);
+  const [content, setContent] = React.useState(defaultContent);
+  const [year, setYear] = React.useState(defaultYear)
+  const [getHistory, setGetHistory] = React.useState([])
 
   let Id = iD
 
   useEffect( async ()=> {
-    console.log("getting history by id", iD)
     const response = await userRequest.get(`history/${Id}`)
-    setGetSaint(response.data.data)
+    setGetHistory(response.data.data)
   }, [iD])
 
   const handleClickOpen = () => {
     setOpen(true);
-    setTitle(history.title);
-    setSubTitle(history.subtitle)
-    setFavorites(history.favorites)
-    setLikes(history.likes)
-    setComments(history.comments)
-    setDescription(history.description);
-    setImg(history.img);
+    setTitle(getHistory.title);
+    setEventName(getHistory.eventName);
+    setContent(getHistory.content)
+    setYear(getHistory.year);
+    setImg(getHistory.image);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
       let modified = Date.now()
+      try{
+        const response = await userRequest.put(`history/${iD}`, {
+          title: title,
+          eventName: eventName,
+          content: content,
+          image:img,
+          year: year
+        })
+        setGetHistory(response.data.data)
+        refreshPage()
+      } catch(error){
+        console.log(error.message);
+      }
     const action = history ? update : add;
-    dispatch(action({ title, subtitle, description, favorites, likes, comments ,modified, id: iD || nextID(), img }));
+    dispatch(action({ title, eventName, content, year ,modified, id: iD || nextID(), img }));
     onSave && onSave();
     handleClose();
   };
@@ -85,6 +91,17 @@ export default function HistoryDialog({ iD, data, render, onSave }) {
             id="title"
             label="Title"
             fullWidth
+            value={eventName}
+            onChange={(e) => {
+              setEventName(e.target.value);
+            }}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="title"
+            label="Title"
+            fullWidth
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);
@@ -92,24 +109,15 @@ export default function HistoryDialog({ iD, data, render, onSave }) {
           />
           <TextField
             autoFocus
+            multiline
+            rows={5}
             margin="dense"
-            id="subtitle"
-            label="Subtitle"
+            id="content"
+            label="Content"
             fullWidth
-            value={subtitle}
+            value={content}
             onChange={(e) => {
-              setSubTitle(e.target.value);
-            }}
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="description"
-            label="Description"
-            fullWidth
-            value={description}
-            onChange={(e) => {
-              setDescription(e.target.value);
+              setContent(e.target.value);
             }}
           />
           <TextField
@@ -120,6 +128,16 @@ export default function HistoryDialog({ iD, data, render, onSave }) {
             value={img}
             onChange={(e) => {
               setImg(e.target.value);
+            }}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Year"
+            fullWidth
+            value={year}
+            onChange={(e) => {
+              setYear(e.target.value);
             }}
           />
         </DialogContent>

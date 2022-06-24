@@ -19,7 +19,7 @@ import CommunityEditDialog from "../Community/CommunityEditDialog";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import Tooltip from "@material-ui/core/Tooltip";
-import DeletePeopleDialog from "../People/DeletePeopleDialog";
+import DeleteCommunityDialog from "../Community/DeleteCommunityDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
 import UpdateIcon from "@material-ui/icons/Edit"
 import { SummaryCard } from "../People/Driver";
@@ -309,7 +309,7 @@ export default function Saints() {
           />
           {selected.length > 0 && (
             <Tooltip title={"Delete"}>
-              <DeletePeopleDialog
+              <DeleteCommunityDialog
                 ids={selected}
                 onSave={() => {
                   dispatch(remove(selected));

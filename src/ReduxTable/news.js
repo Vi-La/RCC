@@ -278,7 +278,7 @@ export default function News() {
           <NewsDialog
             edge="end"
             onSave={() => {
-              setSnackOpen("Article added");
+              setSnackOpen("Article created");
             }}
             render={(open) => (
               <Button

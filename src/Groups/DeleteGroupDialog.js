@@ -4,12 +4,12 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { refreshPage, userRequest } from "../api";
+import { userRequest } from "../api";
 
-export default function DeletePeopleDialog({ ids, render, onSave }) {
+export default function DeleteGroupDialog({ ids, render, onSave }) {
   const [open, setOpen] = React.useState(false);
   const [isdeleted, setIsdeleted] = React.useState(false)
-
+  console.log("get selected ids", ids[0]);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -20,19 +20,14 @@ export default function DeletePeopleDialog({ ids, render, onSave }) {
 
   const handleSave = async () => {
     try{
-      const response = await userRequest.delete(`news/${ids[0]}`);
+      await userRequest.delete(`group/${ids[0]}`);
       setIsdeleted(true)
-      console.log("Remaining articles", response.data.data)
-      refreshPage()
     } catch (error) {
       console.log(error.message)
     }
     onSave && onSave();
     handleClose();
   };
-  // useEffect( () => {
-  //   handleSave()
-  // }, [])
 
   return (
     <div>
@@ -42,9 +37,9 @@ export default function DeletePeopleDialog({ ids, render, onSave }) {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Delete an Article</DialogTitle>
+        <DialogTitle id="form-dialog-title">Delete a Group</DialogTitle>
         <DialogContent>
-          Are you sure you want to delete {ids.length} article
+          Are you sure you want to delete {ids.length} Group
           {ids.length > 1 && "s"}?
         </DialogContent>
         <DialogActions>

@@ -59,17 +59,12 @@ export default function App() {
                     currentTheme={currentTheme}
                     setCurrentTheme={setCurrentTheme}
                   />
-                  {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
                   <Switch>
-                    <Route path="/login">
+                    {/* <Route path="/login">
                       <SignIn />
-                    </Route>
-                    <Route path="/profile">
+                    </Route> */}
+                    <Route path="/dashboard/profile">
                       <Driver id={2} />
-                    </Route>
-                    <Route path="/dashboard">
-                      <Dashboard />
                     </Route>
                     <Route exact path="/people">
                       <People />
@@ -77,28 +72,28 @@ export default function App() {
                     <Route path={`/people/:driverId`}>
                       <Driver />
                     </Route>
-                    <Route exact path="/news">
+                    <Route exact path="/dashboard/news">
                       <News />
                     </Route>
-                    <Route exact path="/messages">
+                    <Route exact path="/dashboard/messages">
                       <Message />
                     </Route>
-                    <Route exact path="/saints">
+                    <Route exact path="/dashboard/saints">
                       <Saints />
                     </Route>
-                    <Route exact path="/history">
+                    <Route exact path="/dashboard/history">
                       <History />
                     </Route>
-                    <Route exact path="/leaders">
+                    <Route exact path="/dashboard/leaders">
                       <Leaders />
                     </Route>
-                    <Route exact path="/community">
+                    <Route exact path="/dashboard/community">
                       <Community />
                     </Route>
-                    <Route exact path="/prayers group">
+                    <Route exact path="/dashboard/prayers group">
                       <Groups />
                     </Route>
-                    <Route exact path="/report">
+                    <Route exact path="/dashboard/report">
                       <Report />
                     </Route>
                     <Route path="/components">
@@ -111,7 +106,7 @@ export default function App() {
                       />
                     </Route>
                     <Route path="/">
-                      <Home />
+                      <Dashboard />
                     </Route>
                   </Switch>
                 </div>

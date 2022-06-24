@@ -19,7 +19,7 @@ import LeadersEditDialog from "../Leaders/LeadersEditDialog"
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import Tooltip from "@material-ui/core/Tooltip";
-import DeletePeopleDialog from "../People/DeletePeopleDialog";
+import DeleteLeaderDialog from "../Leaders/DeleteLeaderDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
 import UpdateIcon from "@material-ui/icons/Edit"
 import { SummaryCard } from "../People/Driver";
@@ -314,7 +314,7 @@ export default function Leaders() {
           />
           {selected.length > 0 && (
             <Tooltip title={"Delete"}>
-              <DeletePeopleDialog
+              <DeleteLeaderDialog
                 ids={selected}
                 onSave={() => {
                   dispatch(remove(selected));
@@ -369,7 +369,7 @@ export default function Leaders() {
                         page * rowsPerPage + rowsPerPage
                       )
                       .map((row, index) => {
-                        const isItemSelected = isSelected(row.id);
+                        const isItemSelected = isSelected(row._id);
                         const labelId = `enhanced-table-checkbox-${index}`;
 
                         return (
@@ -387,27 +387,27 @@ export default function Leaders() {
                               } else {
                                 return;
                               }
-                              history.push(`/saint/${row.id}`);
+                              history.push(`/leader/${row._id}`);
                             }}
-                            key={`person-${row.id}`}
+                            key={`leader-${row._id}`}
                             selected={isItemSelected}
                             style={{ cursor: "pointer" }}
                           >
                             <TableCell
                               padding="checkbox"
                               onClick={(e) => {
-                                selectTableRow(row.id);
+                                selectTableRow(row._id);
                               }}
                             >
                               <Checkbox
                                 checked={isItemSelected}
                                 inputProps={{ "aria-labelledby": labelId }}
                                 onChange={(e) => {
-                                  selectTableRow(row.id);
+                                  selectTableRow(row._id);
                                 }}
                               />
                             </TableCell>
-                            {/* <TableCell align="right">{row.id}</TableCell> */}
+                            {/* <TableCell align="right">{row._id}</TableCell> */}
                             <TableCell
                               component="th"
                               id={labelId}
@@ -459,7 +459,7 @@ export default function Leaders() {
                             >
                             <div edge="start" className={classes.grow} />
                             <LeadersEditDialog
-                              iD={row.id}
+                              iD={row._id}
                               edge="end"
                               onSave={() => {
                                 setSnackOpen("Leaders updated");

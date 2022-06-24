@@ -19,7 +19,7 @@ import HistoryEditDialog from "../History/HistoryEditDialog"
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import Tooltip from "@material-ui/core/Tooltip";
-import DeletePeopleDialog from "../People/DeletePeopleDialog";
+import DeleteHistoryDialog from "../History/DeleteHistoryDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
 import UpdateIcon from "@material-ui/icons/Edit"
 import { SummaryCard } from "../People/Driver";
@@ -63,41 +63,23 @@ function stableSort(array, comparator) {
 const headCells = [
   // { id: "id", numeric: true, disablePadding: false, label: "ID" },
   {
-    id: "title",
+    id: "Event name",
+    numeric: false,
+    disablePadding: true,
+    label: "Event name",
+  },
+  {
+    id: "Title",
     numeric: false,
     disablePadding: true,
     label: "Title",
   },
   {
-    id: "subtitle",
+    id: "year",
     numeric: false,
     disablePadding: true,
-    label: "Member",
+    label: "year",
   },
-  {
-    id: "description",
-    numeric: false,
-    disablePadding: true,
-    label: "Activity",
-  },
-  {
-    id: "favorites",
-    numeric: false,
-    disablePadding: true,
-    label: "Twitter",
-  },
-  // {
-  //   id: "likes",
-  //   numeric: false,
-  //   disablePadding: true,
-  //   label: "Likes",
-  // },
-  // {
-  //   id: "modified",
-  //   numeric: false,
-  //   disablePadding: true,
-  //   label: "Date modified",
-  // },
   {
     id: "avatar",
     numeric: false,
@@ -221,11 +203,11 @@ export default function History() {
   let history = useHistory();
   useEffect(()=>{
     const getHistory = async ()=>{
-      const response = await publicRequest.get("community");
-      console.log("history:",response.data.data)
+      const response = await publicRequest.get("history");
       setHstry(response.data.data)
     }
     getHistory()
+    console.log("Response", hstry)
   },[])
 
   if (loading) {
@@ -320,7 +302,7 @@ export default function History() {
           />
           {selected.length > 0 && (
             <Tooltip title={"Delete"}>
-              <DeletePeopleDialog
+              <DeleteHistoryDialog
                 ids={selected}
                 onSave={() => {
                   dispatch(remove(selected));
@@ -414,7 +396,14 @@ export default function History() {
                                 }}
                               />
                             </TableCell>
-                            {/* <TableCell align="right">{row.id}</TableCell> */}
+                            <TableCell
+                              component="th"
+                              id={labelId}
+                              scope="row"
+                              padding="none"
+                            >
+                              {row.eventName}
+                            </TableCell>
                             <TableCell
                               component="th"
                               id={labelId}
@@ -429,40 +418,8 @@ export default function History() {
                               scope="row"
                               padding="none"
                             >
-                              {row.member}
+                              {row.year}
                             </TableCell>
-                            <TableCell
-                              component="th"
-                              id={labelId}
-                              scope="row"
-                              padding="none"
-                            >
-                              {row.action}
-                            </TableCell>
-                            <TableCell
-                              component="th"
-                              id={labelId}
-                              scope="row"
-                              padding="none"
-                            >
-                              {row.twLink}
-                            </TableCell>
-                            {/* <TableCell
-                              component="th"
-                              id={labelId}
-                              scope="row"
-                              padding="none"
-                            >
-                              {row.likes}
-                            </TableCell> */}
-                            {/* <TableCell
-                              component="th"
-                              id={labelId}
-                              scope="row"
-                              padding="none"
-                            >
-                              {row.modified}
-                            </TableCell> */}
                             <TableCell>
                               <Avatar alt={row.title} src={row.image} />
                             </TableCell>
@@ -487,7 +444,6 @@ export default function History() {
                               )}
                             />
                             </TableCell>
-                            {/* <TableCell align="right">{row.trips}</TableCell> */}
                           </TableRow>
                         );
                       })}

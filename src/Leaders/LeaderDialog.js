@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/leadersSlice";
 import { useDispatch } from "react-redux";
 import { nextID } from "../ReduxTable/leadersSlice";
-import { userRequest } from "../api";
+import { refreshPage, userRequest } from "../api";
 
 export default function LeadersDialog({ data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -23,20 +23,20 @@ export default function LeadersDialog({ data, render, onSave }) {
   const [img, setImg] = React.useState(defaultImg);
   const [name, setName] = React.useState(defaultName);
   const [lname, setLname] = React.useState('');
-  const [summary, setSummary] = React.useState(defaultSummary);
+  const [email, setEmail] = React.useState(defaultSummary);
   const [telephone, setTelephone] = React.useState('');
   const [pass, setPass] = React.useState('');
   const [leader, setLeader] = React.useState([])
 
-  console.log("Leader input:", name, lname, summary, telephone, pass)
+  console.log("Leader input:", name, lname, email, telephone, pass)
 
   const handleClickOpen = () => {
     setOpen(true);
     setName('');
-    setSummary('');
-    // setLname('');
-    // setTelephone('');
-    // setPass('');
+    setEmail('');
+    setLname('');
+    setTelephone('');
+    setPass('');
   };
 
   const handleClose = () => {
@@ -45,21 +45,23 @@ export default function LeadersDialog({ data, render, onSave }) {
 
   const handleSave = async () => {
       let modified = Date.now()
-      // try {
-      //   const response = await userRequest.post(`users/create`,{
-      //       firstName: name,
-      //       // lastName: lname,
-      //       email: summary,
-      //       // telephone: telephone,
-      //       // password: pass
+      try {
+        const response = await userRequest.post(`users/create`,{
+            firstName: name,
+            lastName: lname,
+            email: email,
+            telephone: telephone,
+            password: pass
           
-      //   })
-      //   setLeader(response.data.data)
-      // } catch (error) {
-      //   console.log(error)
-      // }
+        })
+        setLeader(response.data.data)
+        refreshPage()
+      } catch (error) {
+        console.log(error)
+      }
     const action = data ? update : add;
-    dispatch(action({ name, summary ,modified, id: id || nextID(), img }));
+    dispatch(action({ name, email, lname, telephone, pass ,modified, id: id || nextID(), img }));
+    console.log(name, email, lname, telephone, pass )
     onSave && onSave();
     handleClose();
   };
@@ -80,7 +82,7 @@ export default function LeadersDialog({ data, render, onSave }) {
             autoFocus
             margin="dense"
             id="name"
-            label="Name"
+            label="First Name"
             fullWidth
             value={name}
             onChange={(e) => {
@@ -90,22 +92,45 @@ export default function LeadersDialog({ data, render, onSave }) {
           <TextField
             autoFocus
             margin="dense"
-            id="summary"
-            label="Summary"
+            id="name"
+            label="Last Name"
             fullWidth
-            value={summary}
+            value={lname}
             onChange={(e) => {
-              setSummary(e.target.value);
+              setLname(e.target.value);
             }}
           />
           <TextField
             autoFocus
             margin="dense"
-            label="Image URL"
+            id="summary"
+            label="Email"
             fullWidth
-            value={img}
+            value={email}
             onChange={(e) => {
-              setImg(e.target.value);
+              setEmail(e.target.value);
+            }}
+          />
+           
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Telephone"
+            fullWidth
+            value={telephone}
+            onChange={(e) => {
+              setTelephone(e.target.value);
+            }}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="pass"
+            label="Password"
+            fullWidth
+            value={pass}
+            onChange={(e) => {
+              setPass(e.target.value);
             }}
           />
         </DialogContent>

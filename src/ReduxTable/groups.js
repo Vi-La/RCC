@@ -19,7 +19,7 @@ import GroupsEditDialog from "../Groups/GroupsEditDialog"
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import Tooltip from "@material-ui/core/Tooltip";
-import DeletePeopleDialog from "../People/DeletePeopleDialog";
+import DeleteGroupDialog from "../Groups/DeleteGroupDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
 import UpdateIcon from "@material-ui/icons/Edit"
 import { SummaryCard } from "../People/Driver";
@@ -61,7 +61,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: "id", numeric: true, disablePadding: false, label: "ID" },
+  // { id: "id", numeric: true, disablePadding: false, label: "ID" },
   {
     id: "name",
     numeric: false,
@@ -192,6 +192,7 @@ export default function Groups() {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
+  const [group, setGroup] = React.useState([]);
   const rows = useSelector(selectGroup);
   const loading = useSelector(selectLoading);
   const error = false;
@@ -200,6 +201,15 @@ export default function Groups() {
   const dispatch = useDispatch();
 
   let history = useHistory();
+
+useEffect(()=>{
+    const getGroup = async ()=>{
+      const response = await userRequest.get("community");
+      console.log("Group:",response.data.data)
+      setGroup(response.data.data)
+    }
+    getGroup()
+  },[])
 
   if (loading) {
     return (
@@ -293,7 +303,7 @@ export default function Groups() {
           />
           {selected.length > 0 && (
             <Tooltip title={"Delete"}>
-              <DeletePeopleDialog
+              <DeleteGroupDialog
                 ids={selected}
                 onSave={() => {
                   dispatch(remove(selected));
@@ -342,13 +352,13 @@ export default function Groups() {
                     rowCount={rows.length}
                   />
                   <TableBody>
-                    {stableSort(rows, getComparator(order, orderBy))
+                    {stableSort(group, getComparator(order, orderBy))
                       .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
                       )
                       .map((row, index) => {
-                        const isItemSelected = isSelected(row.id);
+                        const isItemSelected = isSelected(row._id);
                         const labelId = `enhanced-table-checkbox-${index}`;
 
                         return (
@@ -366,34 +376,34 @@ export default function Groups() {
                               } else {
                                 return;
                               }
-                              history.push(`/saint/${row.id}`);
+                              history.push(`/group/${row._id}`);
                             }}
-                            key={`person-${row.id}`}
+                            key={`group-${row._id}`}
                             selected={isItemSelected}
                             style={{ cursor: "pointer" }}
                           >
                             <TableCell
                               padding="checkbox"
                               onClick={(e) => {
-                                selectTableRow(row.id);
+                                selectTableRow(row._id);
                               }}
                             >
                               <Checkbox
                                 checked={isItemSelected}
                                 inputProps={{ "aria-labelledby": labelId }}
                                 onChange={(e) => {
-                                  selectTableRow(row.id);
+                                  selectTableRow(row._id);
                                 }}
                               />
                             </TableCell>
-                            <TableCell align="right">{row.id}</TableCell>
+                            {/* <TableCell align="right">{row._id}</TableCell> */}
                             <TableCell
                               component="th"
                               id={labelId}
                               scope="row"
                               padding="none"
                             >
-                              {row.name}
+                              {row.title}
                             </TableCell>
                             <TableCell
                               component="th"
@@ -401,7 +411,7 @@ export default function Groups() {
                               scope="row"
                               padding="none"
                             >
-                              {row.summary}
+                              {row.member}
                             </TableCell>
                             <TableCell
                               component="th"
@@ -409,10 +419,10 @@ export default function Groups() {
                               scope="row"
                               padding="none"
                             >
-                              {row.modified}
+                              {row.updatedAt}
                             </TableCell>
                             <TableCell>
-                              <Avatar alt={row.name} src={row.img} />
+                              <Avatar alt={row.title} src={row.image} />
                             </TableCell>
                             <TableCell
                               component="th"
@@ -422,7 +432,7 @@ export default function Groups() {
                             >
                             <div edge="start" className={classes.grow} />
                             <GroupsEditDialog
-                              iD={row.id}
+                              iD={row._id}
                               edge="end"
                               onSave={() => {
                                 setSnackOpen("Leaders updated");

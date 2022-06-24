@@ -8,6 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/communitySlice";
 import { useDispatch } from "react-redux";
 import { nextID } from "../ReduxTable/communitySlice";
+import { refreshPage, userRequest } from "../api";
 
 export default function CommunityDialog({ data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -24,21 +25,36 @@ export default function CommunityDialog({ data, render, onSave }) {
   const [name, setName] = React.useState(defaultName);
   const [members, setMembers] = React.useState(defaultMembers);
   const [social, setSocial] = React.useState(defaultSocial);
+  const [community, setCommunity] = React.useState(defaultSocial);
 
   const handleClickOpen = () => {
     setOpen(true);
-    setName(defaultName);
-    setMembers(defaultMembers);
-    setSocial(defaultSocial);
-    setImg(defaultImg);
+    setName('');
+    setMembers('');
+    setSocial('');
+    setImg('');
+    setCommunity('')
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
       let modified = Date.now()
+      try{
+        const response = await userRequest.post(`community/create`, {
+          title: name,
+          member: members,
+          action: "activity",
+          image: img,
+          twLink:social
+        })
+        setCommunity(response.data.data)
+        refreshPage()
+      } catch(error){
+        console.log(error.message);
+      }
     const action = data ? update : add;
     dispatch(action({ name, members , social ,modified, id: id || nextID(), img }));
     onSave && onSave();

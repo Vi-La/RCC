@@ -8,7 +8,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/communitySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { nextID, selectCommunity } from "../ReduxTable/communitySlice";
-import { userRequest } from "../api";
+import { refreshPage, userRequest } from "../api";
+import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 
 export default function CommunityDialog({ iD,data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -29,6 +30,7 @@ export default function CommunityDialog({ iD,data, render, onSave }) {
   const [members, setMembers] = React.useState(defaultMembers);
   const [social, setSocial] = React.useState(defaultSocial);
   const [getCommunity, setGetCommunity] = React.useState([])
+  const [activity, setActivity] = React.useState('')
 
   let Id = iD
 
@@ -50,8 +52,23 @@ export default function CommunityDialog({ iD,data, render, onSave }) {
     setOpen(false);
   };
 
-  const handleSave = () => {
-      let modified = Date.now()
+  const handleSave = async () => {
+    let modified = Date.now()
+
+    try{
+      const response = await userRequest.put(`community/${iD}`, {
+        title: name,
+        member: members,
+        action: activity,
+        image: img,
+        twLink:social
+      })
+      setGetCommunity(response.data.data)
+      refreshPage()
+    } catch(error){
+      console.log(error.message);
+    }
+
     const action = community ? update : add;
     dispatch(action({ name, members , social ,modified, id: iD || nextID(), img }));
     onSave && onSave();
@@ -92,6 +109,20 @@ export default function CommunityDialog({ iD,data, render, onSave }) {
               setMembers(e.target.value);
             }}
           />
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Activity</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={activity}
+              label="Age"
+              onChange={(e) => { setActivity(e.target.value)}}
+            >
+              <MenuItem value="Prayer Group">Prayer Group</MenuItem>
+              <MenuItem value="Team">Team</MenuItem>
+              <MenuItem value="Workers">Workers</MenuItem>
+            </Select>
+          </FormControl>
           <TextField
             autoFocus
             margin="dense"

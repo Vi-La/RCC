@@ -319,7 +319,7 @@ export default function History() {
           )}
         </Toolbar>
         <SummaryCard
-          title={"History"}
+          title={"Messages"}
           value={
             <>
               <TableContainer>

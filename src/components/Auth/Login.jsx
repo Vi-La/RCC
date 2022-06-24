@@ -68,7 +68,7 @@ const Login = () => {
     >
 
       <Form.Item
-        // label="Email"
+        label="Email"
         name="email"
         rules={[
           {
@@ -81,7 +81,7 @@ const Login = () => {
       </Form.Item>
 
       <Form.Item
-        // label=""
+        label="Password"
         name="password"
         rules={[
           {
@@ -104,7 +104,7 @@ const Login = () => {
         >
           Login
         </Button>
-        <Link className='btn-link' to="signup">&nbsp;Don't have accout? Signup</Link>
+        {/* <Link className='btn-link' to="signup">&nbsp;Don't have accout? Signup</Link> */}
       </Form.Item>
 
     </Form>

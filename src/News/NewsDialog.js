@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { add, update } from "../ReduxTable/newsSlice";
 import { useDispatch } from "react-redux";
 import { nextID } from "../ReduxTable/newsSlice";
-import { userRequest } from "../api";
+import { refreshPage, userRequest } from "../api";
 
 export default function NewsDialog({ data, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -53,6 +53,7 @@ export default function NewsDialog({ data, render, onSave }) {
           
         })
         setAddNews(response.data.data)
+        refreshPage()
       } catch (error) {
         console.log(error)
       }
@@ -98,8 +99,21 @@ export default function NewsDialog({ data, render, onSave }) {
               setSubTitle(e.target.value);
             }}
           />
-          <TextField
+          {/* <TextField
             autoFocus
+            margin="dense"
+            id="description"
+            label="Description"
+            fullWidth
+            value={description}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
+          /> */}
+           <TextField
+            autoFocus
+            multiline
+            rows={5}
             margin="dense"
             id="description"
             label="Description"

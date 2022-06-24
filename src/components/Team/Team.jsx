@@ -62,10 +62,10 @@ const Team = () => {
         </div> */}
         <div className="col span-1-of-7">
           <div className="card">
-            <img src={Customer2} alt="team-member 2" />
-            <div>Name</div>
-            <div>Title</div>
-            <div>Diocese</div>
+            <img src="https://cdn.pixabay.com/photo/2017/03/27/15/16/man-2179326__480.jpg" alt="team-member 2" />
+            <div>Izere Ange Felix</div>
+            <div>Berge</div>
+            <div>Kigali</div>
             <div>
               <FacebookIcon
                 style={{
@@ -76,7 +76,7 @@ const Team = () => {
                 }}
               />
               <Link to="/https://www.facebook.com" className="social-media">
-                facebook
+                felix Izere
               </Link>
             </div>
             <div>
@@ -89,7 +89,7 @@ const Team = () => {
                 }}
               />
               <Link to="/https://www.twitter.com" className="social-media">
-                Twitter
+                @angeFelix
               </Link>
             </div>
           </div>
@@ -97,10 +97,10 @@ const Team = () => {
 
         <div className="col span-1-of-7">
           <div className="card">
-            <img src={Customer3} alt="team-member3" />
-            <div>Name</div>
-            <div>Title</div>
-            <div>Diocese</div>
+            <img src="https://cdn.pixabay.com/photo/2020/09/16/03/25/virgin-mary-5575176__480.png" alt="team-member 2" />
+            <div>Izere Ange Felix</div>
+            <div>Berge</div>
+            <div>Kigali</div>
             <div>
               <FacebookIcon
                 style={{
@@ -111,7 +111,7 @@ const Team = () => {
                 }}
               />
               <Link to="/https://www.facebook.com" className="social-media">
-                facebook
+                felix Izere
               </Link>
             </div>
             <div>
@@ -124,17 +124,17 @@ const Team = () => {
                 }}
               />
               <Link to="/https://www.twitter.com" className="social-media">
-                Twitter
+                @angeFelix
               </Link>
             </div>
           </div>
         </div>
         <div className="col span-1-of-7">
           <div className="card">
-            <img src={Customer} alt="team-member4" />
-            <div>Name</div>
-            <div>Title</div>
-            <div>Diocese</div>
+            <img src="https://cdn.pixabay.com/photo/2017/03/27/15/16/man-2179326__480.jpg" alt="team-member 2" />
+            <div>Izere Ange Felix</div>
+            <div>Berge</div>
+            <div>Kigali</div>
             <div>
               <FacebookIcon
                 style={{
@@ -145,7 +145,7 @@ const Team = () => {
                 }}
               />
               <Link to="/https://www.facebook.com" className="social-media">
-                facebook
+                felix Izere
               </Link>
             </div>
             <div>
@@ -158,17 +158,17 @@ const Team = () => {
                 }}
               />
               <Link to="/https://www.twitter.com" className="social-media">
-                Twitter
+                @angeFelix
               </Link>
             </div>
           </div>
         </div>
         <div className="col span-1-of-7">
           <div className="card">
-            <img src={Customer2} alt="team-member5" />
-            <div>Name</div>
-            <div>Title</div>
-            <div>Diocese</div>
+            <img src="https://cdn.pixabay.com/photo/2017/01/03/01/08/jesus-christ-1948251__480.jpg" alt="team-member 2" />
+            <div>Izere Ange Felix</div>
+            <div>Berge</div>
+            <div>Kigali</div>
             <div>
               <FacebookIcon
                 style={{
@@ -179,7 +179,7 @@ const Team = () => {
                 }}
               />
               <Link to="/https://www.facebook.com" className="social-media">
-                facebook
+                felix Izere
               </Link>
             </div>
             <div>
@@ -192,17 +192,17 @@ const Team = () => {
                 }}
               />
               <Link to="/https://www.twitter.com" className="social-media">
-                Twitter
+                @angeFelix
               </Link>
             </div>
           </div>
         </div>
         <div className="col span-1-of-7">
           <div className="card">
-            <img src={Customer3} alt="team-member-n" />
-            <div>Name</div>
-            <div>Title</div>
-            <div>Diocese</div>
+            <img src="https://cdn.pixabay.com/photo/2016/03/21/00/54/prayer-1269776__480.png" alt="team-member 2" />
+            <div>Izere Ange Felix</div>
+            <div>Berge</div>
+            <div>Kigali</div>
             <div>
               <FacebookIcon
                 style={{
@@ -213,7 +213,7 @@ const Team = () => {
                 }}
               />
               <Link to="/https://www.facebook.com" className="social-media">
-                facebook
+                felix Izere
               </Link>
             </div>
             <div>
@@ -226,7 +226,41 @@ const Team = () => {
                 }}
               />
               <Link to="/https://www.twitter.com" className="social-media">
-                Twitter
+                @angeFelix
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="col span-1-of-7">
+          <div className="card">
+            <img src="https://cdn.pixabay.com/photo/2018/05/24/09/39/dove-3426159__480.jpg" alt="team-member 2" />
+            <div>Izere Ange Felix</div>
+            <div>Berge</div>
+            <div>Kigali</div>
+            <div>
+              <FacebookIcon
+                style={{
+                  color: "#e67e22",
+                  fontSize: "20px",
+                  marginBottom: "-5px",
+                  marginRight: "5px",
+                }}
+              />
+              <Link to="/https://www.facebook.com" className="social-media">
+                felix Izere
+              </Link>
+            </div>
+            <div>
+              <TwitterIcon
+                style={{
+                  color: "#e67e22",
+                  fontSize: "20px",
+                  marginBottom: "-5px",
+                  marginRight: "5px",
+                }}
+              />
+              <Link to="/https://www.twitter.com" className="social-media">
+                @angeFelix
               </Link>
             </div>
           </div>

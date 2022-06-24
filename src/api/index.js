@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "https://rcc-rwanda1.herokuapp.com/api/v1/";
-// const BASE_URL = "http://localhost:5000/api/v1/";
+// const BASE_URL = "https://rcc-rwanda1.herokuapp.com/api/v1/";
+const BASE_URL = "http://localhost:5000/api/v1/";
 
 const TOKEN = JSON.parse(localStorage.getItem('user')).accessToken;
 // localStorage.setItem("user",JSON.stringify(response?.data));
@@ -19,3 +19,7 @@ export const userRequest = axios.create({
     token: `Bearer ${TOKEN}`
   },
 });
+
+export const refreshPage = () => {
+  window.location.reload(false);
+}

@@ -24,6 +24,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import GroupsIcon from '@mui/icons-material/Groups';
+import SettingsIcon from '@mui/icons-material/Settings';
 // import PalettePicker from "../Theme/PalettePicker";
 export const drawerWidth = 240;
 
@@ -95,7 +96,7 @@ function ResponsiveDrawer(props) {
           // { text: "people", icon: "people" },
           // { text: "map", icon: "map" },
           // { text: "components", icon: "apps" },
-          // { text: "settings", icon: "settings" },
+          { text: "dashboard", icon: <SettingsIcon /> },
           { text: "news", icon: <NewspaperIcon /> },
           { text: "messages", icon: <MailIcon />},
           { text: "saints", icon: <PeopleIcon /> },
@@ -108,7 +109,7 @@ function ResponsiveDrawer(props) {
           <ListItem
             component={RouterLink}
             selected={pathname === `/${text}`}
-            to={`/${text}`}
+            to={`/dashboard/${text}`}
             button
             key={text}
           >

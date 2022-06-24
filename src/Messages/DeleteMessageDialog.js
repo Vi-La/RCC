@@ -4,7 +4,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { userRequest } from "../api";
+import { refreshPage, userRequest } from "../api";
 
 export default function DeleteMessageDialog({ ids, render, onSave }) {
   const [open, setOpen] = React.useState(false);
@@ -23,7 +23,7 @@ export default function DeleteMessageDialog({ ids, render, onSave }) {
     try{
       const response = await userRequest.delete(`message/${ids[0]}`);
       setIsdeleted(true)
-      console.log("Remaining articles", response.data.data)
+      refreshPage()
     } catch (error) {
       console.log(error.message)
     }

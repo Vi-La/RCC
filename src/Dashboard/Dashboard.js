@@ -103,10 +103,10 @@ export default function SimpleTabs() {
 }
 
 export function Dashboard() {
-  const [comments, setComments] = React.useState(0);
-  const [groups, setGroups] = React.useState(0);
-  const [leaders, setLeaders] = React.useState(0);
-  const [community, setCommunity] = React.useState(0);
+  const [comments, setComments] = React.useState(10);
+  const [groups, setGroups] = React.useState(20);
+  const [leaders, setLeaders] = React.useState(40);
+  const [community, setCommunity] = React.useState(20);
   
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
@@ -119,7 +119,7 @@ export function Dashboard() {
           <Grid item xs={12} md={6} lg={6}>
             <div className={classes.summaryCards}>
               {/* <Link color="inherit" underline="none" href="/messages"> */}
-                <SummaryCard title={"Comments"} value={comments} />
+                <SummaryCard title={"Messages"} value={comments} />
               {/* </Link> */}
             </div>
           </Grid>
