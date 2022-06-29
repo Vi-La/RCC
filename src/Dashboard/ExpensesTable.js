@@ -26,34 +26,36 @@ export default function ExpensesTable() {
   const rows = Object.values(data);
   return (
     <React.Fragment>
-      <Title>Recent records</Title>
+      <Title>Recent Report</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Item</TableCell>
-            <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Amount</TableCell>
+            <TableCell>Diocese</TableCell>
+            <TableCell>Leader</TableCell>
+            <TableCell>Member</TableCell>
+            <TableCell>Committee Members</TableCell>
+            <TableCell>Activities</TableCell>
+            {/* <TableCell align="right">Activities</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
             <TableRow key={row.id}>
               <TableCell>{moment(row.date).format('MM/DD/YYYY')}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">
-                ${row.amount.toLocaleString()}
-              </TableCell>
+              <TableCell>{row.diocese}</TableCell>
+              <TableCell>{row.leader}</TableCell>
+              <TableCell>{row.member}</TableCell>
+              <TableCell>{row.committee}</TableCell>
+              <TableCell>{row.activity}</TableCell>
+              
             </TableRow>
           ))}
         </TableBody>
       </Table>
       <div className={classes.seeMore}>
         <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
+          See more Reports
         </Link>
       </div>
     </React.Fragment>

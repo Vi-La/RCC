@@ -108,7 +108,7 @@ const SlideShow = () => {
         <Col className="gutter-row" span={12}>
           <div className="saint-of-the-day">
             <div>
-              <h2 className="saint-of-the-day-title">Saint of the day</h2>
+              <h2 className="saint-of-the-day-title">Lesson of the day</h2>
             </div>
             <div className="saint-of-the-day-picture">
               <img

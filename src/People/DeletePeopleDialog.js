@@ -30,10 +30,6 @@ export default function DeletePeopleDialog({ ids, render, onSave }) {
     onSave && onSave();
     handleClose();
   };
-  // useEffect( () => {
-  //   handleSave()
-  // }, [])
-
   return (
     <div>
       {render(handleClickOpen)}

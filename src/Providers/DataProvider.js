@@ -20,10 +20,12 @@ function addRandomExpense(data, setData) {
     const newData = {
       id: Math.floor(Math.random() * 1000),
       date: newDate,
-      name: "Added Random",
-      shipTo: "Location",
-      paymentMethod: "Payment",
-      amount: newMoney,
+      diocese: "Butare",
+      leader: "Jean doe",
+      member: "150",
+      committee: "9",
+      activity:"UMWIHERERO W’IKORANIRO ",
+    
     };
     const finalData = {
       ...data,
@@ -33,7 +35,7 @@ function addRandomExpense(data, setData) {
   };
 }
 
-for (var i = 0; i < 12; i++) {
+for (var i = 0; i < 5; i++) {
   addRandomExpense(defaultData, (newData) => {
     defaultData = newData;
   })();

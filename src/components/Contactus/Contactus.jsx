@@ -23,7 +23,15 @@ const Contactus = () => {
     }).then((response)=>{
       console.log(response)
     });
+    clear()
   };
+  const clear = ()=>{
+    setFullName = "";
+    setPhone = "";
+    setEmail = "";
+    setAddress = "";
+    setMsg = "";
+  }
   
   return (
     <section className="section-form">

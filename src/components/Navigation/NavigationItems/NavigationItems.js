@@ -10,7 +10,7 @@ const navigationItems = () => (
     <NavigationItem link ="/documents">Community</NavigationItem>
     <NavigationItem link ="/prayer/groups">prayer|groups</NavigationItem>
     <NavigationItem link ="/login">Login</NavigationItem>
-    {/* <NavigationItem link ="/signup">Signup</NavigationItem> */}
+    <NavigationItem link ="/signup">Signup</NavigationItem>
     
 </ul>
 )

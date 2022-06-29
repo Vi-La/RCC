@@ -217,26 +217,51 @@ header {
 
 /* =====START:: LOGIN===== */
 .login-body {
-  margin: 40px 350px 0px 350px;
-  background-color: #ccc;
-  padding: 25px 0px 20px 0px;
-  border-radius: 5px;
+  margin: 0px 350px 0px 1px;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.5)
+  ),
+  url("https://cdn.pixabay.com/photo/2017/01/03/01/08/jesus-christ-1948251__480.jpg");
+background-size: cover;
+height: 100vh;
+width: 100%;
+padding: 15% 0px 20px 0px;
+border-radius: 5px;
 }
 
 .login-btn {
   background-color: #B60000;
+  width: 25%;
   color: #fff;
 }
+
 
 /* =====END:: LOGIN===== */
 
 /* =====START:: SIGN UP===== */
 .signup-body{
-margin: 40px 350px 0px 350px;
-background-color: #ccc;
-padding: 25px 0px 20px 0px;
+/* margin: 0px 350px 0px 1px; */
+background: linear-gradient(
+  rgba(255, 255, 255, 0.5),
+  rgba(255, 255, 255, 0.5)
+),
+url("https://images.pexels.com/photos/317355/pexels-photo-317355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+background-size: cover;
+height: 100vh;
+width: 100%;
+align-items: center;
+justify-content: center;
+/* flex-direction: column; */
+padding: 5% 0px 20px 0px;
 border-radius: 5px;
-padding: 80px;
+/* padding: 80px; */
+}
+.signup_input{
+  /* margin-left: 300px; */
+  align-content: center;
+  justify-content: center;
+  /* background-color: #B60000; */
 }
 .signup-title{
   margin-top: -60px;
@@ -250,6 +275,7 @@ padding: 80px;
   font-weight: 900;
   font-size: 30px;
 }
+
 /* =====END:: SIGN UP===== */
 
 /* =====START:: HISTORY===== */
@@ -260,6 +286,7 @@ padding: 80px;
   display: flex;
   flex-direction: row;
 }
+
 /* =====END:: HISTORY===== */
 .spiritual-img {
   /*
@@ -627,7 +654,8 @@ input[type="checkbox"] {
 .footer-logo {
   width: 200px;
   height: auto;
-  /*    text-align: center;*/
+
+
 }
 
 .footer-list {
@@ -896,6 +924,7 @@ input[type="checkbox"] {
   }
 
   .footer-row {
+    justify-content: center;
     text-align: center;
   }
 
