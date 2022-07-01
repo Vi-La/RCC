@@ -102,7 +102,7 @@ const rows3 = [
   
 ];
 
-export default function ExpensesTable() {
+export default function ReportDetails() {
   return (
     <>
     <Typography variant='h6' mb={20} align="center">1. UMWIRONDORO W’IKORANIRO </Typography>

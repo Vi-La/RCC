@@ -10,6 +10,9 @@ import Signin from '../components/Auth/Login'
 import History from "../components/History/History";
 import Documentations from "../components/Documents/Documents";
 import PlayerGroups from "../components/PlayerGroups/PlayerGroups";
+import {Gallery} from "../components/Gallery/Gallery"
+import ReportDetails from "../components/Community/CommityData";
+
 
 // import SideBar from "../LayoutDashbord/Sidebar/SideBar";
 
@@ -28,6 +31,8 @@ class Routes extends React.Component {
            <Route  path="/dashboard" component={Dashboard}/>
            <Route exact path="/documents" component={Documentations}/>
            <Route exact path="/prayer/groups" component={PlayerGroups}/>
+           <Route exact path="/gallery" component={Gallery}/>
+           <Route exact path="/community/detail" component={ReportDetails}/>
            {/* <Route exact path="layout" component={SideBar}/> */}
            
           </Switch>

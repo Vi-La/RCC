@@ -8,62 +8,73 @@ const Contactus = () => {
   const [address, setAddress] = useState('');
   const [msg, setMsg] = useState('');
 
-  const handleSubmit = (e)=>{
+  const [formData,setFormData] = useState({
+    fullName:"",
+    phone:"",
+    email:"",
+    address:"",
+    message:""
+  })
+
+  const handleSubmit = async(e)=>{
     e.preventDefault()
-    sendMessage(fullName, phone, email, address, msg)
-  }
-  const sendMessage = async (fullName, phone, email, address, msg)=>{
-    
     await publicRequest.post("message/send",{
-      fullName: fullName,
-      phone: phone,
-      email: email,
-      address: address,
-      message: msg
+      formData
     }).then((response)=>{
-      console.log(response)
+      console.log("data",response)
     });
+   
+    console.log("data", formData)
     clear()
-  };
+  }
+   // sendMessage(fullName, phone, email, address, msg)
+  // const sendMessage = async (fullName, phone, email, address, msg)=>{
+  // };
   const clear = ()=>{
-    setFullName = "";
-    setPhone = "";
-    setEmail = "";
-    setAddress = "";
-    setMsg = "";
+    setFormData({
+      fullName:"",
+      phone:"",
+      email:"",
+      address:"",
+      message:""
+    })
   }
   
   return (
     <section className="section-form">
-      <div className="row">
-        <h2 className="Signup-heading">We're happy to hear from you</h2>
+      <div className="row contact__heading">
+        <h2>We're happy to hear from you</h2>
       </div>
-      <div className="row">
+      <div className="row contact__form-container">
         <form method="post" action="#" className="contact-form" onSubmit={handleSubmit}>
           <div className="row">
-            <div className="col span-1-of-3">
-            </div>
+            
             <div className="col span-2-of-3">
               <input
                 type="text"
                 name="name"
-                value={fullName}
+                value={formData.fullName}
                 id="name"
                 placeholder="Your names"
                 required
-                onChange={(e)=> setFullName(e.target.value)}
+                onChange={(e)=>setFormData({
+                  ...formData,
+                  fullName:e.target.value
+                })}
               />
             </div>
           </div>
           <div className="row">
-            <div className="col span-1-of-3">
-            </div>
+            
             <div className="col span-2-of-3">
               <input
                 type="email"
                 name="email"
-                value={email}
-                onChange={(e)=> setEmail(e.target.value)}
+                value={formData.email}
+                onChange={(e)=> setFormData({
+                  ...formData,
+                  email:e.target.value
+                })}
                 id="email"
                 placeholder="Your email"
                 required
@@ -71,14 +82,15 @@ const Contactus = () => {
             </div>
           </div>
           <div className="row">
-            <div className="col span-1-of-3">
-            </div>
             <div className="col span-2-of-3">
               <input
                 type="text"
                 name="address"
-                value={address}
-                onChange={(e)=> setAddress(e.target.value)}
+                value={formData.address}
+                onChange={(e)=> setFormData({
+                  ...formData,
+                  address:e.target.value
+                })}
                 id="address"
                 placeholder="Your address (diocese)"
                 required
@@ -86,14 +98,15 @@ const Contactus = () => {
             </div>
           </div>
           <div className="row">
-            <div className="col span-1-of-3">
-            </div>
             <div className="col span-2-of-3">
               <input
-                type="text"
+                type="number"
                 name="phone"
-                value={phone}
-                onChange={(e)=> setPhone(e.target.value)}
+                value={formData.phone}
+                onChange={(e)=> setFormData({
+                  ...formData,
+                  phone:e.target.value
+                })}
                 id="phone"
                 placeholder="Telephone number"
                 required
@@ -101,24 +114,22 @@ const Contactus = () => {
             </div>
           </div>
           <div className="row">
-            <div className="col span-1-of-3">
-            </div>
             <div className="col span-2-of-3">
               <textarea 
               name="message"
-              value={msg}
-              onChange={(e)=> setMsg(e.target.value)}
+              value={formData.message}
+              onChange={(e)=> setFormData({
+                ...formData,
+                message:e.target.value
+              })}
               placeholder="Your message"
               >
               </textarea>
             </div>
           </div>
           <div className="row">
-            <div className="col span-1-of-3">
-              <label>&nbsp;</label>
-            </div>
             <div className="col span-2-of-3">
-              <input type="submit" value="Submit"/>
+              <input type="submit" value="Send"/>
             </div>
           </div>
         </form>

@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { publicRequest } from "../../api";
-import Customer from "../../assets/customer-1.jpg";
-import Customer2 from "../../assets/customer-2.jpg";
-import Customer3 from "../../assets/customer-3.jpg";
 
 const Testmonials = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -25,7 +22,7 @@ const Testmonials = () => {
       </div>
       <div className="row community-row">
         {testimonials.map((item)=>(
-        <div className="col span-1-of-5 box">
+        <div className="col span-1-of-5 box" key={item._id}>
           <blockquote>
             {item.message}
             <cite>

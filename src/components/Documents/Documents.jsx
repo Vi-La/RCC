@@ -33,7 +33,7 @@ const Documentations = () => {
       <Layout />
       <section className="section-community">
         <div className="row ">
-          <h2 className="community-heading">Our Library</h2>
+          <h2 className="community-heading">Our COMMUNITY</h2>
         </div>
         <div className="row community-row">
 

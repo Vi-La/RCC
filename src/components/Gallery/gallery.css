@@ -1,0 +1,5 @@
+.galleryImage:hover{
+    transform: scaleX(1.5) scaleY(1.6);
+    transition:all 5s ease-out;
+    z-index:1000
+}

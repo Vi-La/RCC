@@ -32,6 +32,7 @@ import groupsReducer from "./../ReduxTable/groupsSlice"
 import historyReducer from "./../ReduxTable/historySlice"
 import messagesReducer from "./../ReduxTable/messagesSlice"
 import { Provider } from "react-redux";
+// import Logout from "../components/Logout/Logout";
 
 export default function App() {
   const store = configureStore({
@@ -96,6 +97,9 @@ export default function App() {
                     <Route exact path="/dashboard/report">
                       <Report />
                     </Route>
+                    {/* <Route exact path="/dashboard/logout">
+                      <Logout />
+                    </Route> */}
                     <Route path="/components">
                       <Components />
                     </Route>

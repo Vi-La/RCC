@@ -1,3 +1,4 @@
+import React from 'react'
 import { Form, Input, Button, Checkbox } from 'antd';
 import { useState, useContext } from 'react';
 import { useHistory } from "react-router-dom"
@@ -5,43 +6,44 @@ import Layout from "../../hoc/Layout/Layout";
 import { useHttpClient } from "../../shared/hooks/http-hook"
 import { AuthContext } from "../../shared/context/auth-context"
 import { Link } from "react-router-dom"
+import axios from "axios"
 
 const Signup = () => {
   const auth = useContext(AuthContext)
   const history = useHistory()
-  const [firstName, setFirstName] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const { isLoading, sendRequest } = useHttpClient()
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
-  const [country, setCountry] = useState("")
-  const [diocese, setDiocese] = useState("")
-  const [password, setPassword] = useState("")
+ 
+  const [isSignup,setIsSignup] = React.useState(true)
 
+  const switchMode = ()=>{
+    setIsSignup((prev)=>!prev)
+
+    console.log(isSignup)
+  }
   const onFinish = async (values) => {
     console.log('Success:', values);
-    try {
-      const responseData = await sendRequest(
-        "https://rcc-rwanda.herokuapp.com/api/v1/signup",
-        "POST",
-        JSON.stringify(values),
-        { "Content-Type": "application/json" }
-      )
-      if (responseData.error) {
-        alert(responseData.error)
-      } else {
-        console.log(responseData)
-        auth.login(
-          responseData.id,
-          responseData.fullName,
-          responseData.email,
-          responseData.token
-        )
-        sessionStorage.setItem('rccRwUser', JSON.stringify(responseData))
-        history.push("/")
-      }
-    } catch (error) { }
+    if(!isSignup){
+
+      try {
+        const response=  await axios({
+          url:"http://localhost:5000/api/v1/users/login",
+          // url:"https://rcc-rwanda1.herokuapp.com/api/v1/users/login",
+          method:"POST",
+          data:values,
+          headers:{
+            "Content-Type":"application/json"
+          }
+        })
+      
+        localStorage.setItem("user",JSON.stringify(response?.data))
+         if(JSON.parse(localStorage.getItem('user')).accessToken){
+           history.push('/dashboard')
+         }
+          } catch (error) {
+            console.log(error)
+          }
+    }else{
+    console.log("SIGN API HERE")
+    }
 
   };
 
@@ -49,18 +51,19 @@ const Signup = () => {
     console.log('Failed:', errorInfo);
 
   };
-  console.log("Firstname", firstName)
+  
   return (
-    <div>
-      <Layout />
+    <React.Fragment>
+    <Layout />
+    <div className='signup-body'>
       <Form
-        className='signup-body'
+       className='signup__form'
         name="basic"
         labelCol={{
           span: 0,
         }}
         wrapperCol={{
-          span: 8,
+          span: 24,
         }}
         initialValues={{
           remember: true,
@@ -70,10 +73,11 @@ const Signup = () => {
         autoComplete="off"
       >
         <div className='signup-title'>
-          <h1>Sign up now</h1>
+          <h1>{isSignup?"Sign up now":"Login now"}</h1>
           <p>Please fill in this form to create an account</p>
         </div>
-        <Form.Item
+      { isSignup&& (<>
+      <Form.Item
           className='signup_input'
           name="firstName"
           rules={[
@@ -85,8 +89,7 @@ const Signup = () => {
         >
           <Input
             placeholder='First name'
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+           
           />
         </Form.Item>
 
@@ -102,9 +105,9 @@ const Signup = () => {
         >
           <Input
             placeholder='Last name'
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)} />
+             />
         </Form.Item>
+        </>)}
 
         <Form.Item
           className='signup_input'
@@ -117,12 +120,10 @@ const Signup = () => {
           ]}
         >
           <Input
-            placeholder='Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} />
+            placeholder='Email' />
         </Form.Item>
 
-        <Form.Item
+      {isSignup&&(<> <Form.Item
           className='signup_input'
           name="Country"
           rules={[
@@ -133,9 +134,7 @@ const Signup = () => {
           ]}
         >
           <Input
-            placeholder='Country'
-            value={country}
-            onChange={(e) => setCountry(e.target.value)} />
+            placeholder='Country' />
         </Form.Item>
 
         <Form.Item
@@ -149,9 +148,7 @@ const Signup = () => {
           ]}
         >
           <Input
-            placeholder='Diocese'
-            value={diocese}
-            onChange={(e) => setDiocese(e.target.value)} />
+            placeholder='Diocese' />
         </Form.Item>
 
         <Form.Item
@@ -166,12 +163,10 @@ const Signup = () => {
         >
           <Input
             type="number"
-            placeholder='Telephone'
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)} />
+            placeholder='Telephone'/>
             
         </Form.Item>
-
+        </>) }
         <Form.Item
           className='signup_input'
           name="password"
@@ -185,34 +180,32 @@ const Signup = () => {
           <Input.Password className='passInput'
             placeholder='Password' />
         </Form.Item>
-
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
         <Form.Item
           wrapperCol={{
-            offset: 8,
-            span: 16,
+            span:64,
           }}
         >
           <Button className='login-btn' htmlType="submit"
           // loading={true}
           >
-            Sign Up
+           { isSignup?"Sign Up":"Login"}
+          </Button>
+          <Button color='primary' htmlType="submit"
+          style={{width:"300px"}}
+          // loading={true}
+          >
+           { !isSignup&&"Forgot Password?"}
           </Button>
           &nbsp;
-          <Link className='btn-link' to="/login">Already have account? Login</Link>
+         
+          <span style={{cursor:"pointer",textDecoration:"underline",color:"sky-blue"}} className='btn-link' onClick={switchMode} >{isSignup?"Already have account? Login":"Don't have account? Signup"}</span>
+         
         </Form.Item>
+
+        
       </Form>
     </div>
+    </React.Fragment>
   );
 };
 

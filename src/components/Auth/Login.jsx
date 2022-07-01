@@ -33,8 +33,6 @@ const Login = () => {
   })
 
   localStorage.setItem("user",JSON.stringify(response?.data))
-  // console.log(response?.data.accessToken)
-  console.log(JSON.parse(localStorage.getItem('user')).accessToken)
    if(JSON.parse(localStorage.getItem('user')).accessToken){
      history.push('/dashboard')
    }
@@ -91,7 +89,6 @@ const Login = () => {
         ]}
       >
         <Input.Password placeholder='Password'/>
-      <Link className='btn-link' to="forget">&nbsp;Forget password</Link>
       </Form.Item>
 
       <Form.Item
@@ -105,7 +102,7 @@ const Login = () => {
         >
           Login
         </Button>
-        <Link className='btn-link' to="signup">&nbsp;Don't have accout? Signup</Link>
+        <Link className='btn-link' to="forget">&nbsp;Forgot password</Link>
       </Form.Item>
 
     </Form>

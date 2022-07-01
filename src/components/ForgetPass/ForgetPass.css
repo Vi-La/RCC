@@ -97,7 +97,7 @@ button.primary {
     text-align: center;
     height: 40px;
     margin-bottom: 200px;
-    background: rgb(164, 58, 58);
+    background: #FD2F6F;
 }
 
 button.primary:hover {

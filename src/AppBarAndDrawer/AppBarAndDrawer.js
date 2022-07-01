@@ -25,6 +25,7 @@ import TimelineIcon from '@mui/icons-material/Timeline';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import GroupsIcon from '@mui/icons-material/Groups';
 import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
 // import PalettePicker from "../Theme/PalettePicker";
 export const drawerWidth = 240;
 
@@ -105,6 +106,7 @@ function ResponsiveDrawer(props) {
           { text: "community", icon: <GroupsIcon /> },
           { text: "prayers group", icon: <GroupsIcon /> },
           { text: "report", icon: <GroupsIcon /> },
+          { text: "Logout", icon: <LogoutIcon /> },
         ].map(({ text, icon }, index) => (
           <ListItem
             component={RouterLink}

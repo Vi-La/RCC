@@ -10,28 +10,26 @@
 .Email {
     margin: 10px 0px;
     list-style:none;
-    color: rgb(255, 0, 0);
+    color: #FD2F6F;
     width:200px;
 }
 .Email1 {
     margin: 10px 0px;
     list-style:none;
- 
-    color: rgb(255, 4, 58);
+    color: #FD2F6F;
  
 }
 
 .Tel {
     margin: 10px 10px 10px 0px;
-  
-    color: rgb(102, 3, 3);
+    color: #FD2F6F;
 
     
 }
 .Tel1 {
     margin: 10px 0px;
     margin-left: 20px;
-    color: rgb(114, 2, 2);
+    color: #FD2F6F;
     margin-left: 20px;
 
     
@@ -43,22 +41,6 @@
     width:fit-content;
 }
 
-.Register1 {
-    list-style:none;
-    margin: 10px 5px;
-    color: rgb(107, 8, 8);
-    width:fit-content;
-}
-.Login {
-    margin: 10px 5px;
-    border-right:2px solid rgb(155, 14, 14);
-    margin-left: 55%;
-    list-style:none;
-    color: rgb(160, 0, 0);
-    width:50px;
-    height: fit-content;
-
-}
 .name-auth {
     margin: 10px 5px;
     /* border-right:2px solid rgb(247, 244, 244); */
@@ -70,7 +52,10 @@
     height: fit-content;
 
 }
-
+::placeholder{
+    font-size: 12px;
+    color:#3e3e3e;
+}
 @media(max-width:1000px){
     .Contacts {
     position:relative;
