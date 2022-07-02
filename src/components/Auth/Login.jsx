@@ -19,7 +19,7 @@ const Login = () => {
   const [password, setPassword] =useState("")
 
   const onFinish = async(values) => {
-    console.log('Success:', values);
+    // console.log('Success:', values);
 
     try {
   const response=  await axios({
@@ -42,7 +42,7 @@ const Login = () => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    // console.log('Failed:', errorInfo);
   };
 
   return (

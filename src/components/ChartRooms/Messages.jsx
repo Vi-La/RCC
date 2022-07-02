@@ -12,12 +12,12 @@ const Messages = () => {
                  <div className="message-container">
                  <Col className="gutter-row " span={10}>
                    <div className="user-one">
-                   Phasellus tellus dolor, aliquet vel mattis id, elementum at odio.
+                   Hello, How are doing?
                    </div>
                    </Col>
                    <Col className="gutter-row " span={10}>
                    <div className="user-two">
-                   Phasellus tellus dolor, aliquet vel mattis id, elementum at odio.
+                   Hey Dear, I'm doing well.
                    </div>
                    </Col>
                  </div>

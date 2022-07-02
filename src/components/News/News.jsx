@@ -7,8 +7,6 @@ import { publicRequest } from "../../api";
 import './News.css'
 import LatestNews from "./LatestNews"
 
-
-
 const listData = [];
 for (let i = 0; i < 3; i++) {
   listData.push({
@@ -29,16 +27,7 @@ const IconText = ({ icon }) => (
 );
 
 const News = () => {
-  const [news, setNews] = useState([]);
-
-  useEffect(() => {
-    const getNews = async () => {
-      const response = await publicRequest.get("news");
-      setNews(response.data.data)
-    }
-    getNews()
-  }, [])
-
+  
   return (
     <>
       <Navigation />
@@ -52,8 +41,8 @@ const News = () => {
               <div className="news__img">
                 <img src="https://cdn.pixabay.com/photo/2017/01/03/01/08/jesus-christ-1948251_1280.jpg" alt="jesus" />
               </div>
-              <div>
-                <h2>What a friend we have in Jesus</h2>
+              <div className="newsHeader">
+                <h2 className="newsHeader">What a friend we have in Jesus</h2>
               </div>
               <div>
                 <p> Iusto quo alias quod, incidunt ea esse veritatis soluta neque quia rem est animi a deleniti quam provident tempora dolor explicabo officiis.
@@ -68,29 +57,11 @@ const News = () => {
               </div>
             </div>
           </div>
-          
           <div className="news_right__side__bar">
             <div>
               <LatestNews />
             </div>
-            <div>
-              <LatestNews />
-            </div>
-            <div>
-              <LatestNews />
-            </div>
-            <div>
-              <LatestNews />
-            </div>
-            <div>
-              <LatestNews />
-            </div>
-            <div>
-              <LatestNews />
-            </div>
-
           </div>
-
         </div>
 
       </div>
