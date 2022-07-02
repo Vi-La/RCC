@@ -17,7 +17,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 // import MessageDialog from "../Messages/MessageDialog";
 import MessageEditDialog from "../Messages/MessageEditDialog"
 import Button from "@material-ui/core/Button";
-import SearchBar from "material-ui-search-bar";
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteMessageDialog from "../Messages/DeleteMessageDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
