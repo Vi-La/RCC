@@ -40,32 +40,5 @@
         font-weight: 800;
     }
 }
-/*========START:: TABLET */
-/*========START:: TABLET */
-
-/*========START:: SMALL DEVICES */
-/* @media (min-width: 375px){
-    .NavigatiomItem {
-        margin: 0;
-        display: flex;
-        background-color: green;
-        height:100%;
-        align-items:center ;
-    }
-    .NavigationItem a {
-        color: white;
-        height: 100%;
-        width: 100%;
-        padding: 16px 10px;
-        border-bottom:2px solid transparent;
-    
-    }
-    .NavigationItem a:hover,
-    .NavigationItem a:active,
-    .NavigationItem a.active{
-        color:rgb(48, 47, 47);
-        font-weight: 500;
-    }
-} */
 
 /*========END:: SMALL DEVICES */

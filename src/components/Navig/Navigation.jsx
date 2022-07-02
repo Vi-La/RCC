@@ -60,7 +60,7 @@ const history = useHistory()
                   </Link>
                 </li>
                 <li>
-                  <Link to="signup" smooth={true} duration={1000} style={{color:'#fff'}}>Signup</Link>
+                  <Link to="signup" smooth={true} duration={1000} style={{color:'#000'}}>Signup</Link>
                 </li>
               </ul>
             </div>

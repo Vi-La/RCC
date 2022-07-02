@@ -9,7 +9,7 @@ html {
   color: #555;
   font-family: Century Gothic, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 25px;
   text-rendering: optimizeLegibility;
   /*this make font render in a perfect awy*/
 }
@@ -58,7 +58,7 @@ header {
 
 .item--1 {
   grid-column: 1/4;
-  background-color: #B60000;
+  background-color: #FF3D3D;
   height: 13%;
 }
 
@@ -217,26 +217,54 @@ header {
 
 /* =====START:: LOGIN===== */
 .login-body {
-  margin: 40px 350px 0px 350px;
-  background-color: #ccc;
-  padding: 25px 0px 20px 0px;
-  border-radius: 5px;
+  margin: 0px 350px 0px 1px;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.5)
+  ),
+  url("https://cdn.pixabay.com/photo/2017/01/03/01/08/jesus-christ-1948251__480.jpg");
+background-size: cover;
+height: 100vh;
+width: 100%;
+padding: 15% 0px 20px 0px;
+border-radius: 5px;
 }
 
 .login-btn {
-  background-color: #B60000;
+  background-color: #FF3D3D;
+  width: 25%;
   color: #fff;
 }
+
 
 /* =====END:: LOGIN===== */
 
 /* =====START:: SIGN UP===== */
 .signup-body{
-margin: 40px 350px 0px 350px;
-background-color: #ccc;
-padding: 25px 0px 20px 0px;
+background-image: linear-gradient(
+  rgba(255, 255, 255, 0.5),
+  rgba(255, 255, 255, 0.5)
+),
+url("https://images.pexels.com/photos/317355/pexels-photo-317355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+background-size: cover;
+height: 100vh;
+width: 100%;
+align-items: center;
+justify-content: center;
+padding:100px 500px;
 border-radius: 5px;
-padding: 80px;
+
+}
+.signup__form{
+  padding: 10px;
+  background-color: #efefef95;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+.signup_input{
+  /* margin-left: 300px; */
+  align-content: center;
+  justify-content: center;
+  
 }
 .signup-title{
   margin-top: -60px;
@@ -245,11 +273,12 @@ padding: 80px;
   justify-content: center;
 }
 .signup-title h1{
-  color: #fff;
+  color: #555;
   font-family: Century Gothic, Arial, Helvetica, sans-serif;
   font-weight: 900;
   font-size: 30px;
 }
+
 /* =====END:: SIGN UP===== */
 
 /* =====START:: HISTORY===== */
@@ -260,6 +289,7 @@ padding: 80px;
   display: flex;
   flex-direction: row;
 }
+
 /* =====END:: HISTORY===== */
 .spiritual-img {
   /*
@@ -288,7 +318,8 @@ padding: 80px;
   background-size: cover;
   background-attachment: fixed;
   color: #fff;
-  height: 85vh;
+  padding: 50px 0px;
+  /* height: 85vh; */
 }
 
 .Mission-heading {
@@ -347,7 +378,7 @@ padding: 80px;
 }
 
 .section-community {
-  /* display: block; */
+  padding: 50px 0px;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 50px;
@@ -401,7 +432,6 @@ padding: 80px;
 }
 
 .section-testimonials {
-  /*   background-color:#efefef;*/
   background-image: linear-gradient(to right, rgba(114, 43, 43, 0.7), rgba(0, 0, 0, 0.7)), url('https://cdn.pixabay.com/photo/2017/01/03/01/08/jesus-christ-1948251_960_720.jpg');
   background-position: center;
   background-size: cover;
@@ -409,6 +439,7 @@ padding: 80px;
   background-attachment: fixed;
   color: #fff;
   height: 90vh;
+  padding: 50px 0px;
 }
 
 .testimonials-heading {
@@ -446,6 +477,7 @@ cite {
 }
 
 cite img {
+  width:45px ;
   height: 45px;
   border-radius: 50%;
   margin-right: 10px;
@@ -453,8 +485,8 @@ cite img {
 }
 
 .section-signup {
-  /*    background-color:#efefef;*/
-  height: 70vh;
+  /* height: 70vh; */
+  padding: 80px 0px;
 }
 
 .Signup-heading {
@@ -462,13 +494,14 @@ cite img {
   text-transform: uppercase;
   font-size: 140%;
   word-spacing: 2px;
-  margin: 20px 0;
+  /* margin: 20px 0; */
   letter-spacing: 1px;
   margin-bottom: 70px;
-  margin-top: 70px;
+  /* margin-top: 70px; */
 }
 
 .Signup-para {
+  text-align: left;
   margin-bottom: 30px;
 }
 
@@ -479,10 +512,11 @@ cite img {
 .sign-btn:link,
 .sign-btn:visited,
 input[type="submit"] {
+  width: 150px;
   text-decoration: none;
   color: #fff;
-  border-radius: 200px;
-  background-color: rgb(181, 11, 11);
+  border-radius:5px;
+  background-color: #FF3D3D;
   font-weight: 300;
   display: inline-block;
   padding: 10px 30px;
@@ -499,19 +533,35 @@ input[type="submit"] {
   background-color: #555;
 }
 
-/*...FORM...*/
-.section-form {
-  margin-top: 200;
-  height: 95vh;
+/***TEAM***/
+.Our__teams{
+  align-items: center;
+  justify-content: center;
 }
 
-.contact-form {
-  width: 60%;
-  margin: 0 auto;
+/*...FORM...*/
+.section-form {
+  padding: 60px 0px;
+  margin-bottom: 50px;
 }
+.contact__heading{
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 140%;
+  word-spacing: 2px;
+  letter-spacing: 1px;
+  margin-bottom: 70px;
+}
+
+ .contact-form {
+  align-items: center;
+  padding-left:300px;
+} 
 
 input[type="text"],
 input[type="email"],
+input[type="number"],
 select,
 textarea {
   width: 100%;
@@ -534,7 +584,8 @@ input[type="checkbox"] {
 
 .section-team {
   background-color: #efefef;
-  height: 80vh;
+  /* height: 100vh; */
+  padding: 0px 0px 60px 0px;
 }
 
 .team-heading {
@@ -550,31 +601,37 @@ input[type="checkbox"] {
 
 .card {
   display: block;
-  margin-left: 100px;
-  width: 170px;
-  height: 300px;
+  /* margin-left: 100px; */
+  width:100%;
+  height: 380px;
   background-color: white;
   /* margin-right: 12px; */
   text-align: center;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 
   /*    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.49);*/
 }
 
 .card img {
-  margin-top: 15px;
-  height: 140px;
-  width: 130px;
+  /* margin-top: 15px; */
+  width:100%;
+  height: 180px;
+  /* margin-left: 9px; */
+  object-fit:contain;
   /*    border-radius: 200px;*/
 }
-
+.team__social__container{
+  padding: 0 30px;
+}
 .social-media:link,
 .social-media:visited {
   text-decoration: none;
   display: inline-block;
   color: #e67e22;
-  font-size: 90%;
+  font-size:80%;
   text-decoration: none;
   text-transform: capitalize;
   transition: border-bottom 0.5s, 0.5s, padding-bottom 0.5s;
@@ -586,10 +643,23 @@ input[type="checkbox"] {
   border-bottom: 1px solid #e67e22;
   padding-bottom: 1px;
 }
-
+.team__social__container__social_item{
+  display: flex;
+ 
+}
+.card__description{
+  padding:0px 20px;
+}
+.card__description-item{
+  text-align: left;
+  font-weight: bold;
+  color:#555;
+  line-height: 1.7;
+  word-spacing: 2px;
+}
 .footer {
-  background-color: #555;
-  color: #fff;
+  background-color: rgba(85, 85, 85, 0.388);
+  bottom: 0px;
 }
 
 .footer-row {
@@ -626,7 +696,9 @@ input[type="checkbox"] {
 .footer-logo {
   width: 200px;
   height: auto;
-  /*    text-align: center;*/
+  border-radius: 10px;
+
+
 }
 
 .footer-list {
@@ -721,9 +793,10 @@ input[type="checkbox"] {
 
   .section-team {
     margin-left: 0;
-    width: 100%;
+    padding: 40px 0px;
+    /* width: 100%; */
     background-color: #efefef;
-    height: 80vh;
+    /* height: 80vh; */
   }
 
   .Signup-para {
@@ -808,7 +881,6 @@ input[type="checkbox"] {
 /* =====END:: HISTORY===== */
 }
 
-
 @media (max-width: 499px) {
   * {
     margin: 0;
@@ -856,10 +928,10 @@ input[type="checkbox"] {
   }
 
   .card {
-    margin-left: 8px;
-    margin-bottom: 20px;
-    width: 400px;
-    height: 300px;
+    /* margin-left: 8px; */
+    margin-bottom: 20000px;
+    /* width: 400px; */
+    height: 90vh;
     text-align: center;
 
     /*    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.49);*/
@@ -886,7 +958,7 @@ input[type="checkbox"] {
     background-color: red;
   } */
   .footer {
-    background-color: #555;
+    background-color: rgb(232, 86, 86);
     width: 100%;
     height: 100%;
     color: #fff;
@@ -895,6 +967,7 @@ input[type="checkbox"] {
   }
 
   .footer-row {
+    justify-content: center;
     text-align: center;
   }
 

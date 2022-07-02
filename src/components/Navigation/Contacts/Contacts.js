@@ -26,10 +26,10 @@ const Contacts = () => {
       </div>
     ) : (
       <>
-        <div className="Login">
+        {/* <div className="Login">
           <Link to="/login"> Login</Link>
         </div>
-        <div className="Register1"><Link to="/signup"> Registar</Link></div>
+        <div className="Register1"><Link to="/signup"> Registar</Link></div> */}
       </>
     )}
   </div>)

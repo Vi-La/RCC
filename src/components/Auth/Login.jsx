@@ -18,13 +18,13 @@ const Login = () => {
   const [phone, setPhone] =useState("")
   const [password, setPassword] =useState("")
 
-
   const onFinish = async(values) => {
     console.log('Success:', values);
 
     try {
   const response=  await axios({
     url:"http://localhost:5000/api/v1/users/login",
+    // url:"https://rcc-rwanda1.herokuapp.com/api/v1/users/login",
     method:"POST",
     data:values,
     headers:{
@@ -33,8 +33,6 @@ const Login = () => {
   })
 
   localStorage.setItem("user",JSON.stringify(response?.data))
-  // console.log(response?.data.accessToken)
-  // console.log(JSON.parse(localStorage.getItem('user')).accessToken)
    if(JSON.parse(localStorage.getItem('user')).accessToken){
      history.push('/dashboard')
    }
@@ -50,15 +48,15 @@ const Login = () => {
   return (
     <div>
     <Layout/>
-    <Form 
+    <Form
       className='login-body'
       name="basic"
       labelCol={{
         span: 8,
-      }}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+      }}
       wrapperCol={{
         span:8,
-      }}                                                                                
+      }}
       initialValues={{
         remember: true,
       }}
@@ -66,9 +64,9 @@ const Login = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-     
+
       <Form.Item
-        // label="Email"
+        label="Email"
         name="email"
         rules={[
           {
@@ -81,7 +79,7 @@ const Login = () => {
       </Form.Item>
 
       <Form.Item
-        // label=""
+        label="Password"
         name="password"
         rules={[
           {
@@ -92,7 +90,7 @@ const Login = () => {
       >
         <Input.Password placeholder='Password'/>
       </Form.Item>
-      
+
       <Form.Item
         wrapperCol={{
           offset: 8,
@@ -104,9 +102,9 @@ const Login = () => {
         >
           Login
         </Button>
-        <Link className='btn-link' to="signup">&nbsp;Don't have accout? Signup</Link>
+        <Link className='btn-link' to="forget">&nbsp;Forgot password</Link>
       </Form.Item>
-      
+
     </Form>
     </div>
   );

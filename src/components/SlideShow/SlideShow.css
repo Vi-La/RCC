@@ -1,11 +1,17 @@
 .slide-container{
-    margin:0px 20px 0px 20px;
+    padding: 50px;
+    height: 100%;
   }
   .saint-of-the-day{
   padding:10px;
   text-align: center;
   height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   }
+ 
   .saint-of-the-day-title{
     color:#000;
     text-transform: uppercase;
@@ -17,6 +23,9 @@
   padding:10px;
   text-align: center;
   }
+  .saint-of-the-day-description p{
+   text-align: left;
+    }
   .saint-of-the-day-name{
     color:#000;
   }

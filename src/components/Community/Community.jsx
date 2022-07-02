@@ -28,14 +28,14 @@ const Communities = () => {
   },[])
 
   return (
-    <div>
+    <div >
       <section className="section-community" id="community">
         <div className="row ">
           <h2 className="community-heading">Our Community</h2>
         </div>
         <div className="row community-row">
-            {communities.map((item)=>(
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            {communities.slice(0,10).map((item)=>(
+          <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" key={item._id}>
             <img src={item.image} alt="Head quators" className="Community-img" />
             <h3>{item.title}</h3>
             <div className="community-features">
