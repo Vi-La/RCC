@@ -8,7 +8,6 @@ import './grid.css'
 
 const App =()=>{
   return (
-   
     <BrowserRouter>
      <Routes/>
     </BrowserRouter>

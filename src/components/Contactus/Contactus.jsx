@@ -2,11 +2,6 @@ import React, { useState } from "react";
 import { publicRequest } from './../../api/index'
 
 const Contactus = () => {
-  const [fullName, setFullName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [msg, setMsg] = useState('');
 
   const [formData,setFormData] = useState({
     fullName:"",
@@ -21,15 +16,12 @@ const Contactus = () => {
     await publicRequest.post("message/send",{
       formData
     }).then((response)=>{
-      console.log("data",response)
+      // console.log("data",response)
     });
    
-    console.log("data", formData)
+    // console.log("data", formData)
     clear()
   }
-   // sendMessage(fullName, phone, email, address, msg)
-  // const sendMessage = async (fullName, phone, email, address, msg)=>{
-  // };
   const clear = ()=>{
     setFormData({
       fullName:"",
@@ -51,6 +43,7 @@ const Contactus = () => {
             
             <div className="col span-2-of-3">
               <input
+              className="dataInput"
                 type="text"
                 name="name"
                 value={formData.fullName}
@@ -68,6 +61,7 @@ const Contactus = () => {
             
             <div className="col span-2-of-3">
               <input
+              className="dataInput"
                 type="email"
                 name="email"
                 value={formData.email}
@@ -86,6 +80,7 @@ const Contactus = () => {
               <input
                 type="text"
                 name="address"
+                className="dataInput"
                 value={formData.address}
                 onChange={(e)=> setFormData({
                   ...formData,
@@ -102,6 +97,7 @@ const Contactus = () => {
               <input
                 type="number"
                 name="phone"
+                className="dataInput"
                 value={formData.phone}
                 onChange={(e)=> setFormData({
                   ...formData,
@@ -116,6 +112,7 @@ const Contactus = () => {
           <div className="row">
             <div className="col span-2-of-3">
               <textarea 
+              className="dataInput"
               name="message"
               value={formData.message}
               onChange={(e)=> setFormData({
@@ -129,7 +126,7 @@ const Contactus = () => {
           </div>
           <div className="row">
             <div className="col span-2-of-3">
-              <input type="submit" value="Send"/>
+              <input type="submit" className="sendBtn" value="Send"/>
             </div>
           </div>
         </form>

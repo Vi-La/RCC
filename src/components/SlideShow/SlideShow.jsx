@@ -20,7 +20,7 @@ const SlideShow = () => {
   return (
     <div className="slide-container" >
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 16 }}>
-        <Col className="gutter-row " span={14}>
+        <Col className="gutter-row " xs={24} lg={14}>
           <Carousel autoplay>
             <div id="slider">
               <figure className="wgh-slider-item-figure">
@@ -94,7 +94,7 @@ const SlideShow = () => {
             </div>
           </Carousel>
         </Col>
-        <Col className="gutter-row" span={10}>
+        <Col className="gutter-row" xs={24} lg={10}>
             {lesson.slice(0,1).map((item)=>(
           <div className="saint-of-the-day" key={item._id}>
             <div>

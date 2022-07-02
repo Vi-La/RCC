@@ -874,10 +874,6 @@ input[type="checkbox"] {
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.history-team{
-  /* display: flex;
-  flex-direction: row; */
-}
 /* =====END:: HISTORY===== */
 }
 
@@ -900,11 +896,6 @@ input[type="checkbox"] {
 
     width: 100%;
     margin: 0 auto;
-  }
-
-  .saint-of-the-day-picture img {
-    width: 135px;
-    height: 100px;
   }
 
   .section-welcome {
@@ -1030,39 +1021,98 @@ input[type="checkbox"] {
   }
 
   .section-testimonials {
-    height: 215vh;
+    height: 265vh;
   }
-
-  .card {
-    margin-left: 8px;
-    margin-bottom: 20px;
-    width: 300px;
-    height: 300px;
+  .testimonials-heading {
+    color: #fff;
     text-align: center;
-
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    word-spacing: 2px;
+    margin: 0px;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+  }
+  .section-team {
+    background-color: #efefef;
+    padding: 2px;
+    height: 390vh;
+  }
+  .team-heading {
+    padding: 60px;
+    margin: 0px;
+  }
+  
+  .card {
+    margin-left: 30px;
+    margin-bottom: 1px;
+    padding: 50px;
+    width: 300px;
+    height: 430px;
+    text-align: center;
     /*    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.49);*/
   }
 
   .card img {
-    /* margin-top: 15px; */
-    align-items: left;
-    justify-content: space-between;
     align-items: center;
     height: 160px;
     width: 160px;
-    /*    border-radius: 200px;*/
   }
-  .signup-body{
-    width: 410px;
-    margin-left: -40px;
-    align-items: left;
+  .contact__form-container input [type="submit"]{
+    margin-left: -60px;
+
   }
+  .sendBtn{
+    margin-left: -260px;
+  }
+  .dataInput{
+    margin-left: -260px;
+    width: 300px;
+  }
+  input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+  width: 400%;
+  margin-top: 5px;
+  padding: 10px 0;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
   .signup-body Input{
     width: 280px;
   }
   .passInput{
     width: 280px;
   }
+  .signup-title{
+    margin-top: -60px;
+    margin-bottom: 2px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .signup-body{
+   margin-top: 50px;
+    height: 850px;
+    width: 525px;
+    padding:10px 180px;
+    margin-left: -150px;
+    border-radius: 5px;
+    }
+    .signup__form{
+      margin-left: -20px;
+      width: 350px;
+      padding: 10px;
+      background-color: #efefef95;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    }
+    .login-btn{
+      margin-left: 10px;
+    }
   
 }
 @media (max-width: 320px) {

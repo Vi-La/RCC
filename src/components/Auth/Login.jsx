@@ -19,12 +19,12 @@ const Login = () => {
   const [password, setPassword] =useState("")
 
   const onFinish = async(values) => {
-    console.log('Success:', values);
+    // console.log('Success:', values);
 
     try {
   const response=  await axios({
-    url:"http://localhost:5000/api/v1/users/login",
-    // url:"https://rcc-rwanda1.herokuapp.com/api/v1/users/login",
+    // url:"http://localhost:5000/api/v1/users/login",
+    url:"https://rcc-rwanda1.herokuapp.com/api/v1/users/login",
     method:"POST",
     data:values,
     headers:{
@@ -42,7 +42,7 @@ const Login = () => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    // console.log('Failed:', errorInfo);
   };
 
   return (

@@ -20,7 +20,7 @@ const Signup = () => {
     console.log(isSignup)
   }
   const onFinish = async (values) => {
-    console.log('Success:', values);
+    // console.log('Success:', values);
     if(!isSignup){
 
       try {
@@ -73,7 +73,7 @@ const Signup = () => {
         autoComplete="off"
       >
         <div className='signup-title'>
-          <h1>{isSignup?"Sign up now":"Login now"}</h1>
+          <h1>{isSignup?"Register now":"Login now"}</h1>
           <p>Please fill in this form to create an account</p>
         </div>
       { isSignup&& (<>
@@ -188,17 +188,17 @@ const Signup = () => {
           <Button className='login-btn' htmlType="submit"
           // loading={true}
           >
-           { isSignup?"Sign Up":"Login"}
+           { isSignup?"Register":"Login"}
           </Button>
-          <Button color='primary' htmlType="submit"
-          style={{width:"300px"}}
-          // loading={true}
+          {/* <Button color='primary' htmlType=""
+          style={{width:"500px"}}
+          
           >
            { !isSignup&&"Forgot Password?"}
-          </Button>
+          </Button> */}
           &nbsp;
          
-          <span style={{cursor:"pointer",textDecoration:"underline",color:"sky-blue"}} className='btn-link' onClick={switchMode} >{isSignup?"Already have account? Login":"Don't have account? Signup"}</span>
+          <span style={{cursor:"pointer",textDecoration:"underline",color:"sky-blue"}} className='btn-link' onClick={switchMode} >{isSignup?"Already have account? Login":"Don't have account? Register"}</span>
          
         </Form.Item>
 

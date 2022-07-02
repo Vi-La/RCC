@@ -205,6 +205,7 @@ export default function History() {
     const getHistory = async ()=>{
       const response = await publicRequest.get("history");
       setHstry(response.data.data)
+      console.log(response.data.data)
     }
     getHistory()
     console.log("Response", hstry)

@@ -13,11 +13,11 @@
   }
  
   .saint-of-the-day-title{
-    color:#000;
+    color:rgba(0, 0, 0, 0.841);
     text-transform: uppercase;
     line-height: 1.7;
     font-weight: 200px;
-    font-size: 16px;
+    font-size: 20px;
   }
   .saint-of-the-day-description{
   padding:10px;
@@ -27,7 +27,7 @@
    text-align: left;
     }
   .saint-of-the-day-name{
-    color:#000;
+    color:rgba(0, 0, 0, 0.89);
   }
   button {
     float: left;
@@ -291,12 +291,28 @@
   }
 
   @media (max-width: 375px) {
-    .saint-of-the-day-title{
-      font-size: 12px;
+    .slide-container{
+      padding: 0px 20px;
+      display: block;
+      flex-direction: column;
+      width: 100%;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
     }
-    .saint-of-the-day-description{
-      text-align: left;
-      font-size: 6.5px;
+    .saint-of-the-day-title{
+      font-size: 18px;
+      color: rgba(0, 0, 0, 0.841);
+    }
+    .saint-of-the-day-picture{
+      align-items: center;
+      justify-content: center;
+      
+    }
+    .saint-of-the-day-description h2{
+      /* text-align: center; */
+      font-size: 10px;
+      color: rgba(0, 0, 0, 0.919);
       }
       .image {
         width: 100%;
